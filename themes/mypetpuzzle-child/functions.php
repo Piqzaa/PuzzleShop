@@ -4,9 +4,16 @@ function mypetpuzzle_child_enqueue_assets() {
     $theme = wp_get_theme('mypetpuzzle-child');
 
     wp_enqueue_style(
+        'mypetpuzzle-child-fonts',
+        'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap',
+        [],
+        null
+    );
+
+    wp_enqueue_style(
         'mypetpuzzle-child-style',
         get_stylesheet_uri(),
-        ['storefront-style'],
+        ['storefront-style', 'mypetpuzzle-child-fonts'],
         $theme->get('Version')
     );
 
