@@ -1,0 +1,135 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  color: #333333;
+  background-color: #fafafa;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: #4a90d9;
+  text-decoration: none;
+  -webkit-transition: color 0.15s ease;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: #4382c3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.upload__dropzone {
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+  padding: 48px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease;
+}
+
+.upload__dropzone:hover,
+.upload__dropzone--active {
+  border-color: #4a90d9;
+}
+
+.upload__preview {
+  max-width: 300px;
+  margin: 16px auto;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload__error {
+  color: #d0021b;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.upload__submit {
+  background-color: #4a90d9;
+  color: #ffffff;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease;
+}
+
+.upload__submit:hover {
+  background-color: #4382c3;
+}
+
+.upload__submit:disabled {
+  background-color: #777777;
+  cursor: not-allowed;
+}
+
+.puzzle-product__options {
+  margin: 24px 0;
+}
+
+.puzzle-product__size-label {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+
+.puzzle-product__size-label:hover,
+.puzzle-product__size-label--selected {
+  border-color: #4a90d9;
+  background-color: #c9def4;
+}
+
+.puzzle-product__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4a90d9;
+}
+
+.puzzle-product__cta {
+  margin-top: 24px;
+}

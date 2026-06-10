@@ -1,0 +1,32 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: $font-primary;
+    font-size: $font-size-base;
+    color: $color-text;
+    background-color: $color-bg;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: $color-primary;
+    text-decoration: none;
+    transition: color $transition-fast;
+}
+
+a:hover {
+    color: $color-primary-dark;
+}

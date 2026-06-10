@@ -1,0 +1,30 @@
+@use '../variables' as *;
+
+.puzzle-product__options {
+    margin: $spacing-lg 0;
+}
+
+.puzzle-product__size-label {
+    display: inline-block;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all $transition-fast;
+}
+
+.puzzle-product__size-label:hover,
+.puzzle-product__size-label--selected {
+    border-color: $color-primary;
+    background-color: $color-primary-light;
+}
+
+.puzzle-product__price {
+    font-size: $font-size-h3;
+    font-weight: 700;
+    color: $color-primary;
+}
+
+.puzzle-product__cta {
+    margin-top: $spacing-lg;
+}

@@ -1,0 +1,41 @@
+// Couleurs
+$color-primary: #4a90d9;
+$color-secondary: #f5a623;
+$color-accent: #7ed321;
+$color-bg: #fafafa;
+$color-text: #333333;
+$color-text-light: #777777;
+$color-border: #e0e0e0;
+$color-white: #ffffff;
+$color-error: #d0021b;
+$color-success: #417505;
+
+// Typographie
+$font-primary: "Nunito", sans-serif;
+$font-secondary: "Playfair Display", serif;
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.5rem;
+
+// Espacements
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 48px;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-wide: 1280px;
+
+// Dérivés
+$color-primary-dark: #4382c3;
+$color-primary-light: #c9def4;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;

@@ -1,0 +1,47 @@
+@use '../variables' as *;
+
+.upload__dropzone {
+    border: 2px dashed $color-border;
+    border-radius: 8px;
+    padding: $spacing-xl;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color $transition-base;
+}
+
+.upload__dropzone:hover,
+.upload__dropzone--active {
+    border-color: $color-primary;
+}
+
+.upload__preview {
+    max-width: 300px;
+    margin: $spacing-md auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload__error {
+    color: $color-error;
+    font-size: $font-size-small;
+    margin-top: $spacing-sm;
+}
+
+.upload__submit {
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+}
+
+.upload__submit:hover {
+    background-color: $color-primary-dark;
+}
+
+.upload__submit:disabled {
+    background-color: $color-text-light;
+    cursor: not-allowed;
+}
