@@ -1,7 +1,8 @@
 <?php
 
 function mypetpuzzle_child_enqueue_assets() {
-    $theme = wp_get_theme('mypetpuzzle-child');
+    $theme   = wp_get_theme('mypetpuzzle-child');
+    $version = $theme->get('Version');
 
     wp_enqueue_style(
         'mypetpuzzle-child-fonts',
@@ -11,17 +12,10 @@ function mypetpuzzle_child_enqueue_assets() {
     );
 
     wp_enqueue_style(
-        'mypetpuzzle-child-style',
-        get_stylesheet_uri(),
-        ['storefront-style', 'mypetpuzzle-child-fonts'],
-        $theme->get('Version')
-    );
-
-    wp_enqueue_style(
         'mypetpuzzle-child-main',
         get_stylesheet_directory_uri() . '/assets/css/main.css',
-        ['mypetpuzzle-child-style'],
-        $theme->get('Version')
+        ['storefront-style', 'mypetpuzzle-child-fonts'],
+        $version
     );
 
 }
