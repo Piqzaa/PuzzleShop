@@ -7,10 +7,10 @@
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 16px;
-  color: #333333;
-  background-color: #fafafa;
+  color: #2c1810;
+  background-color: #f5f0e8;
   line-height: 1.6;
 }
 
@@ -21,14 +21,14 @@ img {
 }
 
 a {
-  color: #4a90d9;
+  color: #c9a84c;
   text-decoration: none;
   -webkit-transition: color 0.15s ease;
   transition: color 0.15s ease;
 }
 
 a:hover {
-  color: #4382c3;
+  color: #b59744;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -56,7 +56,7 @@ p {
 }
 
 .upload__dropzone {
-  border: 2px dashed #e0e0e0;
+  border: 2px dashed #c5b7a3;
   border-radius: 8px;
   padding: 48px;
   text-align: center;
@@ -67,7 +67,7 @@ p {
 
 .upload__dropzone:hover,
 .upload__dropzone--active {
-  border-color: #4a90d9;
+  border-color: #c9a84c;
 }
 
 .upload__preview {
@@ -85,7 +85,7 @@ p {
 }
 
 .upload__submit {
-  background-color: #4a90d9;
+  background-color: #c9a84c;
   color: #ffffff;
   border: none;
   padding: 8px 24px;
@@ -96,11 +96,11 @@ p {
 }
 
 .upload__submit:hover {
-  background-color: #4382c3;
+  background-color: #b59744;
 }
 
 .upload__submit:disabled {
-  background-color: #777777;
+  background-color: #6b5d58;
   cursor: not-allowed;
 }
 
@@ -111,7 +111,7 @@ p {
 .puzzle-product__size-label {
   display: inline-block;
   padding: 8px 16px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #c5b7a3;
   border-radius: 4px;
   cursor: pointer;
   -webkit-transition: all 0.15s ease;
@@ -120,14 +120,14 @@ p {
 
 .puzzle-product__size-label:hover,
 .puzzle-product__size-label--selected {
-  border-color: #4a90d9;
-  background-color: #c9def4;
+  border-color: #c9a84c;
+  background-color: #efe5c9;
 }
 
 .puzzle-product__price {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #4a90d9;
+  color: #c9a84c;
 }
 
 .puzzle-product__cta {
