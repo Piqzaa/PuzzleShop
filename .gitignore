@@ -6,8 +6,8 @@ themes/twentytwentyfour/
 themes/twentytwentyfive/
 
 
-plugins/woocommerce/
-plugins/akismet/
+plugins/*
+!plugins/mypetpuzzle-core/
 languages/
 uploads/
 upgrade/
@@ -16,3 +16,4 @@ Thumbs.db
 
 cache/
 .vscode/
+jetpack-waf/
