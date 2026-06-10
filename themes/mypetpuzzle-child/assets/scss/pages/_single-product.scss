@@ -1,0 +1,25 @@
+@use '../variables' as *;
+
+.product-detail {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: $spacing-lg $spacing-md;
+    display: grid;
+    gap: $spacing-lg;
+
+    @media (min-width: $bp-tablet) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.product-detail__gallery {
+    width: 100%;
+}
+
+.product-detail__summary {
+    width: 100%;
+}
+
+.product-detail__description {
+    grid-column: 1 / -1;
+}

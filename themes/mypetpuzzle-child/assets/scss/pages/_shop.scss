@@ -1,0 +1,64 @@
+@use '../variables' as *;
+
+.shop {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: $spacing-lg $spacing-md;
+}
+
+.shop__header {
+    margin-bottom: $spacing-lg;
+}
+
+.shop__title {
+    font-family: $font-secondary;
+    font-size: 2rem;
+    color: $color-text;
+    margin-top: $spacing-sm;
+}
+
+.shop__filters {
+    margin-bottom: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+}
+
+.shop__filter-label {
+    font-size: $font-size-small;
+    color: $color-text-light;
+    font-weight: 600;
+}
+
+.shop__filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+}
+
+.shop__filter-link {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    border: 1px solid $color-border;
+    border-radius: 20px;
+    color: $color-text;
+    font-size: $font-size-small;
+    text-decoration: none;
+    transition: all $transition-fast;
+}
+
+.shop__filter-link:hover,
+.shop__filter-link--active {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+}
+
+.woocommerce-pagination {
+    margin-top: $spacing-lg;
+    text-align: center;
+}

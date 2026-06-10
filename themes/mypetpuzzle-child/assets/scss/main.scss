@@ -1,6 +1,9 @@
-@use "variables";
-@use "base";
-@use "typography";
-@use "components/upload";
-@use "pages/product";
-@use "pages/front-page";
+@use 'variables';
+@use 'base';
+@use 'typography';
+@use 'components/upload';
+@use 'pages/product';
+@use 'pages/front-page';
+@use 'pages/shop';
+@use 'pages/single-product';
+@use 'pages/custom-puzzle';
