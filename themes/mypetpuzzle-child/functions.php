@@ -18,6 +18,13 @@ function mypetpuzzle_child_enqueue_assets() {
         $version
     );
 
+    wp_enqueue_script(
+        'mypetpuzzle-child-header',
+        get_stylesheet_directory_uri() . '/assets/js/modules/header.js',
+        ['wc-cart-fragments'],
+        $version,
+        true
+    );
 }
 add_action('wp_enqueue_scripts', 'mypetpuzzle_child_enqueue_assets');
 
@@ -28,3 +35,19 @@ function mypetpuzzle_child_theme_support() {
     add_theme_support('wc-product-gallery-slider');
 }
 add_action('after_setup_theme', 'mypetpuzzle_child_theme_support');
+
+function mypetpuzzle_child_register_menus() {
+    register_nav_menus(array(
+        'mypetpuzzle-primary' => __('Navigation principale', 'mypetpuzzle-child'),
+    ));
+}
+add_action('after_setup_theme', 'mypetpuzzle_child_register_menus');
+
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+    ob_start();
+    ?>
+    <span class="header__cart-count"><?php echo WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?></span>
+    <?php
+    $fragments['span.header__cart-count'] = ob_get_clean();
+    return $fragments;
+});
