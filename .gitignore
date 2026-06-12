@@ -11,6 +11,8 @@ plugins/*
 languages/
 uploads/
 upgrade/
+updraft/
+wflogs/
 .DS_Store
 Thumbs.db
 
