@@ -1,21 +1,20 @@
 @use "../variables" as *;
 
-.hero {
-  background-color: $color-surface;
-}
+/* =========================================
+   1. HERO
+   ========================================= */
 
 .hero__inner {
   max-width: 1120px;
   margin: 0 auto;
   padding: $spacing-xl $spacing-md;
   display: grid;
-  gap: $spacing-lg;
+  gap: $spacing-xl;
   align-items: center;
 
   @media (min-width: $bp-tablet) {
     grid-template-columns: 1fr 1fr;
     padding: 80px $spacing-md;
-    gap: $spacing-xl;
   }
 }
 
@@ -35,24 +34,16 @@
 }
 
 .hero__subtitle {
+  font-size: 1.125rem;
   color: $color-text-light;
   margin-bottom: $spacing-lg;
 }
 
-.hero__cta {
-  display: inline-block;
-  background-color: $color-primary;
-  color: $color-white;
-  font-weight: 600;
-  padding: $spacing-sm $spacing-xl;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background-color $transition-fast;
-}
-
-.hero__cta:hover {
-  background-color: $color-primary-dark;
-  color: $color-white;
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
 }
 
 .hero__trust {
@@ -61,7 +52,7 @@
   gap: $spacing-sm;
   list-style: none;
   padding: 0;
-  margin: $spacing-lg 0 0;
+  margin: 0;
   font-size: $font-size-small;
   color: $color-text-light;
 
@@ -87,32 +78,43 @@
 .hero__image img {
   border-radius: 12px;
   box-shadow: 0 12px 32px rgba(44, 24, 16, 0.15);
+  width: 100%;
+  height: auto;
 }
 
-.how-it-works {
-  padding: $spacing-xl $spacing-md;
-  max-width: 1120px;
+/* =========================================
+   2. STEPS
+   ========================================= */
+
+.steps__inner {
+  max-width: 860px;
   margin: 0 auto;
   text-align: center;
 }
 
-.how-it-works__title {
+.steps__title {
   font-family: $font-secondary;
   font-size: 2rem;
   color: $color-text;
-  margin-bottom: $spacing-lg;
+  margin-bottom: $spacing-xl;
 }
 
-.how-it-works__grid {
+.steps__grid {
   display: grid;
-  gap: $spacing-lg;
+  gap: $spacing-xl;
 
   @media (min-width: $bp-tablet) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.how-it-works__number {
+.steps__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steps__number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -127,128 +129,107 @@
   margin-bottom: $spacing-md;
 }
 
-.how-it-works__title-step {
+.steps__heading {
   font-family: $font-secondary;
   font-size: 1.25rem;
   color: $color-text;
   margin-bottom: $spacing-sm;
 }
 
-.how-it-works__text {
+.steps__text {
   font-size: $font-size-small;
   color: $color-text-light;
+  max-width: 220px;
 }
 
-.features {
-  padding: $spacing-xl $spacing-md;
-}
+/* =========================================
+   3. GIFTS
+   ========================================= */
 
-.features__grid {
-  display: grid;
-  gap: $spacing-lg;
+.gifts__inner {
   max-width: 960px;
   margin: 0 auto;
-
-  @media (min-width: $bp-tablet) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.features__card {
-  background-color: $color-surface;
-  border-radius: 8px;
-  border-top: 3px solid $color-primary;
-  box-shadow: 0 2px 12px rgba(44, 24, 16, 0.06);
-  padding: $spacing-lg;
   text-align: center;
 }
 
-.features__icon {
-  font-size: 2.5rem;
+.gifts__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  color: $color-text;
   margin-bottom: $spacing-sm;
 }
 
-.features__title {
+.gifts__intro {
+  color: $color-text-light;
+  margin-bottom: $spacing-xl;
+}
+
+.gifts__item {
+  border-top: 3px solid $color-primary;
+  padding: $spacing-lg $spacing-md 0;
+  text-align: left;
+}
+
+.gifts__item-title {
   font-family: $font-secondary;
   font-size: 1.25rem;
   color: $color-text;
   margin-bottom: $spacing-sm;
 }
 
-.features__text {
+.gifts__item-text {
   font-size: $font-size-small;
   color: $color-text-light;
+  line-height: 1.6;
+  margin-bottom: $spacing-md;
 }
 
-.products-showcase {
-  padding: $spacing-xl $spacing-md;
-  max-width: 1120px;
-  margin: 0 auto;
+.gifts__link {
+  font-weight: 600;
+  color: $color-primary;
+  text-decoration: none;
+  font-size: $font-size-small;
+  transition: color $transition-fast;
 }
 
-.products-showcase__title {
+.gifts__link:hover {
+  color: $color-primary-dark;
+}
+
+/* =========================================
+   4. BESTSELLERS
+   ========================================= */
+
+.bestsellers__title {
   font-family: $font-secondary;
   font-size: 2rem;
   text-align: center;
   color: $color-text;
-  margin-bottom: $spacing-lg;
+  margin-bottom: $spacing-sm;
 }
 
-.products-showcase__grid {
-  display: grid;
-  gap: $spacing-lg;
-
-  @media (min-width: $bp-tablet) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.bestsellers__desc {
+  text-align: center;
+  color: $color-text-light;
+  margin-bottom: $spacing-xl;
 }
 
-.products-showcase__card {
-  background-color: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(44, 24, 16, 0.06);
-  overflow: hidden;
-  text-decoration: none;
-  display: block;
-  position: relative;
-  transition:
-    transform $transition-base,
-    box-shadow $transition-base;
-}
-
-.products-showcase__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(44, 24, 16, 0.12);
-}
-
-.products-showcase__card img {
+.bestsellers__image img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  display: block;
 }
 
-.products-showcase__badge {
-  position: absolute;
-  top: $spacing-sm;
-  left: $spacing-sm;
-  background-color: $color-primary;
-  color: $color-white;
-  font-size: $font-size-small;
-  font-weight: 600;
-  padding: 2px $spacing-sm;
-  border-radius: 4px;
-  z-index: 1;
-}
-
-.products-showcase__name {
+.bestsellers__name {
   font-family: $font-secondary;
   font-size: 1.125rem;
   color: $color-text;
   padding: $spacing-sm $spacing-md 0;
+  margin-bottom: 4px;
 }
 
-.products-showcase__price {
+.bestsellers__price {
   display: block;
   font-size: $font-size-small;
   color: $color-primary;
@@ -256,94 +237,423 @@
   padding: 0 $spacing-md $spacing-sm;
 }
 
-.custom-cta {
-  background-color: $color-surface;
-  text-align: center;
-  padding: $spacing-xl $spacing-md;
+/* =========================================
+   5. CTA ÉMOTION — split texte / image
+   ========================================= */
+
+.cta-emotion__grid {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  gap: $spacing-xl;
+  align-items: center;
 
   @media (min-width: $bp-tablet) {
-    padding: 80px $spacing-md;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-.custom-cta__content {
-  max-width: 560px;
-  margin: 0 auto;
+.cta-emotion__content {
+  text-align: center;
+
+  @media (min-width: $bp-tablet) {
+    text-align: left;
+  }
 }
 
-.custom-cta__title {
+.cta-emotion__title {
   font-family: $font-secondary;
   font-size: 2rem;
   color: $color-text;
   margin-bottom: $spacing-md;
 }
 
-.custom-cta__text {
+.cta-emotion__text {
+  font-size: 1.125rem;
   color: $color-text-light;
+  line-height: 1.7;
   margin-bottom: $spacing-lg;
 }
 
-.custom-cta__btn {
-  display: inline-block;
-  background-color: $color-primary;
-  color: $color-white;
-  font-weight: 600;
-  padding: $spacing-sm $spacing-xl;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background-color $transition-fast;
+.cta-emotion__placeholder {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e8e0d5, #d4c9bb);
 }
 
-.custom-cta__btn:hover {
-  background-color: $color-primary-dark;
-  color: $color-white;
-}
+/* =========================================
+   6. COMPARISON
+   ========================================= */
 
-.testimonials {
-  padding: $spacing-xl $spacing-md;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.testimonials__title {
+.comparison__title {
   font-family: $font-secondary;
   font-size: 2rem;
   text-align: center;
   color: $color-text;
-  margin-bottom: $spacing-lg;
+  margin-bottom: $spacing-sm;
 }
 
-.testimonials__grid {
+.comparison__intro {
+  text-align: center;
+  color: $color-text-light;
+  margin-bottom: $spacing-xl;
+}
+
+.comparison__pair {
   display: grid;
-  gap: $spacing-lg;
-
-  @media (min-width: $bp-tablet) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: 1fr 1fr;
 }
 
-.testimonials__card {
-  background-color: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: 8px;
-  padding: $spacing-lg;
+.comparison__figure {
+  margin: 0;
+  position: relative;
+}
+
+.comparison__label {
+  position: absolute;
+  top: $spacing-sm;
+  left: $spacing-sm;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $color-white;
+  background-color: rgba(44, 24, 16, 0.6);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.comparison__demo {
+  aspect-ratio: 1;
+}
+
+.comparison__demo--husky {
+  background: linear-gradient(135deg, #e8e0d5, #d4c9bb);
+}
+
+.comparison__demo--husky-done {
+  background: linear-gradient(135deg, #d4c9bb, #c5b7a3);
+}
+
+.comparison__demo--chat {
+  background: linear-gradient(135deg, #f0e6d3, #e0c9a8);
+}
+
+.comparison__demo--chat-done {
+  background: linear-gradient(135deg, #e0c9a8, #d4b48c);
+}
+
+.comparison__demo--boule {
+  background: linear-gradient(135deg, #ede8dc, #d4ccc0);
+}
+
+.comparison__demo--boule-done {
+  background: linear-gradient(135deg, #d4ccc0, #c5b7a3);
+}
+
+.comparison__caption {
+  font-size: $font-size-small;
+  color: $color-text;
+  padding: $spacing-md;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* =========================================
+   7. SAVOIR-FAIRE
+   ========================================= */
+
+.savoir-faire__inner {
+  max-width: 960px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.testimonials__stars {
-  color: $color-primary;
+.savoir-faire__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  color: $color-text;
+  margin-bottom: $spacing-lg;
+}
+
+.savoir-faire__story {
+  max-width: 640px;
+  margin: 0 auto $spacing-xl;
+  color: $color-text;
   font-size: 1.125rem;
+  line-height: 1.7;
+  font-style: italic;
+  border-left: 3px solid $color-primary;
+  padding-left: $spacing-lg;
+  text-align: left;
+}
+
+.savoir-faire__pillar {
+  text-align: center;
+}
+
+.savoir-faire__pillars {
+  gap: $spacing-xl;
+}
+
+.savoir-faire__pillar-title {
+  font-family: $font-secondary;
+  font-size: 1.125rem;
+  color: $color-text;
+  margin-bottom: $spacing-sm;
+  position: relative;
+  display: inline-block;
+}
+
+.savoir-faire__pillar-title::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background-color: $color-primary;
+  margin: $spacing-sm auto 0;
+}
+
+.savoir-faire__pillar-text {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   8. REVIEWS
+   ========================================= */
+
+.reviews__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  text-align: center;
+  color: $color-text;
+  margin-bottom: $spacing-xl;
+}
+
+.reviews__card {
+  margin: 0;
+  padding: $spacing-lg;
+  border: none;
+  background: none;
+  position: relative;
+}
+
+.reviews__card::before {
+  content: "\201C";
+  font-family: $font-secondary;
+  font-size: 4rem;
+  color: $color-primary-light;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.reviews__stars {
+  color: $color-primary;
+  font-size: 1rem;
   letter-spacing: 2px;
   margin-bottom: $spacing-sm;
 }
 
-.testimonials__text {
+.reviews__text {
   font-style: italic;
   color: $color-text;
-  margin-bottom: $spacing-sm;
+  font-size: $font-size-small;
+  line-height: 1.6;
+  margin-bottom: $spacing-md;
 }
 
-.testimonials__author {
+.reviews__author {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
   font-size: $font-size-small;
   color: $color-text-light;
+}
+
+.reviews__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $color-primary-light;
+  color: $color-primary-dark;
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: $font-size-small;
+}
+
+.reviews__author cite {
+  font-style: normal;
+  font-weight: 600;
+  color: $color-text;
+}
+
+/* =========================================
+   9. WHY US
+   ========================================= */
+
+.whyus__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.whyus__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  text-align: center;
+  color: $color-text;
+  margin-bottom: $spacing-xl;
+}
+
+.whyus__item {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+}
+
+.whyus__check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: $color-primary-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.whyus__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: $font-size-small;
+  color: $color-text-light;
+  line-height: 1.5;
+}
+
+.whyus__content strong {
+  font-weight: 600;
+  color: $color-text;
+}
+
+/* =========================================
+   10. FAQ
+   ========================================= */
+
+.faq__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  text-align: center;
+  color: $color-text;
+  margin-bottom: $spacing-xl;
+}
+
+.faq__list {
+  display: grid;
+  gap: 0;
+}
+
+.faq__item {
+  border-bottom: 1px solid $color-border;
+}
+
+.faq__item:first-child {
+  border-top: 1px solid $color-border;
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: $spacing-md 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: $font-primary;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $color-text;
+  text-align: left;
+  transition: color $transition-fast;
+}
+
+.faq__question:hover {
+  color: $color-primary;
+}
+
+.faq__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: transform $transition-base;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  background-color: $color-text;
+  border-radius: 2px;
+  transition:
+    background-color $transition-fast,
+    transform $transition-base;
+}
+
+.faq__icon::before {
+  width: 2px;
+  height: 16px;
+  top: 2px;
+  left: 9px;
+}
+
+.faq__icon::after {
+  width: 16px;
+  height: 2px;
+  top: 9px;
+  left: 2px;
+}
+
+.faq__question[aria-expanded="true"] .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__question:hover .faq__icon::before,
+.faq__question:hover .faq__icon::after {
+  background-color: $color-primary;
+}
+
+.faq__answer {
+  overflow: hidden;
+}
+
+.faq__answer[hidden] {
+  display: none;
+}
+
+.faq__answer p {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  line-height: 1.6;
+  padding-bottom: $spacing-md;
+  margin-bottom: 0;
 }
