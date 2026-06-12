@@ -1,10 +1,16 @@
 @use 'variables';
 @use 'base';
 @use 'typography';
+@use 'scroll-animations';
+@use 'components/btn';
+@use 'components/card';
+@use 'components/badge';
+@use 'components/section';
+@use 'components/grid';
 @use 'components/header';
 @use 'components/upload';
 @use 'pages/product';
-@use 'pages/front-page';
 @use 'pages/shop';
 @use 'pages/single-product';
 @use 'pages/custom-puzzle';
+@use 'pages/front-page';
