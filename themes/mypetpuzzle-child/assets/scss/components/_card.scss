@@ -1,0 +1,24 @@
+@use '../variables' as *;
+
+.card {
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.card--lg {
+  border-radius: 12px;
+}
+
+.card--hover {
+  transition: transform $transition-base, box-shadow $transition-base;
+}
+
+.card--hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(44, 24, 16, 0.12);
+}

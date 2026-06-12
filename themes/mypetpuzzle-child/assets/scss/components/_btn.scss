@@ -1,0 +1,38 @@
+@use '../variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast;
+}
+
+.btn--primary {
+  background-color: $color-primary;
+  color: $color-white;
+  border: 2px solid $color-primary;
+}
+
+.btn--primary:hover {
+  background-color: $color-primary-dark;
+  border-color: $color-primary-dark;
+  color: $color-white;
+}
+
+.btn--secondary {
+  border: 2px solid $color-primary;
+  color: $color-text;
+  background-color: transparent;
+}
+
+.btn--secondary:hover {
+  background-color: $color-primary-light;
+  border-color: $color-primary-dark;
+}
