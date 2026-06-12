@@ -79,21 +79,23 @@ $best_sellers = wc_get_products([
 
 <?php if (!empty($best_sellers)) : ?>
 <section class="bestsellers section" data-animate>
-    <h2 class="bestsellers__title">Nos best-sellers animaux</h2>
-    <p class="bestsellers__desc">Les coups de cœur de nos clients. Des races et des poses qui cartonnent.</p>
-    <div class="bestsellers__grid grid grid--4">
-        <?php foreach ($best_sellers as $index => $product) : ?>
-            <a class="card card--hover" href="<?php echo esc_url($product->get_permalink()); ?>">
-                <?php if ($index === 0) : ?>
-                    <span class="badge">Best-seller</span>
-                <?php endif; ?>
-                <div class="bestsellers__image">
-                    <?php echo $product->get_image('medium'); ?>
-                </div>
-                <h3 class="bestsellers__name"><?php echo esc_html($product->get_name()); ?></h3>
-                <span class="bestsellers__price"><?php echo $product->get_price_html(); ?></span>
-            </a>
-        <?php endforeach; ?>
+    <div class="section__inner section__inner--full">
+        <h2 class="bestsellers__title">Nos best-sellers animaux</h2>
+        <p class="bestsellers__desc">Les coups de cœur de nos clients. Des races et des poses qui cartonnent.</p>
+        <div class="bestsellers__grid grid grid--4">
+            <?php foreach ($best_sellers as $index => $product) : ?>
+                <a class="card card--hover" href="<?php echo esc_url($product->get_permalink()); ?>">
+                    <?php if ($index === 0) : ?>
+                        <span class="badge">Best-seller</span>
+                    <?php endif; ?>
+                    <div class="bestsellers__image">
+                        <?php echo $product->get_image('medium'); ?>
+                    </div>
+                    <h3 class="bestsellers__name"><?php echo esc_html($product->get_name()); ?></h3>
+                    <span class="bestsellers__price"><?php echo $product->get_price_html(); ?></span>
+                </a>
+            <?php endforeach; ?>
+        </div>
     </div>
 </section>
 <?php endif; ?>
@@ -112,47 +114,49 @@ $best_sellers = wc_get_products([
 </section>
 
 <section class="comparison section" data-animate>
-    <h2 class="comparison__title">Avant / Après : la magie opère</h2>
-    <p class="comparison__intro">Une photo devient un puzzle. Le résultat est bluffant.</p>
-    <div class="comparison__grid grid grid--3">
-        <div class="card card--lg">
-            <div class="comparison__pair">
-                <figure class="comparison__figure comparison__figure--before">
-                    <figcaption class="comparison__label">Photo originale</figcaption>
-                    <div class="comparison__demo comparison__demo--husky"></div>
-                </figure>
-                <figure class="comparison__figure comparison__figure--after">
-                    <figcaption class="comparison__label">Puzzle assemblé</figcaption>
-                    <div class="comparison__demo comparison__demo--husky-done"></div>
-                </figure>
+    <div class="section__inner section__inner--full">
+        <h2 class="comparison__title">Avant / Après : la magie opère</h2>
+        <p class="comparison__intro">Une photo devient un puzzle. Le résultat est bluffant.</p>
+        <div class="comparison__grid grid grid--3">
+            <div class="card card--lg">
+                <div class="comparison__pair">
+                    <figure class="comparison__figure comparison__figure--before">
+                        <figcaption class="comparison__label">Photo originale</figcaption>
+                        <div class="comparison__demo comparison__demo--husky"></div>
+                    </figure>
+                    <figure class="comparison__figure comparison__figure--after">
+                        <figcaption class="comparison__label">Puzzle assemblé</figcaption>
+                        <div class="comparison__demo comparison__demo--husky-done"></div>
+                    </figure>
+                </div>
+                <p class="comparison__caption">Husky aux yeux bleus — lumière naturelle, restitué dans ses moindres nuances.</p>
             </div>
-            <p class="comparison__caption">Husky aux yeux bleus — lumière naturelle, restitué dans ses moindres nuances.</p>
-        </div>
-        <div class="card card--lg">
-            <div class="comparison__pair">
-                <figure class="comparison__figure comparison__figure--before">
-                    <figcaption class="comparison__label">Photo originale</figcaption>
-                    <div class="comparison__demo comparison__demo--chat"></div>
-                </figure>
-                <figure class="comparison__figure comparison__figure--after">
-                    <figcaption class="comparison__label">Puzzle assemblé</figcaption>
-                    <div class="comparison__demo comparison__demo--chat-done"></div>
-                </figure>
+            <div class="card card--lg">
+                <div class="comparison__pair">
+                    <figure class="comparison__figure comparison__figure--before">
+                        <figcaption class="comparison__label">Photo originale</figcaption>
+                        <div class="comparison__demo comparison__demo--chat"></div>
+                    </figure>
+                    <figure class="comparison__figure comparison__figure--after">
+                        <figcaption class="comparison__label">Puzzle assemblé</figcaption>
+                        <div class="comparison__demo comparison__demo--chat-done"></div>
+                    </figure>
+                </div>
+                <p class="comparison__caption">Chat roux en boule sur un canapé — transformé en puzzle 300 pièces.</p>
             </div>
-            <p class="comparison__caption">Chat roux en boule sur un canapé — transformé en puzzle 300 pièces.</p>
-        </div>
-        <div class="card card--lg">
-            <div class="comparison__pair">
-                <figure class="comparison__figure comparison__figure--before">
-                    <figcaption class="comparison__label">Photo originale</figcaption>
-                    <div class="comparison__demo comparison__demo--boule"></div>
-                </figure>
-                <figure class="comparison__figure comparison__figure--after">
-                    <figcaption class="comparison__label">Puzzle assemblé</figcaption>
-                    <div class="comparison__demo comparison__demo--boule-done"></div>
-                </figure>
+            <div class="card card--lg">
+                <div class="comparison__pair">
+                    <figure class="comparison__figure comparison__figure--before">
+                        <figcaption class="comparison__label">Photo originale</figcaption>
+                        <div class="comparison__demo comparison__demo--boule"></div>
+                    </figure>
+                    <figure class="comparison__figure comparison__figure--after">
+                        <figcaption class="comparison__label">Puzzle assemblé</figcaption>
+                        <div class="comparison__demo comparison__demo--boule-done"></div>
+                    </figure>
+                </div>
+                <p class="comparison__caption">Bouledogue français — gros plan studio, reproduit en 500 pièces.</p>
             </div>
-            <p class="comparison__caption">Bouledogue français — gros plan studio, reproduit en 500 pièces.</p>
         </div>
     </div>
 </section>
@@ -181,32 +185,34 @@ $best_sellers = wc_get_products([
 </section>
 
 <section class="reviews section" data-animate>
-    <h2 class="reviews__title">Ils nous ont fait confiance</h2>
-    <div class="reviews__grid grid grid--3">
-        <blockquote class="reviews__card">
-            <div class="reviews__stars">★★★★★</div>
-            <p class="reviews__text">« Offert à ma mère pour Noël, elle a adoré reconstituer le portrait de son chat. Qualité incroyable ! »</p>
-            <footer class="reviews__author">
-                <span class="reviews__avatar">SM</span>
-                <cite>Sophie M.</cite>
-            </footer>
-        </blockquote>
-        <blockquote class="reviews__card">
-            <div class="reviews__stars">★★★★★</div>
-            <p class="reviews__text">« Le rendu photo est magnifique, les couleurs sont parfaitement fidèles. Je recommande les yeux fermés. »</p>
-            <footer class="reviews__author">
-                <span class="reviews__avatar">TL</span>
-                <cite>Thomas L.</cite>
-            </footer>
-        </blockquote>
-        <blockquote class="reviews__card">
-            <div class="reviews__stars">★★★★★</div>
-            <p class="reviews__text">« Idée cadeau parfaite pour les propriétaires d'animaux. Livraison rapide, service client au top. »</p>
-            <footer class="reviews__author">
-                <span class="reviews__avatar">CD</span>
-                <cite>Claire D.</cite>
-            </footer>
-        </blockquote>
+    <div class="section__inner section__inner--full">
+        <h2 class="reviews__title">Ils nous ont fait confiance</h2>
+        <div class="reviews__grid grid grid--3">
+            <blockquote class="reviews__card">
+                <div class="reviews__stars">★★★★★</div>
+                <p class="reviews__text">« Offert à ma mère pour Noël, elle a adoré reconstituer le portrait de son chat. Qualité incroyable ! »</p>
+                <footer class="reviews__author">
+                    <span class="reviews__avatar">SM</span>
+                    <cite>Sophie M.</cite>
+                </footer>
+            </blockquote>
+            <blockquote class="reviews__card">
+                <div class="reviews__stars">★★★★★</div>
+                <p class="reviews__text">« Le rendu photo est magnifique, les couleurs sont parfaitement fidèles. Je recommande les yeux fermés. »</p>
+                <footer class="reviews__author">
+                    <span class="reviews__avatar">TL</span>
+                    <cite>Thomas L.</cite>
+                </footer>
+            </blockquote>
+            <blockquote class="reviews__card">
+                <div class="reviews__stars">★★★★★</div>
+                <p class="reviews__text">« Idée cadeau parfaite pour les propriétaires d'animaux. Livraison rapide, service client au top. »</p>
+                <footer class="reviews__author">
+                    <span class="reviews__avatar">CD</span>
+                    <cite>Claire D.</cite>
+                </footer>
+            </blockquote>
+        </div>
     </div>
 </section>
 
