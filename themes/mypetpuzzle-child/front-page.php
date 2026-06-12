@@ -122,40 +122,40 @@ $best_sellers = wc_get_products([
                 <div class="comparison__pair">
                     <figure class="comparison__figure comparison__figure--before">
                         <figcaption class="comparison__label">Photo originale</figcaption>
-                        <div class="comparison__demo comparison__demo--husky"></div>
+                        <div class="comparison__demo"><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/chiwawa-avant.png'); ?>" alt="Chihuahua avant transformation" /></div>
                     </figure>
                     <figure class="comparison__figure comparison__figure--after">
                         <figcaption class="comparison__label">Puzzle assemblé</figcaption>
-                        <div class="comparison__demo comparison__demo--husky-done"></div>
+                        <div class="comparison__demo"><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/chiwawa-apres.png'); ?>" alt="Chihuahua transformé en puzzle" /></div>
                     </figure>
                 </div>
-                <p class="comparison__caption">Husky aux yeux bleus — lumière naturelle, restitué dans ses moindres nuances.</p>
+                <p class="comparison__caption">Chihuahua — photo transformée en puzzle personnalisé 300 pièces.</p>
             </div>
             <div class="card card--lg">
                 <div class="comparison__pair">
                     <figure class="comparison__figure comparison__figure--before">
                         <figcaption class="comparison__label">Photo originale</figcaption>
-                        <div class="comparison__demo comparison__demo--chat"></div>
+                        <div class="comparison__demo"><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/chiwawa-avant.png'); ?>" alt="Chihuahua avant transformation" /></div>
                     </figure>
                     <figure class="comparison__figure comparison__figure--after">
                         <figcaption class="comparison__label">Puzzle assemblé</figcaption>
-                        <div class="comparison__demo comparison__demo--chat-done"></div>
+                        <div class="comparison__demo"><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/chiwawa-apres.png'); ?>" alt="Chihuahua transformé en puzzle" /></div>
                     </figure>
                 </div>
-                <p class="comparison__caption">Chat roux en boule sur un canapé — transformé en puzzle 300 pièces.</p>
+                <p class="comparison__caption">Chihuahua — portrait en extérieur reproduit en puzzle 500 pièces.</p>
             </div>
             <div class="card card--lg">
                 <div class="comparison__pair">
                     <figure class="comparison__figure comparison__figure--before">
                         <figcaption class="comparison__label">Photo originale</figcaption>
-                        <div class="comparison__demo comparison__demo--boule"></div>
+                        <div class="comparison__demo"><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/chiwawa-avant.png'); ?>" alt="Chihuahua avant transformation" /></div>
                     </figure>
                     <figure class="comparison__figure comparison__figure--after">
                         <figcaption class="comparison__label">Puzzle assemblé</figcaption>
-                        <div class="comparison__demo comparison__demo--boule-done"></div>
+                        <div class="comparison__demo"><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/chiwawa-apres.png'); ?>" alt="Chihuahua transformé en puzzle" /></div>
                     </figure>
                 </div>
-                <p class="comparison__caption">Bouledogue français — gros plan studio, reproduit en 500 pièces.</p>
+                <p class="comparison__caption">Chihuahua — lumière dorée, rendu fidèle en puzzle 300 pièces.</p>
             </div>
         </div>
     </div>

@@ -1200,30 +1200,14 @@ p {
 
 .comparison__demo {
   aspect-ratio: 1;
+  background-color: #f5f0eb;
 }
 
-.comparison__demo--husky {
-  background: linear-gradient(135deg, #e8e0d5, #d4c9bb);
-}
-
-.comparison__demo--husky-done {
-  background: linear-gradient(135deg, #d4c9bb, #c5b7a3);
-}
-
-.comparison__demo--chat {
-  background: linear-gradient(135deg, #f0e6d3, #e0c9a8);
-}
-
-.comparison__demo--chat-done {
-  background: linear-gradient(135deg, #e0c9a8, #d4b48c);
-}
-
-.comparison__demo--boule {
-  background: linear-gradient(135deg, #ede8dc, #d4ccc0);
-}
-
-.comparison__demo--boule-done {
-  background: linear-gradient(135deg, #d4ccc0, #c5b7a3);
+.comparison__demo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .comparison__caption {
