@@ -1,0 +1,13 @@
+@use '../variables' as *;
+
+.section {
+  padding: $spacing-xl $spacing-md;
+
+  @media (min-width: $bp-tablet) {
+    padding: 80px $spacing-md;
+  }
+}
+
+.section--surface {
+  background-color: $color-surface;
+}
