@@ -1,0 +1,27 @@
+@use "../variables" as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero__content,
+.hero__image {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__canvas {
+    display: none;
+  }
+}
