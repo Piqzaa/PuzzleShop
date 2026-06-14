@@ -129,4 +129,8 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 add_action('wp', function () {
     remove_action('storefront_before_content', 'woocommerce_breadcrumb', 10);
     remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
+
+    if (is_cart()) {
+        remove_action('storefront_page', 'storefront_page_header', 10);
+    }
 });
