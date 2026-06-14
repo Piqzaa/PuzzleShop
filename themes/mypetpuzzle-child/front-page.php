@@ -108,7 +108,7 @@ $best_sellers = wc_get_products([
             <a class="btn btn--primary" href="<?php echo esc_url(home_url('/creer-mon-puzzle')); ?>">Créer mon puzzle</a>
         </div>
         <div class="cta-emotion__image">
-            <div class="cta-emotion__placeholder"></div>
+            <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/puzzle-personnalisé.png'); ?>" alt="Puzzle personnalisé avec photo d'animal" />
         </div>
     </div>
 </section>
