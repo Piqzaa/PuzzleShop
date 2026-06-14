@@ -218,6 +218,7 @@ body [role=button] {
   text-decoration: none;
   display: block;
   position: relative;
+  transition: border-color 0.3s ease;
 }
 
 .card--lg {
@@ -231,6 +232,11 @@ body [role=button] {
 .card--hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 16px rgba(44, 24, 16, 0.12);
+}
+
+.card:hover {
+  border-color: #c9a84c;
+  box-shadow: 0 0 0 1px #c9a84c, 0 0 20px rgba(201, 168, 76, 0.15);
 }
 
 .badge {

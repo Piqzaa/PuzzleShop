@@ -119,7 +119,7 @@ $best_sellers = wc_get_products([
         <h2 class="comparison__title">Avant / Après : la magie opère</h2>
         <p class="comparison__intro">Une photo devient un puzzle. Le résultat est bluffant.</p>
         <div class="comparison__grid grid grid--3">
-            <div class="card card--lg">
+            <div class="card card--lg card--hover">
                 <div class="comparison__pair">
                     <figure class="comparison__figure comparison__figure--before">
                         <figcaption class="comparison__label">Photo originale</figcaption>
@@ -132,7 +132,7 @@ $best_sellers = wc_get_products([
                 </div>
                 <p class="comparison__caption">Chihuahua — photo transformée en puzzle personnalisé 252 pièces.</p>
             </div>
-            <div class="card card--lg">
+            <div class="card card--lg card--hover">
                 <div class="comparison__pair">
                     <figure class="comparison__figure comparison__figure--before">
                         <figcaption class="comparison__label">Photo originale</figcaption>
@@ -145,7 +145,7 @@ $best_sellers = wc_get_products([
                 </div>
                 <p class="comparison__caption">Maine-coon reproduit en puzzle 500 pièces.</p>
             </div>
-            <div class="card card--lg">
+            <div class="card card--lg card--hover">
                 <div class="comparison__pair">
                     <figure class="comparison__figure comparison__figure--before">
                         <figcaption class="comparison__label">Photo originale</figcaption>
