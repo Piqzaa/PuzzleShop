@@ -49,6 +49,14 @@ function mypetpuzzle_child_enqueue_assets() {
         $version,
         true
     );
+
+    wp_enqueue_script(
+        'mypetpuzzle-child-puzzle-floating',
+        get_stylesheet_directory_uri() . '/assets/js/modules/puzzle-floating.js',
+        [],
+        $version,
+        true
+    );
 }
 add_action('wp_enqueue_scripts', 'mypetpuzzle_child_enqueue_assets');
 

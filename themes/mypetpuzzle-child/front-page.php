@@ -5,6 +5,7 @@ get_header();
 </div><!-- #content .site-content -->
 
 <section class="hero section section--surface" data-animate>
+    <canvas class="hero__canvas" aria-hidden="true"></canvas>
     <div class="hero__inner">
         <div class="hero__content">
             <h1 class="hero__title">Offrez la magie d'un puzzle personnalisé de votre animal</h1>
