@@ -65,6 +65,16 @@ function mypetpuzzle_child_enqueue_assets() {
         $version,
         true
     );
+
+    if (is_cart()) {
+        wp_enqueue_script(
+            'mypetpuzzle-child-cart',
+            get_stylesheet_directory_uri() . '/assets/js/modules/cart.js',
+            ['jquery'],
+            $version,
+            true
+        );
+    }
 }
 add_action('wp_enqueue_scripts', 'mypetpuzzle_child_enqueue_assets');
 
@@ -134,3 +144,30 @@ add_action('wp', function () {
         remove_action('storefront_page', 'storefront_page_header', 10);
     }
 });
+
+// Rendre la livraison réellement offerte dès 50€ de sous-total
+add_filter('woocommerce_package_rates', function ($rates, $package) {
+    $subtotal = WC()->cart->get_subtotal();
+    if ($subtotal >= 50) {
+        foreach ($rates as $rate_key => $rate) {
+            $rates[$rate_key]->cost = 0;
+            $rates[$rate_key]->taxes = array();
+        }
+    }
+    return $rates;
+}, 10, 2);
+
+// Traduire les libellés des méthodes de livraison en français
+add_filter('woocommerce_shipping_rate_label', function ($label, $rate) {
+    $translations = array(
+        'Flat rate'       => 'Livraison standard',
+        'Free shipping'   => 'Livraison offerte',
+        'Local pickup'    => 'Retrait en magasin',
+        'Shipment'        => 'Livraison',
+        'Shipping'        => 'Livraison',
+    );
+    if (isset($translations[$label])) {
+        return $translations[$label];
+    }
+    return $label;
+}, 10, 2);
