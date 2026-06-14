@@ -216,21 +216,16 @@
   margin-bottom: $spacing-sm;
 }
 
-.legal-page a,
-.contact-page a {
+.legal-page a {
   color: $color-primary;
   text-decoration: underline;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
 }
 
-.legal-page a:hover,
-.contact-page a:hover {
-  color: $color-primary-dark;
-}
-
-// ---------------------------
 // Cookie banner
-// ---------------------------
-
 .cookie-banner {
   position: fixed;
   bottom: 0;
@@ -345,86 +340,4 @@
 .btn--sm {
   padding: 8px 18px;
   font-size: $font-size-small;
-}
-
-// Contact page
-.contact-page__intro {
-  color: $color-text-light;
-  font-size: 1.05rem;
-  margin-bottom: $spacing-xl;
-}
-
-.contact-page__content {
-  margin-bottom: $spacing-xl;
-}
-
-.contact-page__info {
-  display: grid;
-  gap: $spacing-lg;
-}
-
-@media (min-width: $bp-tablet) {
-  .contact-page__info {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.contact-page__item {
-  strong {
-    display: block;
-    color: $color-text;
-    font-weight: 600;
-    margin-bottom: $spacing-xs;
-  }
-
-  a {
-    color: $color-text;
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  address,
-  .contact-page__detail {
-    font-style: normal;
-    color: $color-text-light;
-    font-size: $font-size-small;
-  }
-}
-
-.contact-page__form {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-lg;
-  max-width: 600px;
-}
-
-.contact-page__field {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-xs;
-}
-
-.contact-page__field label {
-  font-weight: 500;
-  color: $color-text;
-  font-size: $font-size-small;
-}
-
-.contact-page__field input,
-.contact-page__field select,
-.contact-page__field textarea {
-  padding: $spacing-sm $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: 6px;
-  font-family: $font-primary;
-  font-size: $font-size-base;
-  color: $color-text;
-  background-color: $color-white;
-  transition: border-color $transition-fast;
-
-  &:focus {
-    border-color: $color-primary;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
-  }
 }
