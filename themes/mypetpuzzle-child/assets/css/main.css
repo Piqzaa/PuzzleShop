@@ -301,6 +301,31 @@ body [role=button] {
   overflow-x: visible;
 }
 
+.top-banner {
+  background-color: #c9a84c;
+  color: #ffffff;
+  text-align: center;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+.top-banner__text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 767px) {
+  .top-banner {
+    font-size: 13px;
+    padding: 6px 24px;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;

@@ -15,6 +15,10 @@ defined('ABSPATH') || exit;
 <div id="page" class="hfeed site">
     <?php do_action('storefront_before_header'); ?>
 
+    <div class="top-banner">
+        <span class="top-banner__text">🎁 Livraison offerte dès 50€ d'achat</span>
+    </div>
+
     <header class="header" id="header">
         <div class="header__inner">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo" rel="home">
