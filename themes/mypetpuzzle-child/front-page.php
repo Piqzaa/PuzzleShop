@@ -267,7 +267,7 @@ $best_sellers = wc_get_products([
     </div>
 </section>
 
-<section class="faq section" data-animate>
+<section class="faq section" id="faq" data-animate>
     <div class="faq__inner">
         <h2 class="faq__title">Questions fréquentes</h2>
         <div class="faq__list">
