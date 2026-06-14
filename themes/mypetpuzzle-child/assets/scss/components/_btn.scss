@@ -36,3 +36,11 @@
   background-color: $color-primary-light;
   border-color: $color-primary-dark;
 }
+
+/* Override Storefront parent theme: .hentry .entry-content a { text-decoration: underline } */
+.hentry .entry-content a.btn,
+.hentry .entry-content a.btn:hover,
+.hentry .entry-content a.btn:focus,
+.hentry .entry-content a.btn:focus-visible {
+  text-decoration: none;
+}
