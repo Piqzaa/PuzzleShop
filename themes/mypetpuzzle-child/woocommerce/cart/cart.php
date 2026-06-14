@@ -2,6 +2,12 @@
 defined('ABSPATH') || exit;
 
 do_action('woocommerce_before_cart');
+
+if (WC()->cart->is_empty()) :
+    wc_get_template('cart/cart-empty.php');
+    do_action('woocommerce_after_cart');
+    return;
+endif;
 ?>
 
 <section class="cart-page">
@@ -14,9 +20,10 @@ do_action('woocommerce_before_cart');
 
     <div class="cart-page__layout">
         <div class="cart-page__items">
-            <form class="cart-page__form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+            <form class="cart-page__form woocommerce-cart-form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
                 <?php do_action('woocommerce_before_cart_contents'); ?>
 
+                <div class="woocommerce-cart-form__contents">
                 <?php foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) :
                     $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
                     $product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
@@ -27,7 +34,7 @@ do_action('woocommerce_before_cart');
 
                     $product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
                 ?>
-                    <div class="cart-item">
+                    <div class="cart-item cart_item woocommerce-cart-form__cart-item">
                         <div class="cart-item__image">
                             <?php
                             $thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image('thumbnail'), $cart_item, $cart_item_key);
@@ -59,7 +66,7 @@ do_action('woocommerce_before_cart');
                             </div>
                         </div>
 
-                        <div class="cart-item__quantity">
+                        <div class="cart-item__quantity" data-title="<?php esc_attr_e('Quantity', 'woocommerce'); ?>">
                             <label class="cart-item__qty-label" for="qty-<?php echo esc_attr($cart_item_key); ?>">Qté</label>
                             <?php
                             if ($_product->is_sold_individually()) {
@@ -81,19 +88,25 @@ do_action('woocommerce_before_cart');
                             ?>
                         </div>
 
-                        <div class="cart-item__subtotal">
+                        <div class="cart-item__subtotal" data-title="<?php esc_attr_e('Subtotal', 'woocommerce'); ?>">
                             <span class="cart-item__subtotal-label">Sous-total</span>
                             <span class="cart-item__subtotal-value">
                                 <?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); ?>
                             </span>
                         </div>
 
-                        <div class="cart-item__remove">
+                        <div class="cart-item__remove product-remove">
                             <?php
                             echo apply_filters(
                                 'woocommerce_cart_item_remove_link',
                                 sprintf(
-                                    '<a href="%s" class="cart-item__remove-btn" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
+                                    '<a href="%s" class="remove cart-item__remove-btn" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                                            <path d="M3 4.5h12M6.75 4.5V3a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5v1.5M14.25 4.5v10.5a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.5 8.25v4.5M10.5 8.25v4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="cart-item__remove-text">Supprimer</span>
+                                    </a>',
                                     esc_url(wc_get_cart_remove_url($cart_item_key)),
                                     esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($_product->get_name()))),
                                     esc_attr($product_id),
@@ -107,6 +120,7 @@ do_action('woocommerce_before_cart');
                 <?php endforeach; ?>
 
                 <?php do_action('woocommerce_cart_contents'); ?>
+                </div>
 
                 <div class="cart-page__actions">
                     <?php if (wc_coupons_enabled()) : ?>
@@ -133,7 +147,7 @@ do_action('woocommerce_before_cart');
         </div>
 
         <aside class="cart-page__totals">
-            <?php do_action('woocommerce_cart_totals'); ?>
+            <?php woocommerce_cart_totals(); ?>
         </aside>
     </div>
 
