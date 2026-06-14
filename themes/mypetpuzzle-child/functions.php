@@ -171,3 +171,11 @@ add_filter('woocommerce_shipping_rate_label', function ($label, $rate) {
     }
     return $label;
 }, 10, 2);
+
+// Supprimer le message "Cart updated" sur la page panier
+add_filter('woocommerce_get_notices', function ($notices) {
+    if (is_cart()) {
+        unset($notices['success']);
+    }
+    return $notices;
+});

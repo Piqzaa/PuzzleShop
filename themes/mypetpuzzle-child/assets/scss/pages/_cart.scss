@@ -291,6 +291,11 @@ body.woocommerce-cart {
   display: none !important;
 }
 
+// Hide WooCommerce "Cart updated" notice on cart page (AJAX auto-update is silent)
+body.woocommerce-cart .woocommerce-notices-wrapper .woocommerce-message {
+  display: none !important;
+}
+
 // Quantity input overrides
 .cart-item .quantity {
   display: inline-flex;
