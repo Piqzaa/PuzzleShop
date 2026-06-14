@@ -125,3 +125,8 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
     $fragments['span.header__cart-count'] = ob_get_clean();
     return $fragments;
 });
+
+add_action('wp', function () {
+    remove_action('storefront_before_content', 'woocommerce_breadcrumb', 10);
+    remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
+});
