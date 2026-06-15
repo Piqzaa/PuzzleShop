@@ -119,23 +119,22 @@ endif;
                 <?php do_action('woocommerce_cart_contents'); ?>
                 </div>
 
-                <div class="cart-page__actions">
-                    <?php if (wc_coupons_enabled()) : ?>
-                        <div class="cart-page__coupon">
+                <?php if (wc_coupons_enabled()) : ?>
+                    <div class="cart-page__coupon-toggle">
+                        <button type="button" class="cart-page__coupon-toggle-btn" aria-expanded="false">
+                            Avez-vous un code promo ?
+                            <svg class="cart-page__coupon-toggle-arrow" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true">
+                                <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="cart-page__coupon" hidden>
                             <label for="coupon_code" class="screen-reader-text">Code promo</label>
                             <input type="text" name="coupon_code" class="cart-page__coupon-input" id="coupon_code" value="" placeholder="Code promo" />
                             <button type="submit" class="btn btn--secondary" name="apply_coupon" value="Appliquer">Appliquer</button>
                             <?php do_action('woocommerce_cart_coupon'); ?>
                         </div>
-                    <?php endif; ?>
-
-                    <button type="submit" class="btn btn--secondary cart-page__update-btn" name="update_cart" value="Mettre à jour">
-                        Mettre à jour
-                    </button>
-
-                    <?php do_action('woocommerce_cart_actions'); ?>
-                    <?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
-                </div>
+                    </div>
+                <?php endif; ?>
 
                 <?php do_action('woocommerce_after_cart_contents'); ?>
             </form>

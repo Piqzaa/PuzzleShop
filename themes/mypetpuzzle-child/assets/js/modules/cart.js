@@ -74,6 +74,15 @@
         });
     }
 
+    // Coupon toggle show/hide
+    $(document).on('click', '.cart-page__coupon-toggle-btn', function (e) {
+        e.preventDefault();
+        var $btn = $(this);
+        var isExpanded = $btn.attr('aria-expanded') === 'true';
+        $btn.attr('aria-expanded', !isExpanded);
+        $btn.closest('.cart-page__coupon-toggle').find('.cart-page__coupon').prop('hidden', isExpanded);
+    });
+
     // Initialize on page load
     $(document).ready(function() {
         initCartQtyButtons();
