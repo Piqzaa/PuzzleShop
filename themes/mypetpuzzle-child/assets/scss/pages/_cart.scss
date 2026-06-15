@@ -199,22 +199,19 @@ body.woocommerce-cart {
   text-align: right;
 
   @media (max-width: $bp-desktop) {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    justify-self: end;
-    align-self: start;
-    position: static;
-  }
-
-  @media (max-width: $bp-mobile) {
     grid-column: 1 / 3;
-    grid-row: 4 / 5;
+    grid-row: 3 / 4;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: $spacing-sm;
     border-top: 1px solid $color-border;
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
   }
 }
 
@@ -369,7 +366,7 @@ body.woocommerce-cart .woocommerce-notices-wrapper .woocommerce-message {
   display: inline-flex;
   align-items: center;
   gap: $spacing-sm;
-  background: none;
+  background: none !important;
   border: none;
   padding: 0;
   font-family: $font-primary;
@@ -377,9 +374,11 @@ body.woocommerce-cart .woocommerce-notices-wrapper .woocommerce-message {
   color: $color-primary;
   cursor: pointer;
   transition: color $transition-fast;
+  width: auto;
 
   &:hover {
     color: $color-primary-dark;
+    background: none !important;
   }
 }
 

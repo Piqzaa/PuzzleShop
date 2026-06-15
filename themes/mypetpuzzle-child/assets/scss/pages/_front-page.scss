@@ -801,7 +801,7 @@
   justify-content: space-between;
   width: 100%;
   padding: $spacing-md 0;
-  background: none;
+  background: none !important;
   border: none;
   cursor: pointer;
   font-family: $font-primary;
@@ -814,6 +814,7 @@
 
 .faq__question:hover {
   color: $color-primary;
+  background: none !important;
 }
 
 .faq__icon {
