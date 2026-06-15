@@ -8,8 +8,14 @@
   var ctx = canvas.getContext('2d');
   var pieces = [];
   var mouseX = -9999, mouseY = -9999;
-  var repulseRadius = 180;
-  var count = 32;
+
+  function repulseRadius() {
+    return isSmallScreen() ? 80 : 180;
+  }
+
+  function isSmallScreen() {
+    return window.matchMedia('(max-width: 1023px)').matches;
+  }
 
   var palette = [
     '#6B8F71', '#7B9CB5', '#B8917A', '#A8B5A0',
@@ -28,7 +34,7 @@
   }
 
   function Piece() {
-    var size = rand(18, 52);
+    var size = isSmallScreen() ? rand(16, 44) : rand(18, 52);
     this.x = rand(0, canvas.width);
     this.y = rand(0, canvas.height);
     this.size = size;
@@ -49,8 +55,8 @@
     var dx = this.x - mouseX;
     var dy = this.y - mouseY;
     var dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < repulseRadius && dist > 0) {
-      var strength = (1 - dist / repulseRadius) * 1.6;
+    if (dist < repulseRadius() && dist > 0) {
+      var strength = (1 - dist / repulseRadius()) * 1.6;
       this.vx += (dx / dist) * strength;
       this.vy += (dy / dist) * strength;
     }
@@ -97,6 +103,7 @@
 
   function init() {
     resize();
+    var count = isSmallScreen() ? 12 : 32;
     pieces = [];
     for (var i = 0; i < count; i++) {
       pieces.push(new Piece());
