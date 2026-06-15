@@ -19,11 +19,9 @@
 
     // Function to trigger native WooCommerce cart update via AJAX
     var triggerCartUpdate = debounce(function() {
-        var $updateButton = $('.woocommerce-cart-form :input[name="update_cart"]');
-        if ($updateButton.length) {
-            $updateButton.prop('disabled', false).trigger('click');
-        } else {
-            $(document.body).trigger('wc_update_cart');
+        var $updateBtn = $('[name="update_cart"]');
+        if ($updateBtn.length) {
+            $updateBtn.trigger('click');
         }
     }, 500); // Wait 500ms after last click before triggering update
 

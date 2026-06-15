@@ -136,6 +136,10 @@ endif;
                     </div>
                 <?php endif; ?>
 
+                <button type="submit" name="update_cart" value="1" class="screen-reader-text">Mettre à jour</button>
+                <?php do_action('woocommerce_cart_actions'); ?>
+                <?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
+
                 <?php do_action('woocommerce_after_cart_contents'); ?>
             </form>
 
