@@ -209,3 +209,76 @@ function bestseller_add_to_cart_callback() {
         'cart_count' => WC()->cart->get_cart_contents_count(),
     ]);
 }
+
+// Traduire les champs d'adresse WooCommerce par défaut
+add_filter('woocommerce_default_address_fields', function ($fields) {
+    $translations = array(
+        'first_name' => array('label' => 'Prénom', 'placeholder' => 'Votre prénom'),
+        'last_name'  => array('label' => 'Nom', 'placeholder' => 'Votre nom'),
+        'company'    => array('label' => 'Entreprise (optionnel)', 'placeholder' => 'Nom de l\'entreprise'),
+        'address_1'  => array('label' => 'Adresse', 'placeholder' => 'Numéro et nom de rue'),
+        'address_2'  => array('label' => 'Complément d\'adresse (optionnel)', 'placeholder' => 'Appartement, étage, bureau, etc.'),
+        'city'       => array('label' => 'Ville', 'placeholder' => 'Votre ville'),
+        'postcode'   => array('label' => 'Code postal', 'placeholder' => 'Votre code postal'),
+        'country'    => array('label' => 'Pays / Région'),
+        'state'      => array('label' => 'Région / Département'),
+    );
+
+    foreach ($translations as $key => $trans) {
+        if (isset($fields[$key])) {
+            if (isset($trans['label'])) {
+                $fields[$key]['label'] = $trans['label'];
+            }
+            if (isset($trans['placeholder'])) {
+                $fields[$key]['placeholder'] = $trans['placeholder'];
+            }
+        }
+    }
+    return $fields;
+});
+
+// Traduire tous les champs checkout (priorité haute pour passer après tout)
+add_filter('woocommerce_checkout_fields', function ($fields) {
+    if (isset($fields['billing']['billing_phone'])) {
+        $fields['billing']['billing_phone']['label'] = 'Téléphone';
+        $fields['billing']['billing_phone']['placeholder'] = 'Votre numéro de téléphone';
+    }
+    if (isset($fields['billing']['billing_email'])) {
+        $fields['billing']['billing_email']['label'] = 'Adresse e-mail';
+        $fields['billing']['billing_email']['placeholder'] = 'votre@email.com';
+    }
+    if (isset($fields['shipping']['shipping_phone'])) {
+        $fields['shipping']['shipping_phone']['label'] = 'Téléphone';
+        $fields['shipping']['shipping_phone']['placeholder'] = 'Votre numéro de téléphone';
+        $fields['shipping']['shipping_phone']['required'] = false;
+    }
+    if (isset($fields['order']['order_comments'])) {
+        $fields['order']['order_comments']['label'] = 'Notes de commande';
+        $fields['order']['order_comments']['placeholder'] = 'Commentaires concernant votre commande...';
+        $fields['order']['order_comments']['required'] = false;
+    }
+    return $fields;
+}, 100);
+
+// Traduire shipping_phone (ajouté par WooCommerce 5.6+)
+add_filter('woocommerce_shipping_fields', function ($fields) {
+    if (isset($fields['shipping_phone'])) {
+        $fields['shipping_phone']['label'] = 'Téléphone';
+        $fields['shipping_phone']['placeholder'] = 'Votre numéro de téléphone';
+    }
+    return $fields;
+});
+
+// Forcer le texte du bouton commander en français
+add_filter('woocommerce_order_button_text', function ($text) {
+    return 'Passer la commande';
+}, 100);
+
+// Texte de confidentialité en français
+remove_action('woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20);
+add_action('woocommerce_checkout_terms_and_conditions', function () {
+    $privacy_link = get_privacy_policy_url();
+    if ($privacy_link) {
+        echo '<p class="woocommerce-privacy-policy-text">Vos données personnelles seront utilisées pour traiter votre commande, améliorer votre expérience sur ce site et à d\'autres fins décrites dans notre <a href="' . esc_url($privacy_link) . '" target="_blank">politique de confidentialité</a>.</p>';
+    }
+}, 20);
