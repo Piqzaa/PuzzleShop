@@ -44,7 +44,7 @@ body [role="button"] {
   cursor: none;
 }
 
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: ($bp-desktop - 1px)) {
   .puzzle-cursor {
     display: none;
   }

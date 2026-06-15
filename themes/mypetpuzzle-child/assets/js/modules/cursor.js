@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  if (window.matchMedia('(max-width: 1023px)').matches) return;
+
   var cursor = document.createElement('div');
   cursor.className = 'puzzle-cursor';
   document.body.appendChild(cursor);
