@@ -222,6 +222,7 @@ add_filter('woocommerce_default_address_fields', function ($fields) {
         'postcode'   => array('label' => 'Code postal', 'placeholder' => 'Votre code postal'),
         'country'    => array('label' => 'Pays / Région'),
         'state'      => array('label' => 'Région / Département'),
+        'phone'      => array('label' => 'Téléphone', 'placeholder' => 'Votre numéro de téléphone'),
     );
 
     foreach ($translations as $key => $trans) {
@@ -260,14 +261,23 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
     return $fields;
 }, 100);
 
-// Traduire shipping_phone (ajouté par WooCommerce 5.6+)
+// Fallback : traduire billing_phone directement
+add_filter('woocommerce_billing_fields', function ($fields) {
+    if (isset($fields['billing_phone'])) {
+        $fields['billing_phone']['label'] = 'Téléphone';
+        $fields['billing_phone']['placeholder'] = 'Votre numéro de téléphone';
+    }
+    return $fields;
+}, 100);
+
+// Fallback : traduire shipping_phone (ajouté par WooCommerce 5.6+)
 add_filter('woocommerce_shipping_fields', function ($fields) {
     if (isset($fields['shipping_phone'])) {
         $fields['shipping_phone']['label'] = 'Téléphone';
         $fields['shipping_phone']['placeholder'] = 'Votre numéro de téléphone';
     }
     return $fields;
-});
+}, 100);
 
 // Forcer le texte du bouton commander en français
 add_filter('woocommerce_order_button_text', function ($text) {
@@ -282,3 +292,11 @@ add_action('woocommerce_checkout_terms_and_conditions', function () {
         echo '<p class="woocommerce-privacy-policy-text">Vos données personnelles seront utilisées pour traiter votre commande, améliorer votre expérience sur ce site et à d\'autres fins décrites dans notre <a href="' . esc_url($privacy_link) . '" target="_blank">politique de confidentialité</a>.</p>';
     }
 }, 20);
+
+// Traduire "(optional)" en "(optionnel)" via gettext (car WC 10+ ne filtre pas le label)
+add_filter('gettext', function ($translation, $text, $domain) {
+    if ($domain === 'woocommerce' && $text === 'optional') {
+        return 'optionnel';
+    }
+    return $translation;
+}, 10, 3);

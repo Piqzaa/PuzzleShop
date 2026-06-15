@@ -79,7 +79,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 <script>
 jQuery(function($) {
 	function fixCheckoutLabels() {
-		$('label[for="order_comments"]').html('Notes de commande');
+		$('label[for="billing_phone"], label[for="shipping_phone"]').each(function() {
+			$(this).html($(this).html().replace('Phone', 'Téléphone'));
+		});
+		$('label[for="order_comments"]').each(function() {
+			$(this).html($(this).html().replace('Order notes', 'Notes de commande'));
+		});
 		$('.optional').text('(optionnel)');
 		$('.wc-stripe-save-source').remove();
 	}
