@@ -640,70 +640,7 @@
 }
 
 /* =========================================
-   7. SAVOIR-FAIRE
-   ========================================= */
-
-.savoir-faire__inner {
-  max-width: 960px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.savoir-faire__title {
-  font-family: $font-secondary;
-  font-size: 2rem;
-  color: $color-text;
-  margin-bottom: $spacing-lg;
-}
-
-.savoir-faire__story {
-  max-width: 640px;
-  margin: 0 auto $spacing-xl;
-  color: $color-text;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  font-style: italic;
-  border-left: 3px solid $color-primary;
-  padding-left: $spacing-lg;
-  text-align: left;
-}
-
-.savoir-faire__pillar {
-  text-align: center;
-}
-
-.savoir-faire__pillars {
-  gap: $spacing-xl;
-}
-
-.savoir-faire__pillar-title {
-  font-family: $font-secondary;
-  font-size: 1.125rem;
-  color: $color-text;
-  margin-bottom: $spacing-sm;
-  position: relative;
-  display: inline-block;
-}
-
-.savoir-faire__pillar-title::after {
-  content: "";
-  display: block;
-  width: 32px;
-  height: 2px;
-  background-color: $color-primary;
-  margin: $spacing-sm auto 0;
-}
-
-.savoir-faire__pillar-text {
-  font-size: $font-size-small;
-  color: $color-text-light;
-  line-height: 1.6;
-  max-width: 280px;
-  margin: 0 auto;
-}
-
-/* =========================================
-   8. REVIEWS
+   7. REVIEWS
    ========================================= */
 
 .reviews__title {

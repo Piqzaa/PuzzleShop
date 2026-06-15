@@ -247,30 +247,7 @@ $best_sellers = wc_get_products([
     </div>
 </section>
 
-<section class="savoir-faire section section--surface" data-animate>
-    <div class="savoir-faire__inner">
-        <h2 class="savoir-faire__title">Fabriqué en France avec amour</h2>
-        <blockquote class="savoir-faire__story">
-            Dans notre atelier au cœur de la Provence, chaque puzzle est imprimé, découpé et vérifié à la main. Pas de chaîne industrielle, pas de compromis. Juste du beau travail, fait avec passion.
-        </blockquote>
-        <div class="savoir-faire__pillars grid grid--3">
-            <div class="savoir-faire__pillar">
-                <h3 class="savoir-faire__pillar-title">Papier premium</h3>
-                <p class="savoir-faire__pillar-text">Carton épais 2,2 mm, surface mate anti-reflet. Les pièces s'emboîtent parfaitement.</p>
-            </div>
-            <div class="savoir-faire__pillar">
-                <h3 class="savoir-faire__pillar-title">Encres HD</h3>
-                <p class="savoir-faire__pillar-text">Impression par sublimation pour des couleurs éclatantes et une fidélité photo exceptionnelle.</p>
-            </div>
-            <div class="savoir-faire__pillar">
-                <h3 class="savoir-faire__pillar-title">Découpe laser</h3>
-                <p class="savoir-faire__pillar-text">Lame calibrée au micron. Chaque pièce est unique, l'assemblage est fluide et précis.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="reviews section" data-animate>
+<section class="reviews section section--surface" data-animate>
     <div class="section__inner section__inner--full">
         <h2 class="reviews__title">Ils nous ont fait confiance</h2>
         <div class="reviews__grid grid grid--3">
@@ -302,7 +279,7 @@ $best_sellers = wc_get_products([
     </div>
 </section>
 
-<section class="whyus section section--surface" data-animate>
+<section class="whyus section" data-animate>
     <div class="whyus__inner">
         <h2 class="whyus__title">Pourquoi nous choisir</h2>
         <div class="whyus__grid grid grid--2">
@@ -352,7 +329,7 @@ $best_sellers = wc_get_products([
     </div>
 </section>
 
-<section class="faq section" id="faq" data-animate>
+<section class="faq section section--surface" id="faq" data-animate>
     <div class="faq__inner">
         <h2 class="faq__title">Questions fréquentes</h2>
         <div class="faq__list">
