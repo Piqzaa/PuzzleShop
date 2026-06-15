@@ -66,6 +66,18 @@ function mypetpuzzle_child_enqueue_assets() {
         true
     );
 
+    wp_enqueue_script(
+        'mypetpuzzle-child-bestsellers',
+        get_stylesheet_directory_uri() . '/assets/js/modules/bestsellers.js',
+        [],
+        $version,
+        true
+    );
+
+    wp_localize_script('mypetpuzzle-child-bestsellers', 'mypetpuzzle_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+
     if (is_cart()) {
         wp_enqueue_script(
             'mypetpuzzle-child-cart',
@@ -179,3 +191,21 @@ add_filter('woocommerce_get_notices', function ($notices) {
     }
     return $notices;
 });
+
+// AJAX add to cart pour les best-sellers
+add_action('wp_ajax_bestseller_add_to_cart', 'bestseller_add_to_cart_callback');
+add_action('wp_ajax_nopriv_bestseller_add_to_cart', 'bestseller_add_to_cart_callback');
+function bestseller_add_to_cart_callback() {
+    $product_id   = intval($_POST['product_id']);
+    $variation_id = intval($_POST['variation_id']);
+
+    if ($variation_id > 0) {
+        WC()->cart->add_to_cart($product_id, 1, $variation_id);
+    } else {
+        WC()->cart->add_to_cart($product_id, 1);
+    }
+
+    wp_send_json_success([
+        'cart_count' => WC()->cart->get_cart_contents_count(),
+    ]);
+}
