@@ -13,9 +13,6 @@ endif;
 <section class="cart-page">
     <header class="cart-page__header">
         <h1 class="cart-page__title">Mon Panier</h1>
-        <p class="cart-page__count">
-            <?php echo sprintf(_n('%s article', '%s articles', WC()->cart->get_cart_contents_count(), 'mypetpuzzle-child'), WC()->cart->get_cart_contents_count()); ?>
-        </p>
     </header>
 
     <div class="cart-page__layout">
