@@ -1,0 +1,99 @@
+@use "../../variables" as *;
+
+.myaccount-page__content {
+  .woocommerce-message,
+  .woocommerce-info,
+  .woocommerce-error {
+    padding: $spacing-md;
+    border-radius: 8px;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-small;
+    list-style: none;
+
+    li {
+      margin: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      border: 2px solid $color-primary;
+      color: $color-text;
+      background-color: transparent;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+      padding: 6px 16px;
+      font-size: 12px;
+      margin-left: $spacing-sm;
+
+      &:hover {
+        background-color: $color-primary-light;
+        border-color: $color-primary-dark;
+      }
+    }
+  }
+
+  .woocommerce-message {
+    background: rgba($color-success, 0.06);
+    border: 1px solid rgba($color-success, 0.2);
+    color: $color-success;
+  }
+
+  .woocommerce-info {
+    background: rgba($color-primary, 0.06);
+    border: 1px solid rgba($color-primary, 0.2);
+    color: $color-text;
+  }
+
+  .woocommerce-error {
+    background: rgba($color-error, 0.06);
+    border: 1px solid rgba($color-error, 0.2);
+    color: $color-error;
+  }
+
+  .woocommerce-pagination {
+    margin-top: $spacing-lg;
+
+    .page-numbers {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0;
+      }
+
+      a, span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 $spacing-xs;
+        border: 1px solid $color-border;
+        border-radius: 6px;
+        font-size: $font-size-small;
+        font-weight: 500;
+        text-decoration: none;
+        color: $color-text;
+        transition: border-color $transition-fast, background-color $transition-fast;
+      }
+
+      a:hover {
+        border-color: $color-primary;
+        background-color: rgba($color-primary, 0.05);
+      }
+
+      span.current {
+        background: $color-primary;
+        border-color: $color-primary;
+        color: $color-white;
+      }
+    }
+  }
+}
