@@ -44,3 +44,37 @@
 .hentry .entry-content a.btn:focus-visible {
   text-decoration: none;
 }
+
+// Variante outline (fond sombre, utilisé dans cookie-banner)
+.btn--outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: #d4cdc6;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn--outline:hover,
+.btn--outline:focus-visible {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: $color-white;
+}
+
+.btn--sm {
+  padding: 8px 18px;
+  font-size: $font-size-small;
+}

@@ -16,6 +16,7 @@
 @use "components/header";
 @use "components/upload";
 @use "components/footer";
+@use "components/cookie-banner";
 @use "pages/product";
 @use "pages/shop";
 @use "pages/single-product";
@@ -25,4 +26,5 @@
 @use "pages/checkout";
 @use "pages/order-received";
 @use "pages/contact";
+@use "pages/legal";
 @use "pages/myaccount";
