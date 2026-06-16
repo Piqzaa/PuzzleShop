@@ -61,11 +61,11 @@
 
       tr {
         display: block !important;
-        background: $color-surface !important;
-        border: 1px solid $color-border !important;
+        background: $color-surface;
+        border: 1px solid $color-border;
         border-radius: 8px;
-        padding: $spacing-md !important;
-        margin: 0 !important;
+        padding: $spacing-md;
+        margin: 0;
       }
 
       td,
@@ -73,15 +73,15 @@
         display: flex !important;
         justify-content: space-between;
         align-items: center;
-        padding: 6px 0 !important;
-        border: none !important;
-        font-size: 14px !important;
-        font-family: $font-primary !important;
-        background: none !important;
-        width: auto !important;
-        float: none !important;
-        text-align: left !important;
-        line-height: 1.4 !important;
+        padding: 6px 0;
+        border: none;
+        font-size: 14px;
+        font-family: $font-primary;
+        background: none;
+        width: auto;
+        float: none;
+        text-align: left;
+        line-height: 1.4;
 
         &::before {
           content: attr(data-title);
@@ -93,21 +93,21 @@
         }
 
         &:first-child {
-          padding-top: 0 !important;
+          padding-top: 0;
         }
 
         &:last-child {
-          padding-bottom: 0 !important;
+          padding-bottom: 0;
         }
 
         &.woocommerce-orders-table__cell-order-number {
-          font-family: $font-secondary !important;
-          font-size: 1.2rem !important;
-          font-weight: 700 !important;
-          padding-top: 0 !important;
-          padding-bottom: 8px !important;
-          border-bottom: 1px solid $color-border !important;
-          margin-bottom: 8px !important;
+          font-family: $font-secondary;
+          font-size: 1.2rem;
+          font-weight: 700;
+          padding-top: 0;
+          padding-bottom: 8px;
+          border-bottom: 1px solid $color-border;
+          margin-bottom: 8px;
 
           a {
             color: $color-text;
@@ -124,16 +124,16 @@
         }
 
         &.woocommerce-orders-table__cell-order-actions {
-          padding-top: 8px !important;
-          border-top: 1px solid $color-border !important;
-          margin-top: 8px !important;
+          padding-top: 8px;
+          border-top: 1px solid $color-border;
+          margin-top: 8px;
 
           &::before {
             display: none !important;
           }
 
           .button {
-            width: 100% !important;
+            width: 100%;
             justify-content: center;
           }
         }
@@ -176,12 +176,12 @@
 
   .woocommerce-table--order-details {
     width: 100%;
-    border-collapse: collapse !important;
+    border-collapse: collapse;
     font-family: $font-primary;
     font-size: $font-size-small;
     color: $color-text;
     margin: 0;
-    background: none !important;
+    background: none;
 
     thead {
       th {
@@ -191,9 +191,9 @@
         letter-spacing: 0.05em;
         color: $color-text-light;
         text-align: left;
-        padding: $spacing-sm $spacing-xs $spacing-md !important;
-        border-bottom: 1px solid $color-border !important;
-        background: none !important;
+        padding: $spacing-sm $spacing-xs $spacing-md;
+        border-bottom: 1px solid $color-border;
+        background: none;
       }
 
       .product-total {
@@ -203,19 +203,19 @@
 
     tbody {
       tr {
-        border-bottom: 1px solid $color-border !important;
-        background: none !important;
+        border-bottom: 1px solid $color-border;
+        background: none;
 
         &:last-child {
-          border-bottom: none !important;
+          border-bottom: none;
         }
       }
 
       td {
-        padding: $spacing-md $spacing-xs !important;
-        vertical-align: top !important;
-        background: none !important;
-        border: none !important;
+        padding: $spacing-md $spacing-xs;
+        vertical-align: top;
+        background: none;
+        border: none;
 
         &.product-name {
           font-weight: 500;
@@ -263,31 +263,31 @@
 
     tfoot {
       tr {
-        border-top: 1px solid $color-border !important;
-        background: none !important;
+        border-top: 1px solid $color-border;
+        background: none;
 
         &:first-child {
-          border-top: none !important;
+          border-top: none;
         }
       }
 
       th {
-        text-align: left !important;
-        padding: $spacing-sm $spacing-xs !important;
-        font-weight: 500 !important;
-        font-size: $font-size-small !important;
-        color: $color-text-light !important;
-        border: none !important;
-        background: none !important;
+        text-align: left;
+        padding: $spacing-sm $spacing-xs;
+        font-weight: 500;
+        font-size: $font-size-small;
+        color: $color-text-light;
+        border: none;
+        background: none;
       }
 
       td {
-        text-align: right !important;
-        padding: $spacing-sm $spacing-xs !important;
-        font-weight: 500 !important;
-        font-size: $font-size-small !important;
-        border: none !important;
-        background: none !important;
+        text-align: right;
+        padding: $spacing-sm $spacing-xs;
+        font-weight: 500;
+        font-size: $font-size-small;
+        border: none;
+        background: none;
       }
 
       tr:last-child th,
@@ -295,14 +295,14 @@
         font-family: $font-secondary;
         font-size: 1.2rem;
         font-weight: 700;
-        padding: $spacing-md $spacing-xs $spacing-sm !important;
-        border-top: 2px solid $color-text !important;
+        padding: $spacing-md $spacing-xs $spacing-sm;
+        border-top: 2px solid $color-text;
         color: $color-text;
       }
 
       .order-actions--heading {
-        font-weight: 600 !important;
-        color: $color-text !important;
+        font-weight: 600;
+        color: $color-text;
       }
 
       .order-actions-button {
