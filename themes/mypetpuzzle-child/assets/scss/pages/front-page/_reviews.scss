@@ -1,0 +1,71 @@
+@use "../../variables" as *;
+
+.reviews__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  text-align: center;
+  color: $color-text;
+  margin-bottom: $spacing-xl;
+}
+
+.reviews__card {
+  margin: 0;
+  padding: $spacing-lg;
+  border: none;
+  background: none;
+  position: relative;
+}
+
+.reviews__card::before {
+  content: "\201C";
+  font-family: $font-secondary;
+  font-size: 4rem;
+  color: $color-primary-light;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.reviews__stars {
+  color: $color-primary;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: $spacing-sm;
+}
+
+.reviews__text {
+  font-style: italic;
+  color: $color-text;
+  font-size: $font-size-small;
+  line-height: 1.6;
+  margin-bottom: $spacing-md;
+}
+
+.reviews__author {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-small;
+  color: $color-text-light;
+}
+
+.reviews__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $color-primary-light;
+  color: $color-primary-dark;
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: $font-size-small;
+}
+
+.reviews__author cite {
+  font-style: normal;
+  font-weight: 600;
+  color: $color-text;
+}

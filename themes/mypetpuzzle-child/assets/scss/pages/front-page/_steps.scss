@@ -1,0 +1,92 @@
+@use "../../variables" as *;
+
+.steps__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.steps__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  color: $color-text;
+  margin-bottom: $spacing-xl;
+}
+
+.steps__grid {
+  display: grid;
+  gap: $spacing-xl;
+
+  @media (min-width: $bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.steps__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  @media (min-width: $bp-tablet) {
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 100%;
+      width: $spacing-xl;
+      height: 0;
+      border-bottom: 2px dashed $color-primary;
+      pointer-events: none;
+    }
+  }
+}
+
+.steps__circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: $color-white;
+  border: 2px solid $color-primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: $spacing-md;
+}
+
+.steps__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+
+  svg {
+    display: block;
+  }
+}
+
+.steps__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1;
+}
+
+.steps__heading {
+  font-family: $font-secondary;
+  font-size: 1.25rem;
+  color: $color-text;
+  margin-bottom: $spacing-sm;
+}
+
+.steps__text {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  max-width: 220px;
+}
