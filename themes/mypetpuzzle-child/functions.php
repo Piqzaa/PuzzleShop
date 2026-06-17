@@ -5,6 +5,7 @@ define('MYPETPUZZLE_FREE_SHIPPING_THRESHOLD', 50);
 function mypetpuzzle_child_enqueue_assets() {
     $theme   = wp_get_theme('mypetpuzzle-child');
     $version = $theme->get('Version');
+    $uri     = get_stylesheet_directory_uri();
 
     wp_enqueue_style(
         'mypetpuzzle-child-fonts',
@@ -15,66 +16,30 @@ function mypetpuzzle_child_enqueue_assets() {
 
     wp_enqueue_style(
         'mypetpuzzle-child-main',
-        get_stylesheet_directory_uri() . '/assets/css/main.css',
+        $uri . '/assets/css/main.css',
         ['storefront-style', 'mypetpuzzle-child-fonts'],
         $version
     );
 
-    wp_enqueue_script(
-        'mypetpuzzle-child-header',
-        get_stylesheet_directory_uri() . '/assets/js/modules/header.js',
-        ['wc-cart-fragments'],
-        $version,
-        true
-    );
+    $scripts = [
+        'mypetpuzzle-child-header'          => ['file' => 'header', 'deps' => ['wc-cart-fragments']],
+        'mypetpuzzle-child-faq'             => ['file' => 'faq'],
+        'mypetpuzzle-child-animations'      => ['file' => 'animations'],
+        'mypetpuzzle-child-cursor'          => ['file' => 'cursor'],
+        'mypetpuzzle-child-puzzle-floating' => ['file' => 'puzzle-floating'],
+        'mypetpuzzle-child-cookies'         => ['file' => 'cookies'],
+        'mypetpuzzle-child-bestsellers'     => ['file' => 'bestsellers'],
+    ];
 
-    wp_enqueue_script(
-        'mypetpuzzle-child-faq',
-        get_stylesheet_directory_uri() . '/assets/js/modules/faq.js',
-        [],
-        $version,
-        true
-    );
-
-    wp_enqueue_script(
-        'mypetpuzzle-child-animations',
-        get_stylesheet_directory_uri() . '/assets/js/modules/animations.js',
-        [],
-        $version,
-        true
-    );
-
-    wp_enqueue_script(
-        'mypetpuzzle-child-cursor',
-        get_stylesheet_directory_uri() . '/assets/js/modules/cursor.js',
-        [],
-        $version,
-        true
-    );
-
-    wp_enqueue_script(
-        'mypetpuzzle-child-puzzle-floating',
-        get_stylesheet_directory_uri() . '/assets/js/modules/puzzle-floating.js',
-        [],
-        $version,
-        true
-    );
-
-    wp_enqueue_script(
-        'mypetpuzzle-child-cookies',
-        get_stylesheet_directory_uri() . '/assets/js/modules/cookies.js',
-        [],
-        $version,
-        true
-    );
-
-    wp_enqueue_script(
-        'mypetpuzzle-child-bestsellers',
-        get_stylesheet_directory_uri() . '/assets/js/modules/bestsellers.js',
-        [],
-        $version,
-        true
-    );
+    foreach ($scripts as $handle => $cfg) {
+        wp_enqueue_script(
+            $handle,
+            $uri . '/assets/js/modules/' . $cfg['file'] . '.js',
+            $cfg['deps'] ?? [],
+            $version,
+            true
+        );
+    }
 
     wp_localize_script('mypetpuzzle-child-bestsellers', 'mypetpuzzle_ajax', [
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -84,7 +49,7 @@ function mypetpuzzle_child_enqueue_assets() {
     if (is_cart()) {
         wp_enqueue_script(
             'mypetpuzzle-child-cart',
-            get_stylesheet_directory_uri() . '/assets/js/modules/cart.js',
+            $uri . '/assets/js/modules/cart.js',
             ['jquery'],
             $version,
             true
