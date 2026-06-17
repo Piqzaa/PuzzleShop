@@ -28,7 +28,7 @@ function mypetpuzzle_child_enqueue_assets() {
         'mypetpuzzle-child-cursor'          => ['file' => 'cursor'],
         'mypetpuzzle-child-puzzle-floating' => ['file' => 'puzzle-floating'],
         'mypetpuzzle-child-cookies'         => ['file' => 'cookies'],
-        'mypetpuzzle-child-bestsellers'     => ['file' => 'bestsellers'],
+        'mypetpuzzle-child-product-card'    => ['file' => 'product-card', 'deps' => ['wc-cart-fragments']],
     ];
 
     foreach ($scripts as $handle => $cfg) {
@@ -41,7 +41,7 @@ function mypetpuzzle_child_enqueue_assets() {
         );
     }
 
-    wp_localize_script('mypetpuzzle-child-bestsellers', 'mypetpuzzle_ajax', [
+    wp_localize_script('mypetpuzzle-child-product-card', 'mypetpuzzle_ajax', [
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('bestseller_add_to_cart'),
     ]);

@@ -1,64 +1,272 @@
 @use "../variables" as *;
+@use "../responsive" as *;
+
+// ─── Shop Hero ───────────────────────────────────────
+
+.shop-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.shop-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-color: $color-surface;
+  background-image:
+    url("../images/background-shop.png"),
+    radial-gradient(ellipse 80% 70% at 20% 80%, rgba($color-primary, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 90% 20%, rgba($color-primary, 0.08) 0%, transparent 60%),
+    radial-gradient(circle, rgba($color-primary, 0.04) 1px, transparent 1px);
+  background-size: cover, 100%, 100%, 24px 24px;
+  background-position: center, 0 0, 0 0, 0 0;
+  background-blend-mode: overlay, normal, normal, normal;
+  pointer-events: none;
+}
+
+.shop-hero__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 0 $spacing-md;
+}
+
+.shop-hero__pretitle {
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  color: $color-primary;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: $spacing-sm;
+}
+
+.shop-hero__title {
+  font-family: $font-secondary;
+  font-size: 2.25rem;
+  color: $color-text;
+  line-height: 1.15;
+  margin-bottom: $spacing-md;
+
+  @include respond-to(tablet) {
+    font-size: 3rem;
+  }
+}
+
+.shop-hero__title-highlight {
+  color: $color-primary;
+}
+
+.shop-hero__desc {
+  font-family: $font-primary;
+  font-size: 1.0625rem;
+  color: $color-text-light;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+// ─── Shop Container ──────────────────────────────────
 
 .shop {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: $spacing-lg $spacing-md;
+  overflow: hidden;
 }
 
-.shop__header {
-    margin-bottom: $spacing-lg;
+.shop__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
 }
 
-.shop__title {
-    font-family: $font-secondary;
-    font-size: 2rem;
-    color: $color-text;
-    margin-top: $spacing-sm;
-}
+// ─── Filters ────────────────────────────────────────
 
 .shop__filters {
-    margin-bottom: $spacing-lg;
-    display: flex;
-    align-items: center;
-    gap: $spacing-md;
-    flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  @include respond-down-to(tablet) {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .shop__filter-label {
-    font-size: $font-size-small;
-    color: $color-text-light;
-    font-weight: 600;
+  font-size: $font-size-small;
+  color: $color-text-light;
+  font-weight: 600;
+  flex-shrink: 0;
 }
 
 .shop__filter-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: $spacing-sm;
-    flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
 }
 
 .shop__filter-link {
-    display: inline-block;
-    padding: $spacing-xs $spacing-md;
-    border: 1px solid $color-border;
-    border-radius: 20px;
-    color: $color-text;
-    font-size: $font-size-small;
-    text-decoration: none;
-    transition: all $transition-fast;
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  color: $color-text;
+  font-size: $font-size-small;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all $transition-fast;
 }
 
 .shop__filter-link:hover,
 .shop__filter-link--active {
-    background-color: $color-primary;
-    color: $color-white;
-    border-color: $color-primary;
+  background-color: $color-primary;
+  color: $color-white;
+  border-color: $color-primary;
 }
 
+// ─── Toolbar (result count + sorting) ────────────────
+
+.shop__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.woocommerce-result-count {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin: 0;
+}
+
+.woocommerce-ordering {
+  margin: 0;
+
+  select {
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    background-color: $color-white;
+    font-family: $font-primary;
+    font-size: $font-size-small;
+    color: $color-text;
+    cursor: pointer;
+  }
+}
+
+// ─── Override Storefront main wrapper ──────────────
+
+.woocommerce-shop #primary {
+  float: none;
+  width: 100%;
+}
+
+// ─── Product Grid ───────────────────────────────────
+
+.shop__grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+  }
+
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-xl;
+  }
+
+  @include respond-to(wide) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+  }
+}
+
+// ─── Pagination ─────────────────────────────────────
+
 .woocommerce-pagination {
-    margin-top: $spacing-lg;
-    text-align: center;
+  margin-top: $spacing-xl;
+  text-align: center;
+
+  .page-numbers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-numbers > li {
+    display: inline-block;
+  }
+
+  .page-numbers a,
+  .page-numbers span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 $spacing-sm;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    font-size: $font-size-small;
+    font-weight: 500;
+    color: $color-text;
+    text-decoration: none;
+    transition: all $transition-fast;
+  }
+
+  .page-numbers a:hover {
+    background-color: $color-primary-light;
+    border-color: $color-primary;
+  }
+
+  .page-numbers .current {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-white;
+  }
+
+  .page-numbers .dots {
+    border: none;
+    color: $color-text-light;
+  }
+
+  .page-numbers .prev,
+  .page-numbers .next {
+    font-size: 0;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      border: solid $color-text;
+      border-width: 0 2px 2px 0;
+    }
+  }
+
+  .page-numbers .prev::before {
+    transform: rotate(135deg);
+  }
+
+  .page-numbers .next::before {
+    transform: rotate(-45deg);
+  }
 }
