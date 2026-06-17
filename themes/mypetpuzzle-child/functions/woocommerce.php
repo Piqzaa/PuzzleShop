@@ -20,16 +20,6 @@ add_action('wp', function () {
     }
 });
 
-add_filter('woocommerce_package_rates', function ($rates, $package) {
-    $subtotal = WC()->cart->get_subtotal();
-    if ($subtotal >= MYPETPUZZLE_FREE_SHIPPING_THRESHOLD) {
-        foreach ($rates as $rate_key => $rate) {
-            $rates[$rate_key]->cost = 0;
-            $rates[$rate_key]->taxes = array();
-        }
-    }
-    return $rates;
-}, 10, 2);
 
 add_filter('woocommerce_get_notices', function ($notices) {
     if (is_cart()) {
