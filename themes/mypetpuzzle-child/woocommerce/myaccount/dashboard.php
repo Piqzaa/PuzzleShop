@@ -29,7 +29,13 @@ $customer_orders = wc_get_orders( array(
 	'order'       => 'DESC',
 ) );
 
-$order_count      = count( wc_get_orders( array( 'customer_id' => get_current_user_id(), 'limit' => -1 ) ) );
+$order_count = count( $customer_orders ) < 3
+	? count( $customer_orders )
+	: count( wc_get_orders( array(
+		'customer_id' => get_current_user_id(),
+		'limit'       => -1,
+		'return'      => 'ids',
+	) ) );
 ?>
 
 <div class="myaccount-dashboard">
