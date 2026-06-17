@@ -1,21 +1,21 @@
 (function () {
   'use strict';
 
-  var COOKIE_NAME = 'mypetpuzzle_cookies_accepted';
-  var banner = document.getElementById('cookie-banner');
-  var acceptBtn = document.getElementById('cookie-accept');
-  var refuseBtn = document.getElementById('cookie-refuse');
-  var manageLink = document.getElementById('cookie-manage');
+  const COOKIE_NAME = 'mypetpuzzle_cookies_accepted';
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const refuseBtn = document.getElementById('cookie-refuse');
+  const manageLink = document.getElementById('cookie-manage');
 
   if (!banner || !acceptBtn) return;
 
   function getCookie(name) {
-    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : null;
   }
 
   function setCookie(name, value, days) {
-    var expires = new Date();
+    const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + expires.toUTCString() + ';path=/;SameSite=Lax';
   }

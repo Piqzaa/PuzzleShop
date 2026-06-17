@@ -2,10 +2,10 @@
   "use strict";
 
   function showToast() {
-    var existing = document.querySelector(".bestsellers-toast");
+    const existing = document.querySelector(".bestsellers-toast");
     if (existing) existing.remove();
 
-    var toast = document.createElement("div");
+    const toast = document.createElement("div");
     toast.className = "bestsellers-toast";
     toast.textContent = "Produit ajout\u00e9 au panier";
     document.body.appendChild(toast);
@@ -23,19 +23,19 @@
   }
 
   document.addEventListener("click", function (e) {
-    var btn = e.target.closest(".bestsellers__add-to-cart");
+    const btn = e.target.closest(".bestsellers__add-to-cart");
     if (!btn) return;
 
     e.preventDefault();
 
-    var productId = btn.getAttribute("data-product-id");
-    var variationId = btn.getAttribute("data-variation-id");
+    const productId = btn.getAttribute("data-product-id");
+    const variationId = btn.getAttribute("data-variation-id");
 
     if (!productId) return;
 
     btn.classList.add("bestsellers__add-to-cart--loading");
 
-    var formData = new FormData();
+    const formData = new FormData();
     formData.append("action", "bestseller_add_to_cart");
     formData.append("product_id", productId);
     formData.append("variation_id", variationId);

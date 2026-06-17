@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
                 <span class="cart-totals__value">
                     <?php
                     $subtotal = WC()->cart->get_subtotal();
-                    $free_threshold = MYPETPUZZLE_FREE_SHIPPING_THRESHOLD;
+                    $free_threshold = 50;
                     if ($subtotal >= $free_threshold) {
                         echo 'Offerte';
                     } else {
