@@ -3,6 +3,42 @@
  * Template Name: Contact
  */
 
+$contact_message = '';
+$contact_error   = '';
+
+if (isset($_POST['submit_contact'])) {
+    if (!isset($_POST['contact_nonce']) || !wp_verify_nonce($_POST['contact_nonce'], 'contact_submit')) {
+        $contact_error = 'Erreur de sécurité. Veuillez réessayer.';
+    } else {
+        $name    = sanitize_text_field($_POST['contact-name'] ?? '');
+        $email   = sanitize_email($_POST['contact-email'] ?? '');
+        $command = sanitize_text_field($_POST['contact-command'] ?? '');
+        $subject = sanitize_text_field($_POST['contact-subject'] ?? '');
+        $message = sanitize_textarea_field($_POST['contact-message'] ?? '');
+
+        if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+            $contact_error = 'Tous les champs obligatoires doivent être remplis.';
+        } elseif (!is_email($email)) {
+            $contact_error = 'Adresse email invalide.';
+        } else {
+            $to = get_option('admin_email');
+            $email_subject = sprintf('[Contact MyPetPuzzle] %s', $subject);
+            $email_body = "Nom : $name\n"
+                        . "Email : $email\n"
+                        . ($command ? "Commande : $command\n" : '')
+                        . "Sujet : $subject\n\n"
+                        . "Message :\n$message\n";
+            $headers = ['From: ' . $name . ' <' . $email . '>', 'Reply-To: ' . $email];
+
+            if (wp_mail($to, $email_subject, $email_body, $headers)) {
+                $contact_message = 'Votre message a bien été envoyé. Nous vous répondrons sous 24h ouvrées.';
+            } else {
+                $contact_error = 'Erreur lors de l\'envoi. Veuillez réessayer ou nous écrire directement à contact@mypetpuzzle.com.';
+            }
+        }
+    }
+}
+
 get_header(); ?>
 
 <div class="contact-page">
@@ -53,7 +89,16 @@ get_header(); ?>
 
         <div class="contact-page__form-wrapper">
             <h2 class="contact-page__form-title">Envoyez-nous un message</h2>
-            <form class="contact-page__form" action="#" method="POST">
+            <form class="contact-page__form" action="" method="POST">
+                <?php wp_nonce_field('contact_submit', 'contact_nonce'); ?>
+
+                <?php if ($contact_message) : ?>
+                    <div class="contact-page__success"><?php echo esc_html($contact_message); ?></div>
+                <?php endif; ?>
+                <?php if ($contact_error) : ?>
+                    <div class="contact-page__error"><?php echo esc_html($contact_error); ?></div>
+                <?php endif; ?>
+
             <div class="contact-page__field">
                 <label for="contact-name">Nom *</label>
                 <input type="text" id="contact-name" name="contact-name" required>
@@ -86,7 +131,7 @@ get_header(); ?>
                 <textarea id="contact-message" name="contact-message" rows="6" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn--primary contact-page__submit">Envoyer</button>
+            <button type="submit" name="submit_contact" class="btn btn--primary contact-page__submit">Envoyer</button>
         </form>
     </div>
     </div>
