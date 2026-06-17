@@ -68,7 +68,7 @@ defined( 'ABSPATH' ) || exit;
 			<span class="checkout-summary__row-label">Livraison</span>
 			<span class="checkout-summary__row-value">
 				<?php
-				$shipping_threshold = 50;
+				$shipping_threshold = MYPETPUZZLE_FREE_SHIPPING_THRESHOLD;
 				$cart_subtotal = WC()->cart->get_subtotal();
 				$applied_coupons = WC()->cart->get_applied_coupons();
 				if ( ! empty( $applied_coupons ) ) {

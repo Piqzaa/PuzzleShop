@@ -1,5 +1,7 @@
 <?php
 
+define('MYPETPUZZLE_FREE_SHIPPING_THRESHOLD', 50);
+
 function mypetpuzzle_child_enqueue_assets() {
     $theme   = wp_get_theme('mypetpuzzle-child');
     $version = $theme->get('Version');
@@ -160,7 +162,7 @@ add_action('wp', function () {
 // Rendre la livraison réellement offerte dès 50€ de sous-total
 add_filter('woocommerce_package_rates', function ($rates, $package) {
     $subtotal = WC()->cart->get_subtotal();
-    if ($subtotal >= 50) {
+    if ($subtotal >= MYPETPUZZLE_FREE_SHIPPING_THRESHOLD) {
         foreach ($rates as $rate_key => $rate) {
             $rates[$rate_key]->cost = 0;
             $rates[$rate_key]->taxes = array();
