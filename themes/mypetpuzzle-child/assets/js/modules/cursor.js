@@ -3,13 +3,13 @@
 
   if (window.matchMedia('(max-width: 1023px)').matches) return;
 
-  var cursor = document.createElement('div');
+  const cursor = document.createElement('div');
   cursor.className = 'puzzle-cursor';
   document.body.appendChild(cursor);
 
-  var mouseX = 0, mouseY = 0;
-  var posX = 0, posY = 0;
-  var speed = 0.18;
+  let mouseX = 0, mouseY = 0;
+  let posX = 0, posY = 0;
+  const speed = 0.18;
 
   document.addEventListener('mousemove', function (e) {
     mouseX = e.clientX;
@@ -25,17 +25,17 @@
   }
   loop();
 
-  var hoverTargets = 'a, button, input, select, textarea, [onclick], .btn, [role="button"]';
+  const hoverTargets = 'a, button, input, select, textarea, [onclick], .btn, [role="button"]';
 
   document.addEventListener('mouseover', function (e) {
-    var target = e.target.closest(hoverTargets);
+    const target = e.target.closest(hoverTargets);
     if (target) {
       cursor.classList.add('puzzle-cursor--hover');
     }
   });
 
   document.addEventListener('mouseout', function (e) {
-    var target = e.target.closest(hoverTargets);
+    const target = e.target.closest(hoverTargets);
     if (target) {
       cursor.classList.remove('puzzle-cursor--hover');
     }
