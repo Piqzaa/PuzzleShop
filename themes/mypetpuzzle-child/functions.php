@@ -133,14 +133,14 @@ function mypetpuzzle_page_templates() {
                 'post_name'    => $slug,
                 'post_type'    => 'page',
                 'post_status'  => 'draft',
-                'post_author'  => 1,
+                'post_author'  => get_current_user_id(),
                 'page_template' => $page[1],
             ));
         }
     }
     update_option('mypetpuzzle_pages_created', true);
 }
-add_action('after_setup_theme', 'mypetpuzzle_page_templates');
+add_action('init', 'mypetpuzzle_page_templates');
 
 add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
     ob_start();
