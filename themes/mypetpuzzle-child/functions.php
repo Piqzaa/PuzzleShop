@@ -78,6 +78,7 @@ function mypetpuzzle_child_enqueue_assets() {
 
     wp_localize_script('mypetpuzzle-child-bestsellers', 'mypetpuzzle_ajax', [
         'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('bestseller_add_to_cart'),
     ]);
 
     if (is_cart()) {
@@ -198,8 +199,10 @@ add_filter('woocommerce_get_notices', function ($notices) {
 add_action('wp_ajax_bestseller_add_to_cart', 'bestseller_add_to_cart_callback');
 add_action('wp_ajax_nopriv_bestseller_add_to_cart', 'bestseller_add_to_cart_callback');
 function bestseller_add_to_cart_callback() {
-    $product_id   = intval($_POST['product_id']);
-    $variation_id = intval($_POST['variation_id']);
+    check_ajax_referer('bestseller_add_to_cart', 'security');
+
+    $product_id   = intval($_POST['product_id'] ?? 0);
+    $variation_id = intval($_POST['variation_id'] ?? 0);
 
     if ($variation_id > 0) {
         WC()->cart->add_to_cart($product_id, 1, $variation_id);

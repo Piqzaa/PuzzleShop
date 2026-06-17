@@ -39,6 +39,7 @@
     formData.append("action", "bestseller_add_to_cart");
     formData.append("product_id", productId);
     formData.append("variation_id", variationId);
+    formData.append("security", mypetpuzzle_ajax.nonce);
 
     fetch(mypetpuzzle_ajax.ajax_url, {
       method: "POST",
