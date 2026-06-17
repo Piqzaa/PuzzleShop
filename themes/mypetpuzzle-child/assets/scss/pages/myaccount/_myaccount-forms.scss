@@ -1,87 +1,94 @@
 @use "../../variables" as *;
 
-.myaccount-page__content form {
-  .form-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: $spacing-xs;
+.myaccount-page__content form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: $spacing-xs;
+}
 
-    @media (min-width: $bp-tablet) {
-      margin-bottom: $spacing-md;
-    }
+@media (min-width: $bp-tablet) {
+  .myaccount-page__content form .form-row {
+    margin-bottom: $spacing-md;
   }
+}
 
-  label {
-    font-weight: 600;
-    color: $color-text;
-    font-size: $font-size-small;
-  }
+.myaccount-page__content form label {
+  font-weight: 600;
+  color: $color-text;
+  font-size: $font-size-small;
+}
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="password"],
-  input[type="search"],
-  select,
-  textarea {
-    padding: 12px 16px;
-    border: 1px solid $color-border;
-    border-radius: 6px;
-    font-family: $font-primary;
-    font-size: 16px;
-    color: $color-text;
-    background-color: $color-surface;
-    width: 100%;
-    transition: border-color $transition-fast, background-color $transition-fast, box-shadow $transition-fast;
+.myaccount-page__content form input[type="text"],
+.myaccount-page__content form input[type="email"],
+.myaccount-page__content form input[type="tel"],
+.myaccount-page__content form input[type="password"],
+.myaccount-page__content form input[type="search"],
+.myaccount-page__content form select,
+.myaccount-page__content form textarea {
+  padding: 12px 16px;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  font-family: $font-primary;
+  font-size: 16px;
+  color: $color-text;
+  background-color: $color-surface;
+  width: 100%;
+  transition: border-color $transition-fast, background-color $transition-fast, box-shadow $transition-fast;
+}
 
-    &:focus {
-      border-color: $color-primary;
-      background-color: $color-white;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
-    }
-  }
+.myaccount-page__content form input[type="text"]:focus,
+.myaccount-page__content form input[type="email"]:focus,
+.myaccount-page__content form input[type="tel"]:focus,
+.myaccount-page__content form input[type="password"]:focus,
+.myaccount-page__content form input[type="search"]:focus,
+.myaccount-page__content form select:focus,
+.myaccount-page__content form textarea:focus {
+  border-color: $color-primary;
+  background-color: $color-white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+}
 
-  select {
-    appearance: auto;
-  }
+.myaccount-page__content form select {
+  appearance: auto;
+}
 
-  fieldset {
-    margin-top: $spacing-lg;
-    padding: $spacing-md 0 0;
-    border: none;
-    border-top: 1px solid $color-border;
-    background: none !important;
+.myaccount-page__content form fieldset {
+  margin-top: $spacing-lg;
+  padding: $spacing-md 0 0;
+  border: none;
+  border-top: 1px solid $color-border;
+  background: none !important;
+}
 
-    legend {
-      font-family: $font-secondary;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: $color-text;
-      padding-right: $spacing-md;
-      background: none;
-    }
-  }
+.myaccount-page__content form fieldset legend {
+  font-family: $font-secondary;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: $color-text;
+  padding-right: $spacing-md;
+  background: none;
+}
 
-  button[type="submit"],
-  .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    padding: 12px 28px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
-    background-color: $color-primary;
-    color: $color-white;
-    border: 2px solid $color-primary;
+.myaccount-page__content form button[type="submit"],
+.myaccount-page__content form .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+  background-color: $color-primary;
+  color: $color-white;
+  border: 2px solid $color-primary;
+}
 
-    &:hover {
-      background-color: $color-primary-dark;
-      border-color: $color-primary-dark;
-      color: $color-white;
-    }
-  }
+.myaccount-page__content form button[type="submit"]:hover,
+.myaccount-page__content form .button:hover {
+  background-color: $color-primary-dark;
+  border-color: $color-primary-dark;
+  color: $color-white;
 }

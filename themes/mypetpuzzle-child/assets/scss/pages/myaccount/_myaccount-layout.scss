@@ -1,59 +1,61 @@
 @use "../../variables" as *;
 
-body.woocommerce-account {
-  .entry-title {
-    display: none;
-  }
+body.woocommerce-account .entry-title {
+  display: none;
+}
 
-  .content-area,
-  .site-main,
-  #primary,
-  #page,
-  .col-full {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+body.woocommerce-account .content-area,
+body.woocommerce-account .site-main,
+body.woocommerce-account #primary,
+body.woocommerce-account #page,
+body.woocommerce-account .col-full {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  .entry-content a {
-    text-decoration: none;
+body.woocommerce-account .entry-content a {
+  text-decoration: none;
+}
 
-    &:hover {
-      text-decoration: none;
-    }
+body.woocommerce-account .entry-content a:hover {
+  text-decoration: none;
+}
 
-    &.woocommerce-button,
-    &.button {
-      text-decoration: none;
-    }
-  }
+body.woocommerce-account .entry-content a.woocommerce-button,
+body.woocommerce-account .entry-content a.button {
+  text-decoration: none;
+}
 
-  fieldset {
-    background: none;
-    padding: 0;
-    margin: 0;
-  }
+body.woocommerce-account fieldset {
+  background: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .show-password-input {
-    display: none !important;
-  }
+body.woocommerce-account .show-password-input {
+  display: none !important;
 }
 
 .myaccount-page {
   max-width: 1120px;
   margin: 0 auto;
   padding: $spacing-lg $spacing-md $spacing-xl;
+}
 
-  @media (max-width: $bp-mobile) {
+@media (max-width: $bp-mobile) {
+  .myaccount-page {
     padding: $spacing-md 12px;
   }
 }
 
 .myaccount-page__header {
   margin-bottom: $spacing-lg;
+}
 
-  @media (max-width: $bp-tablet) {
+@media (max-width: $bp-tablet) {
+  .myaccount-page__header {
     margin-bottom: $spacing-md;
   }
 }

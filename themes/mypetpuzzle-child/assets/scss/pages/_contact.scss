@@ -4,8 +4,10 @@
   padding: $spacing-xl $spacing-md;
   max-width: 1120px;
   margin: 0 auto;
+}
 
-  @media (min-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
+  .contact-page {
     padding: ($spacing-xl * 2) $spacing-md;
   }
 }
@@ -34,8 +36,10 @@
 .contact-page__info {
   display: grid;
   gap: $spacing-md;
+}
 
-  @media (min-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
+  .contact-page__info {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -49,38 +53,38 @@
   transition:
     border-color $transition-fast,
     box-shadow $transition-fast;
+}
 
-  &:hover {
-    border-color: $color-primary;
-    box-shadow:
-      0 0 0 1px $color-primary,
-      0 4px 16px rgba($color-primary, 0.1);
-  }
+.contact-page__item:hover {
+  border-color: $color-primary;
+  box-shadow:
+    0 0 0 1px $color-primary,
+    0 4px 16px rgba($color-primary, 0.1);
+}
 
-  strong {
-    display: block;
-    color: $color-text;
-    font-weight: 600;
-    margin-bottom: $spacing-sm;
-  }
+.contact-page__item strong {
+  display: block;
+  color: $color-text;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+}
 
-  a {
-    color: $color-text;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color $transition-fast;
+.contact-page__item a {
+  color: $color-text;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color $transition-fast;
+}
 
-    &:hover {
-      color: $color-primary;
-    }
-  }
+.contact-page__item a:hover {
+  color: $color-primary;
+}
 
-  address,
-  .contact-page__detail {
-    font-style: normal;
-    color: $color-text-light;
-    font-size: $font-size-small;
-  }
+.contact-page__item address,
+.contact-page__item .contact-page__detail {
+  font-style: normal;
+  color: $color-text-light;
+  font-size: $font-size-small;
 }
 
 .contact-page__item-icon {
@@ -92,14 +96,14 @@
   border-radius: 50%;
   background: $color-primary-light;
   margin: 0 auto $spacing-sm;
+}
 
-  svg {
-    width: 20px;
-    height: 20px;
-    stroke: $color-primary;
-    fill: none;
-    stroke-width: 1.5;
-  }
+.contact-page__item-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: $color-primary;
+  fill: none;
+  stroke-width: 1.5;
 }
 
 .contact-page__form-wrapper {
@@ -107,9 +111,11 @@
   border: 1px solid $color-border;
   border-radius: 8px;
   padding: $spacing-lg;
+}
 
-  @media (min-width: $bp-tablet) {
-    padding: $spacing-xl $spacing-xl * 1.5;
+@media (min-width: $bp-tablet) {
+  .contact-page__form-wrapper {
+    padding: $spacing-xl ($spacing-xl * 1.5);
   }
 }
 
@@ -153,13 +159,15 @@
     border-color $transition-fast,
     background-color $transition-fast,
     box-shadow $transition-fast;
+}
 
-  &:focus {
-    border-color: $color-primary;
-    background-color: $color-white;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
-  }
+.contact-page__field input:focus,
+.contact-page__field select:focus,
+.contact-page__field textarea:focus {
+  border-color: $color-primary;
+  background-color: $color-white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
 }
 
 .contact-page__field textarea {
@@ -171,8 +179,10 @@
   align-self: flex-start;
   padding: 12px 36px;
   font-size: 1rem;
+}
 
-  @media (max-width: $bp-mobile) {
+@media (max-width: $bp-mobile) {
+  .contact-page__submit {
     width: 100%;
     align-self: stretch;
   }
@@ -181,8 +191,8 @@
 .contact-page a {
   color: $color-primary;
   text-decoration: underline;
+}
 
-  &:hover {
-    color: $color-primary-dark;
-  }
+.contact-page a:hover {
+  color: $color-primary-dark;
 }
