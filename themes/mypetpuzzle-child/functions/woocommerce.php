@@ -56,3 +56,24 @@ function bestseller_add_to_cart_callback() {
         'cart_count' => WC()->cart->get_cart_contents_count(),
     ]);
 }
+
+remove_action('woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20);
+add_action('woocommerce_checkout_terms_and_conditions', function () {
+    $privacy_link = get_privacy_policy_url();
+    if ($privacy_link) {
+        echo '<p class="woocommerce-privacy-policy-text">Vos données personnelles seront utilisées pour traiter votre commande, améliorer votre expérience sur ce site et à d\'autres fins décrites dans notre <a href="' . esc_url($privacy_link) . '" target="_blank">politique de confidentialité</a>.</p>';
+    }
+}, 20);
+
+add_filter('gettext', function ($translation, $text, $domain) {
+    if ($domain === 'woo-stripe-payment') {
+        $translations = array(
+            'New Card'     => 'Nouvelle carte',
+            'Saved Cards'  => 'Cartes enregistrées',
+        );
+        if (isset($translations[$text])) {
+            return $translations[$text];
+        }
+    }
+    return $translation;
+}, 10, 3);
