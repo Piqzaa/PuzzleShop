@@ -1,4 +1,5 @@
 @use "../../variables" as *;
+@use "../../responsive" as *;
 
 .bestsellers__title {
   font-family: $font-secondary;
@@ -14,63 +15,13 @@
   margin-bottom: $spacing-xl;
 }
 
-.bestsellers__link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.bestsellers__image img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.bestsellers__name {
-  font-family: $font-secondary;
-  font-size: 1.125rem;
-  color: $color-text;
-  padding: $spacing-sm $spacing-md 0;
-  margin-bottom: 4px;
-}
-
-.bestsellers__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 $spacing-md $spacing-sm;
-}
-
-.bestsellers__price {
-  display: block;
-  font-size: $font-size-small;
-  color: $color-primary;
-  font-weight: 600;
-}
-
-.bestsellers__add-to-cart {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid $color-primary;
-  border-radius: 4px;
-  background: transparent;
-  color: $color-text;
-  font-family: $font-primary;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color $transition-fast;
-
-  &:hover {
-    background-color: $color-primary-light;
+.bestsellers__grid.grid--3 {
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  svg {
-    display: block;
-    flex-shrink: 0;
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
