@@ -100,11 +100,7 @@ $best_sellers = wc_get_products([
 
                     <div class="card__footer">
                         <span class="card__price">
-                            <?php if ($is_variable) : ?>
-                                À partir de <?php echo $display_price; ?>
-                            <?php else : ?>
-                                <?php echo $display_price; ?>
-                            <?php endif; ?>
+                            <?php echo $display_price; ?>
                         </span>
 
                         <?php if ($can_add_to_cart) : ?>
