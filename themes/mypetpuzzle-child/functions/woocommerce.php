@@ -69,6 +69,16 @@ add_filter('gettext', function ($translation, $text, $domain) {
 }, 10, 3);
 
 /**
+ * Remove default price range from single product summary
+ * (price is shown in the variation area when a variation is selected)
+ */
+add_action('wp', function () {
+    if (is_product()) {
+        remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+    }
+});
+
+/**
  * Premium Trust Badges below Add to Cart on Single Product Page
  */
 add_action('woocommerce_single_product_summary', 'mypetpuzzle_single_product_trust_badges', 35);
