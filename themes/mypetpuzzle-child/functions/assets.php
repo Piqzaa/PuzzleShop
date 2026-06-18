@@ -14,10 +14,15 @@ function mypetpuzzle_child_enqueue_assets() {
         null
     );
 
+    $dependencies = ['storefront-style', 'mypetpuzzle-child-fonts'];
+    if (wp_style_is('storefront-woocommerce-style', 'registered') || wp_style_is('storefront-woocommerce-style', 'enqueued')) {
+        $dependencies[] = 'storefront-woocommerce-style';
+    }
+
     wp_enqueue_style(
         'mypetpuzzle-child-main',
         $uri . '/assets/css/main.css',
-        ['storefront-style', 'mypetpuzzle-child-fonts'],
+        $dependencies,
         $version
     );
 

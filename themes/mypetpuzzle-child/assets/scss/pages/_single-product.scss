@@ -1,25 +1,816 @@
 @use "../variables" as *;
+@use "../mixins" as *;
 
 .product-detail {
-    max-width: 1120px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: $spacing-lg $spacing-md;
+    padding: $spacing-xl $spacing-md;
     display: grid;
-    gap: $spacing-lg;
+    gap: $spacing-xl;
 
     @media (min-width: $bp-tablet) {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: $spacing-xl * 1.5;
+    }
+
+    // Annuler les flottants et largeurs fixes du thème parent (Storefront)
+    .woocommerce-product-gallery,
+    .images,
+    .summary.entry-summary {
+        float: none !important;
+        width: 100% !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
     }
 }
 
+// 1. Galerie
 .product-detail__gallery {
     width: 100%;
+
+    @media (min-width: $bp-tablet) {
+        height: fit-content;
+    }
+
+    // Styles de la galerie WC
+    .woocommerce-product-gallery {
+        position: relative;
+        border-radius: $radius-md;
+        overflow: hidden;
+        background: $color-white;
+
+        .woocommerce-product-gallery__trigger {
+            position: absolute;
+            top: $spacing-md;
+            right: $spacing-md;
+            z-index: 10;
+            background: $color-white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: $shadow-sm;
+            text-decoration: none;
+            color: $color-text;
+            transition: all $transition-fast;
+
+            &:hover {
+                background: $color-primary;
+                color: $color-white;
+                transform: scale(1.05);
+            }
+
+            @media (max-width: $bp-tablet) {
+                display: none;
+            }
+        }
+
+        // Miniatures (flex thumbnails layout)
+        .flex-control-thumbs {
+            display: flex;
+            gap: $spacing-sm;
+            padding: $spacing-md;
+            margin: 0;
+            list-style: none;
+            background: $color-bg;
+            border-top: 1px solid $color-border;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+
+            &::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $color-primary;
+                border-radius: 2px;
+            }
+
+            li {
+                width: 70px;
+                height: 70px;
+                min-width: 70px;
+                border-radius: $radius-md;
+                overflow: hidden;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: border-color $transition-fast;
+                scroll-snap-align: start;
+
+                &.flex-active,
+                &:hover {
+                    border-color: $color-primary;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
 }
 
+// 2. Résumé (Summary)
 .product-detail__summary {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    // Titre
+    .product_title {
+        font-family: $font-secondary;
+        font-size: calc($font-size-h2 * 1.2);
+        font-weight: 700;
+        color: $color-text;
+        line-height: 1.2;
+        margin-bottom: $spacing-sm;
+        
+        @media (max-width: $bp-tablet) {
+            font-size: $font-size-h2;
+        }
+    }
+
+    // Avis / Note
+    .woocommerce-product-rating {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        margin-bottom: $spacing-md;
+        font-size: $font-size-small;
+        color: $color-text-light;
+
+        .star-rating {
+            font-family: 'star';
+            font-size: 14px;
+            color: $color-primary;
+            position: relative;
+            display: inline-block;
+            width: 5.4em;
+            height: 1em;
+            line-height: 1;
+            overflow: hidden;
+
+            &::before {
+                content: '\53\53\53\53\53';
+                opacity: 0.25;
+                float: left;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            span {
+                overflow: hidden;
+                float: left;
+                top: 0;
+                left: 0;
+                position: absolute;
+                padding-top: 1em;
+
+                &::before {
+                    content: '\53\53\53\53\53';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+
+        .woocommerce-review-link {
+            color: $color-text-light;
+            text-decoration: none;
+            transition: color $transition-fast;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+    }
+
+    // Prix
+    .price {
+        font-family: $font-primary;
+        font-size: calc($font-size-h2 * 1.1);
+        font-weight: 700;
+        color: $color-primary;
+        margin-bottom: $spacing-md;
+        display: block;
+
+        ins {
+            text-decoration: none;
+        }
+
+        del {
+            font-size: $font-size-h3;
+            color: $color-text-light;
+            opacity: 0.6;
+            margin-right: $spacing-sm;
+        }
+    }
+
+    // Description courte
+    .woocommerce-product-details__short-description {
+        color: $color-text-light;
+        font-size: $font-size-base;
+        line-height: 1.6;
+        margin-bottom: $spacing-lg;
+        border-bottom: 1px dashed $color-border;
+        padding-bottom: $spacing-lg;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    // Formulaire variations / panier
+    form.cart {
+        margin-bottom: $spacing-lg;
+
+        .variations {
+            width: 100%;
+            margin-bottom: $spacing-md;
+            border-collapse: collapse;
+
+            td {
+                padding: $spacing-sm 0;
+                vertical-align: middle;
+                border: none;
+            }
+
+            .label {
+                font-weight: 600;
+                color: $color-text;
+                width: 80px;
+                padding-right: $spacing-md;
+
+                label {
+                    margin-bottom: 0;
+                }
+            }
+
+            .value {
+                select {
+
+        @media (max-width: $bp-mobile) {
+            display: block;
+            width: 100%;
+
+            tr {
+                display: block;
+                margin-bottom: $spacing-md;
+            }
+
+            td {
+                display: block;
+                width: 100%;
+                padding: $spacing-xs 0;
+            }
+
+            .label {
+                width: auto;
+                padding-right: 0;
+                margin-bottom: $spacing-xs;
+            }
+        }
+                    width: 100%;
+                    padding: 10px 14px;
+                    border: 1px solid $color-border;
+                    border-radius: $radius-md;
+                    background-color: $color-white;
+                    color: $color-text;
+                    font-family: $font-primary;
+                    font-size: $font-size-small;
+                    transition: border-color $transition-fast, box-shadow $transition-fast;
+                    outline: none;
+                    appearance: none;
+                    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%232c1810' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 4 4 4 4-4'/%3E%3C/svg%3E");
+                    background-repeat: no-repeat;
+                    background-position: right 14px center;
+                    background-size: 12px;
+                    padding-right: 36px;
+
+                    &:focus {
+                        border-color: $color-primary;
+                        box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+                    }
+                }
+
+                .reset_variations {
+                    font-size: 11px;
+                    color: $color-error;
+                    text-decoration: none;
+                    margin-top: $spacing-xs;
+                    display: inline-block;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        // Zone produit variable active (prix, qty, CTA)
+        .single_variation_wrap {
+            background: transparent;
+            border-radius: $radius-md;
+            padding: $spacing-md 0;
+            margin-top: $spacing-md;
+            border-top: 1px dashed $color-border;
+            border-bottom: 1px dashed $color-border;
+
+            .woocommerce-variation-price {
+                margin-bottom: $spacing-md;
+                
+                .price {
+                    font-size: $font-size-h3;
+                    margin-bottom: 0;
+                }
+            }
+
+            .woocommerce-variation-description {
+                font-size: $font-size-small;
+                color: $color-text-light;
+                margin-bottom: $spacing-md;
+                line-height: 1.5;
+            }
+
+            .woocommerce-variation-add-to-cart {
+                display: flex;
+                gap: $spacing-md;
+                align-items: center;
+
+                @media (max-width: $bp-mobile) {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+            }
+        }
+
+        // Quantité
+        .quantity {
+            display: inline-flex;
+            border: 1px solid $color-border;
+            border-radius: $radius-md;
+            background: $color-white;
+            overflow: hidden;
+            height: 48px;
+
+            @media (max-width: $bp-mobile) {
+                justify-content: center;
+            }
+
+            input.qty {
+                width: 60px;
+                height: 100%;
+                border: none;
+                text-align: center;
+                font-weight: 600;
+                color: $color-text;
+                font-family: $font-primary;
+                font-size: $font-size-base;
+                outline: none;
+                padding: 0;
+                appearance: textfield;
+
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    appearance: none;
+                    margin: 0;
+                }
+            }
+        }
+
+        // Bouton ajouter au panier
+        button.single_add_to_cart_button {
+            flex-grow: 1;
+            height: 48px;
+            background-color: $color-primary;
+            color: $color-white;
+            border: none;
+            border-radius: $radius-md;
+            font-family: $font-primary;
+            font-weight: 600;
+            font-size: $font-size-base;
+            cursor: pointer;
+            transition: background-color $transition-fast, transform $transition-fast;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: $spacing-sm;
+
+            &:hover {
+                background-color: $color-primary-dark;
+            }
+
+            &:active {
+                transform: scale(0.98);
+            }
+
+            &.disabled,
+            &:disabled {
+                background-color: $color-border;
+                color: $color-text-light;
+                cursor: not-allowed;
+                transform: none;
+            }
+        }
+    }
+
+    // 3. Garanties (Trust Badges)
+    .product-trust-badges {
+        margin: $spacing-lg 0;
+        padding: $spacing-lg;
+        border-radius: $radius-xl;
+        background: $color-bg;
+        border: 1px dashed $color-border;
+
+        .product-trust-badges__title {
+            text-align: center;
+            margin-bottom: $spacing-md;
+            font-family: $font-secondary;
+            font-size: $font-size-small;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: $color-secondary;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                width: 20%;
+                height: 1px;
+                background-color: rgba($color-secondary, 0.3);
+            }
+
+            &::before { left: 0; }
+            &::after { right: 0; }
+
+            span {
+                background: $color-bg;
+                padding: 0 $spacing-sm;
+                z-index: 1;
+                position: relative;
+            }
+        }
+
+        .product-trust-badges__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $spacing-md;
+
+            @media (max-width: 400px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-trust-badge {
+            display: flex;
+            align-items: center;
+            gap: $spacing-sm;
+            padding: $spacing-xs;
+
+            .product-trust-badge__icon {
+                width: 18px;
+                height: 18px;
+                color: $color-primary;
+                flex-shrink: 0;
+            }
+
+            .product-trust-badge__text {
+                font-family: $font-primary;
+                font-size: 13px;
+                font-weight: 500;
+                color: $color-text;
+                line-height: 1.3;
+            }
+        }
+    }
+
+    // 4. Meta
+    .product_meta {
+        font-family: $font-primary;
+        font-size: 12px;
+        color: $color-text-light;
+        border-top: 1px solid $color-border;
+        padding-top: $spacing-md;
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+
+        span {
+            strong {
+                color: $color-text;
+                font-weight: 500;
+            }
+            
+            a {
+                color: $color-text-light;
+                text-decoration: none;
+                transition: color $transition-fast;
+
+                &:hover {
+                    color: $color-primary;
+                }
+            }
+        }
+    }
 }
 
+// 5. Description et Onglets (Tabs)
 .product-detail__description {
-    grid-column: 1 / -1;
+    margin-top: $spacing-xl;
+    border-top: 1px solid $color-border;
+    padding-top: $spacing-xl;
+
+    .woocommerce-tabs {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+
+        ul.tabs {
+            display: flex !important;
+            justify-content: center;
+            gap: $spacing-xl;
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 0 $spacing-xl 0 !important;
+            border-bottom: 1px solid $color-border !important;
+            background: transparent !important;
+            width: 100% !important;
+            float: none !important;
+
+            &::before,
+            &::after {
+                display: none !important;
+            }
+
+            @media (max-width: $bp-tablet) {
+                gap: $spacing-md;
+                flex-wrap: wrap;
+            }
+
+            li {
+                padding: $spacing-md 0 !important;
+                position: relative;
+                margin: 0 !important;
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0 !important;
+
+                a {
+                    font-family: $font-secondary;
+                    font-size: $font-size-h3;
+                    font-weight: 500;
+                    color: $color-text-light;
+                    text-decoration: none;
+                    transition: color $transition-fast;
+
+                    @media (max-width: $bp-tablet) {
+                        font-size: $font-size-base;
+                    }
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: transparent;
+                    transition: background-color $transition-fast;
+                }
+
+                &.active {
+                    background: transparent !important;
+
+                    a {
+                        color: $color-primary !important;
+                        font-weight: 600;
+                    }
+
+                    &::after {
+                        background-color: $color-primary;
+                    }
+                }
+
+                &:hover:not(.active) {
+                    a {
+                        color: $color-text;
+                    }
+                }
+            }
+        }
+
+        .woocommerce-Tabs-panel {
+            max-width: 800px;
+            margin: 0 auto;
+            color: $color-text-light;
+            line-height: 1.7;
+            font-size: $font-size-base;
+
+            h2 {
+                font-family: $font-secondary;
+                color: $color-text;
+                font-size: $font-size-h2;
+                margin-bottom: $spacing-md;
+                text-align: center;
+            }
+
+            p {
+                margin-bottom: $spacing-md;
+            }
+
+            ul {
+                margin-bottom: $spacing-md;
+                padding-left: $spacing-lg;
+            }
+
+            table.shop_attributes {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: $spacing-lg;
+
+                th, td {
+                    padding: $spacing-sm $spacing-md;
+                    border-bottom: 1px solid $color-border;
+                }
+
+                th {
+                    font-weight: 600;
+                    color: $color-text;
+                    width: 30%;
+                    text-align: left;
+                    font-family: $font-primary;
+                    font-size: $font-size-small;
+                }
+
+                td {
+                    color: $color-text-light;
+                    font-style: italic;
+                    font-size: $font-size-small;
+                }
+            }
+        }
+    }
+}
+
+// 6. Sticky Add to Cart Mobile
+.sticky-cart-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $color-white;
+    border-top: 1px solid $color-border;
+    box-shadow: 0 -4px 16px rgba(44, 24, 16, 0.08);
+    z-index: 999;
+    padding: $spacing-sm $spacing-md;
+    transform: translateY(100%);
+    transition: transform $transition-base;
+    display: none; // Masqué par défaut
+
+    @media (max-width: $bp-tablet) {
+        display: block; // Affiché uniquement sur mobile/tablette
+    }
+
+    &.is-visible {
+        transform: translateY(0);
+    }
+
+    // Support encoche iPhone / safe areas
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        padding-bottom: calc($spacing-sm + env(safe-area-inset-bottom));
+    }
+
+    .sticky-cart-mobile__container {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacing-md;
+    }
+
+    .sticky-cart-mobile__info {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        overflow: hidden;
+    }
+
+    .sticky-cart-mobile__thumb {
+        width: 40px;
+        height: 40px;
+        border-radius: $radius-sm;
+        overflow: hidden;
+        border: 1px solid $color-border;
+        flex-shrink: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .sticky-cart-mobile__meta {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .sticky-cart-mobile__title {
+        font-family: $font-secondary;
+        font-size: 13px;
+        font-weight: 600;
+        color: $color-text;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .sticky-cart-mobile__price {
+        font-family: $font-primary;
+        font-size: 12px;
+        font-weight: 700;
+        color: $color-primary;
+
+        ins {
+            text-decoration: none;
+        }
+
+        del {
+            opacity: 0.6;
+            margin-right: $spacing-xs;
+            font-size: 10px;
+        }
+    }
+
+    .sticky-cart-mobile__btn {
+        flex-shrink: 0;
+        height: 38px;
+        padding: 0 $spacing-md;
+        font-size: 13px;
+    }
+}
+
+// 7. Produits similaires (Related Products)
+.related.products {
+    margin-top: $spacing-xl * 2;
+    padding-top: $spacing-xl;
+    border-top: 1px solid $color-border;
+
+    h2 {
+        font-family: $font-secondary;
+        font-size: $font-size-h2;
+        text-align: center;
+        color: $color-text;
+        margin-bottom: $spacing-lg;
+    }
+
+    ul.products {
+        display: grid;
+        gap: $spacing-lg;
+        grid-template-columns: 1fr;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        // Empêcher les pseudo-éléments ::before/::after de devenir des items de grille
+        &::before,
+        &::after {
+            display: none !important;
+        }
+
+        @media (min-width: $bp-tablet) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $bp-desktop) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        li.product {
+            margin: 0;
+            width: 100%;
+            float: none !important;
+            clear: none !important;
+
+            // Annuler le clear:both !important de Storefront sur .first
+            &.first,
+            &.last {
+                clear: none !important;
+            }
+        }
+    }
 }
