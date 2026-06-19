@@ -48,6 +48,20 @@ function mypetpuzzle_child_enqueue_assets() {
         'nonce'    => wp_create_nonce('bestseller_add_to_cart'),
     ]);
 
+    wp_add_inline_script('mypetpuzzle-child-header', '
+        document.addEventListener("DOMContentLoaded",function(){
+            var d=function(){document.querySelectorAll(".woocommerce-message,.woocommerce-info,.woocommerce-error").forEach(function(n){
+                if(!n.dataset.dismissTimer){
+                    n.dataset.dismissTimer="true";
+                    n.style.transition="opacity .5s ease";
+                    setTimeout(function(){n.style.opacity="0";setTimeout(function(){n.remove()},500)},4000)
+                }
+            })};
+            d();
+            new MutationObserver(d).observe(document.body,{childList:true,subtree:true})
+        });
+    ');
+
     if (is_cart()) {
         wp_enqueue_script(
             'mypetpuzzle-child-cart',
