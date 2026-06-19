@@ -14,10 +14,7 @@ function mypetpuzzle_child_enqueue_assets() {
         null
     );
 
-    $dependencies = ['storefront-style', 'mypetpuzzle-child-fonts'];
-    if (wp_style_is('storefront-woocommerce-style', 'registered') || wp_style_is('storefront-woocommerce-style', 'enqueued')) {
-        $dependencies[] = 'storefront-woocommerce-style';
-    }
+    $dependencies = ['mypetpuzzle-child-fonts'];
 
     wp_enqueue_style(
         'mypetpuzzle-child-main',
@@ -72,3 +69,10 @@ function mypetpuzzle_child_enqueue_assets() {
     }
 }
 add_action('wp_enqueue_scripts', 'mypetpuzzle_child_enqueue_assets');
+
+add_action('wp_enqueue_scripts', function () {
+    wp_dequeue_style('storefront-style');
+    wp_deregister_style('storefront-style');
+    wp_dequeue_style('storefront-woocommerce-style');
+    wp_deregister_style('storefront-woocommerce-style');
+}, 25);
