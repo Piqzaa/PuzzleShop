@@ -45,6 +45,10 @@
   height: 280px;
   object-fit: cover;
   display: block;
+
+  @media (max-width: $bp-tablet - 1px) {
+    height: 200px;
+  }
 }
 
 .card__title {
