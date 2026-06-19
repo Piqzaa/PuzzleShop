@@ -70,6 +70,15 @@ function mypetpuzzle_child_enqueue_assets() {
             $version,
             true
         );
+
+        wp_enqueue_script(
+            'mypetpuzzle-child-product-reviews',
+            $uri . '/assets/js/modules/product-reviews.js',
+            ['wc-single-product'],
+            $version,
+            true
+        );
+
     }
 
     if (is_cart()) {
