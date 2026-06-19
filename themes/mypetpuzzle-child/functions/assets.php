@@ -62,6 +62,16 @@ function mypetpuzzle_child_enqueue_assets() {
         });
     ');
 
+    if (is_product()) {
+        wp_enqueue_script(
+            'mypetpuzzle-child-quantity-input',
+            $uri . '/assets/js/modules/quantity-input.js',
+            [],
+            $version,
+            true
+        );
+    }
+
     if (is_cart()) {
         wp_enqueue_script(
             'mypetpuzzle-child-cart',
