@@ -18,8 +18,18 @@ do_action('woocommerce_before_single_product');
         <?php do_action('woocommerce_before_single_product_summary'); ?>
     </div>
 
-    <div class="product-detail__summary">
-        <?php do_action('woocommerce_single_product_summary'); ?>
+    <div class="product-detail__info">
+        <div class="product-detail__title">
+            <?php woocommerce_template_single_title(); ?>
+        </div>
+
+        <div class="product-detail__summary">
+            <?php
+            remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
+            do_action('woocommerce_single_product_summary');
+            add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
+            ?>
+        </div>
     </div>
 
     <div class="product-detail__description">
