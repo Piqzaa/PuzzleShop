@@ -1,5 +1,9 @@
 @use "variables" as *;
 
+html {
+    overflow-x: hidden;
+}
+
 *,
 *::before,
 *::after {
@@ -39,6 +43,30 @@ a {
 
 a:hover {
   color: $color-primary-dark;
+}
+
+// Conteneur Storefront (col-full) – nécessaire car storefront-style est déquéué
+.col-full {
+  max-width: $bp-wide;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-md;
+  padding-right: $spacing-md;
+
+  @media (min-width: $bp-tablet) {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+  }
+
+  @media (min-width: $bp-desktop) {
+    padding-left: 2.617924em;
+    padding-right: 2.617924em;
+  }
+}
+
+.site-content {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:focus,
