@@ -1,6 +1,86 @@
 @use "../variables" as *;
 
 // ─────────────────────────────────────────────
+// WooCommerce – Notices (message ajout panier, etc.)
+// ─────────────────────────────────────────────
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error,
+.woocommerce-notices-wrapper .woocommerce-message,
+.woocommerce-notices-wrapper .woocommerce-info,
+.woocommerce-notices-wrapper .woocommerce-error {
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-small;
+  margin-bottom: $spacing-md;
+  position: relative;
+  list-style: none;
+  border: none !important;
+  border-left: 3px solid transparent;
+
+  a.button {
+    float: right;
+    margin-left: $spacing-sm;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-sm;
+    font-size: $font-size-small;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity $transition-fast;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.woocommerce-message,
+.woocommerce-notices-wrapper .woocommerce-message {
+  background: #f0f8e8;
+  border-left-color: #417505;
+  color: $color-text;
+
+  a.button {
+    background: #417505;
+    color: $color-white;
+  }
+  a.button:hover {
+    opacity: 0.85;
+  }
+}
+
+.woocommerce-info,
+.woocommerce-notices-wrapper .woocommerce-info {
+  background: #f8f4e8;
+  border-left-color: $color-primary;
+  color: $color-text;
+
+  a.button {
+    background: $color-primary;
+    color: $color-white;
+  }
+  a.button:hover {
+    opacity: 0.85;
+  }
+}
+
+.woocommerce-error,
+.woocommerce-notices-wrapper .woocommerce-error {
+  background: #fce8e8;
+  border-left-color: $color-error;
+  color: $color-text;
+
+  a.button {
+    background: $color-error;
+    color: $color-white;
+  }
+  a.button:hover {
+    opacity: 0.85;
+  }
+}
+
+// ─────────────────────────────────────────────
 // WooCommerce – Order Details Table
 // ─────────────────────────────────────────────
 
