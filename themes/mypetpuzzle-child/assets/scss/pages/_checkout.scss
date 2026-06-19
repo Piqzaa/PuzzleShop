@@ -215,19 +215,27 @@ body.woocommerce-checkout .col-full {
 }
 
 @media (min-width: $bp-tablet) {
-  .checkout-page .form-row.form-row-first,
-  .checkout-page .form-row.form-row-last {
-    float: left;
-    width: calc(50% - 8px);
-    clear: none;
-  }
+  .checkout-page .woocommerce-billing-fields__field-wrapper,
+  .checkout-page .woocommerce-shipping-fields__field-wrapper {
+    display: flex;
+    flex-wrap: wrap;
 
-  .checkout-page .form-row.form-row-first {
-    margin-right: 16px;
-  }
+    .form-row {
+      margin-bottom: $spacing-md;
+    }
 
-  .checkout-page .form-row.form-row-last {
-    float: right;
+    .form-row.form-row-first {
+      width: calc(50% - 8px);
+      margin-right: 16px;
+    }
+
+    .form-row.form-row-last {
+      width: calc(50% - 8px);
+    }
+
+    .form-row.form-row-wide {
+      width: 100%;
+    }
   }
 }
 

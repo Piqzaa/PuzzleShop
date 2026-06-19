@@ -4257,17 +4257,27 @@ body.woocommerce-checkout .col-full {
 }
 
 @media (min-width: 768px) {
-  .checkout-page .form-row.form-row-first,
-  .checkout-page .form-row.form-row-last {
-    float: left;
-    width: calc(50% - 8px);
-    clear: none;
+  .checkout-page .woocommerce-billing-fields__field-wrapper,
+  .checkout-page .woocommerce-shipping-fields__field-wrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
-  .checkout-page .form-row.form-row-first {
+  .checkout-page .woocommerce-billing-fields__field-wrapper .form-row,
+  .checkout-page .woocommerce-shipping-fields__field-wrapper .form-row {
+    margin-bottom: 16px;
+  }
+  .checkout-page .woocommerce-billing-fields__field-wrapper .form-row.form-row-first,
+  .checkout-page .woocommerce-shipping-fields__field-wrapper .form-row.form-row-first {
+    width: calc(50% - 8px);
     margin-right: 16px;
   }
-  .checkout-page .form-row.form-row-last {
-    float: right;
+  .checkout-page .woocommerce-billing-fields__field-wrapper .form-row.form-row-last,
+  .checkout-page .woocommerce-shipping-fields__field-wrapper .form-row.form-row-last {
+    width: calc(50% - 8px);
+  }
+  .checkout-page .woocommerce-billing-fields__field-wrapper .form-row.form-row-wide,
+  .checkout-page .woocommerce-shipping-fields__field-wrapper .form-row.form-row-wide {
+    width: 100%;
   }
 }
 .checkout-page .form-row.validate-required .woocommerce-invalid input,
