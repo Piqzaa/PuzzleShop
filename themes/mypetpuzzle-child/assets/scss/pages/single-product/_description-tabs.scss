@@ -1,0 +1,113 @@
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+.product-detail__description {
+  grid-column: 1 / -1;
+  margin-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+  padding-top: $spacing-lg;
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__description {
+    margin-top: $spacing-xl;
+    padding-top: $spacing-xl;
+  }
+}
+
+.product-detail__description .woocommerce-tabs ul.tabs {
+  display: flex;
+  gap: $spacing-md;
+  list-style: none;
+  margin: 0 0 $spacing-lg 0;
+  padding: 0;
+  border-bottom: 1px solid $color-border;
+}
+
+@media (max-width: $bp-tablet) {
+  .product-detail__description .woocommerce-tabs ul.tabs {
+    flex-direction: column;
+    gap: 0;
+    border-bottom: none;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__description .woocommerce-tabs ul.tabs {
+    gap: $spacing-lg;
+    margin: 0 0 $spacing-xl 0;
+  }
+}
+
+.product-detail__description .woocommerce-tabs ul.tabs li {
+  padding: $spacing-md 0;
+  position: relative;
+}
+
+@media (max-width: $bp-tablet) {
+  .product-detail__description .woocommerce-tabs ul.tabs li {
+    padding: 0;
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.product-detail__description .woocommerce-tabs ul.tabs li a {
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: $color-text-light;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  -webkit-text-decoration: none !important;
+}
+
+@media (max-width: $bp-tablet) {
+  .product-detail__description .woocommerce-tabs ul.tabs li a {
+    display: block;
+    padding: $spacing-md 0;
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__description .woocommerce-tabs ul.tabs li a {
+    font-size: $font-size-h3;
+  }
+}
+
+.product-detail__description .woocommerce-tabs ul.tabs li.active {
+  border-bottom: 2px solid $color-primary;
+}
+
+.product-detail__description .woocommerce-tabs ul.tabs li.active a {
+  color: $color-primary;
+}
+
+.product-detail__description .woocommerce-tabs ul.tabs li::after {
+  display: none !important;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel {
+  animation: fadeIn 0.4s ease;
+  padding: 0 $spacing-sm;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel {
+    padding: 0 $spacing-md;
+  }
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel h2 {
+  display: none;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel table,
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel img,
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel iframe,
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel video {
+  max-width: 100%;
+  height: auto;
+}

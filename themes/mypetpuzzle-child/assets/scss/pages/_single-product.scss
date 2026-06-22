@@ -1,6 +1,12 @@
 @use "../variables" as *;
 @use "../mixins" as *;
-@use "../responsive" as *;
+@use "single-product/gallery";
+@use "single-product/summary";
+@use "single-product/description-tabs";
+@use "single-product/description-reviews";
+@use "single-product/description-related";
+
+// ─── Base ─────────────────────────────────────────────
 
 .product-detail {
   display: grid;
@@ -9,933 +15,115 @@
   max-width: $bp-wide;
   margin: $spacing-md auto;
   padding: 0 $spacing-sm;
+}
 
-  // Supprimer toute décoration sur tous les liens du produit
-  a,
-  a:link,
-  a:visited,
-  a:hover,
-  a:focus,
-  a:active {
-    text-decoration: none !important;
-    text-decoration-line: none !important;
-    -webkit-text-decoration: none !important;
-  }
+.product-detail a,
+.product-detail a:link,
+.product-detail a:visited,
+.product-detail a:hover,
+.product-detail a:focus,
+.product-detail a:active {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  -webkit-text-decoration: none !important;
+}
 
-  // 2 colonnes dès 768px (tablette)
-  @media (min-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
+  .product-detail {
     grid-template-columns: 1.1fr 0.9fr;
     gap: $spacing-lg;
     margin: $spacing-lg auto;
     padding: 0 $spacing-md;
     align-items: start;
   }
+}
 
-  // Pleine largeur desktop
-  @media (min-width: $bp-desktop) {
+@media (min-width: $bp-desktop) {
+  .product-detail {
     gap: $spacing-xl;
     margin: $spacing-xl auto;
     padding: 0 $spacing-lg;
   }
+}
 
-  // ----------------------------------------------------
-  // 1. LA GALERIE IMAGES
-  // ----------------------------------------------------
-  &__gallery {
-    min-width: 0;
-    width: 100%;
+// ─── INFO (TITRE + RÉSUMÉ) ──────────────────────────
 
-    // Cible les éléments générés par WC (Flexslider / PhotoSwipe)
-    .woocommerce-product-gallery {
-      position: relative;
-      width: 100%;
-      max-width: 100%;
+.product-detail__info {
+  display: flex;
+  flex-direction: column;
+}
 
-      &__wrapper {
-        margin: 0;
-        padding: 0;
-        border-radius: $radius-lg;
-        overflow: hidden;
-        @include card-shadow(sm);
-      }
-
-      .flex-viewport {
-        overflow: hidden;
-        margin-bottom: 0;
-
-        img {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
-      }
-
-      // Overrider les height inline que FlexSlider pose en JS
-      @media (max-width: $bp-tablet - 1px) {
-        .flex-viewport {
-          height: auto !important;
-          max-height: 60vh !important;
-        }
-
-        .woocommerce-product-gallery__wrapper {
-          height: auto !important;
-        }
-
-        .flex-viewport img {
-          max-height: 60vh !important;
-          width: 100% !important;
-          height: auto !important;
-          object-fit: contain;
-        }
-
-        .zoomImg {
-          display: none !important;
-        }
-      }
-
-      // Les miniatures (thumbnails)
-      .flex-control-thumbs {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: $spacing-sm;
-        margin-top: $spacing-sm;
-        padding: 0;
-        list-style: none;
-
-        @media (max-width: $bp-mobile) {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 6px;
-          margin-top: 6px;
-        }
-
-        @media (min-width: $bp-desktop) {
-          gap: $spacing-md;
-          margin-top: $spacing-md;
-        }
-
-        li {
-          width: auto !important;
-          float: none !important;
-          margin: 0 !important;
-
-          img {
-            border-radius: $radius-sm;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition:
-              border-color $transition-fast,
-              opacity $transition-fast;
-
-            &:hover,
-            &.flex-active {
-              border-color: $color-primary;
-              opacity: 0.8;
-            }
-          }
-        }
-      }
-
-      // Badge Promo WooCommerce (.onsale)
-      .onsale {
-        position: absolute;
-        top: $spacing-sm;
-        left: $spacing-sm;
-        background-color: $color-secondary;
-        color: $color-white;
-        padding: $spacing-xs $spacing-sm;
-        font-size: $font-size-small;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border-radius: $radius-sm;
-        z-index: 10;
-
-        @media (min-width: $bp-desktop) {
-          top: $spacing-md;
-          left: $spacing-md;
-        }
-      }
-    }
-  }
-
-  // ----------------------------------------------------
-  // 2. LE RÉSUMÉ DES INFOS (Titre, Prix, Panier...)
-  // ----------------------------------------------------
-  &__summary {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-
-    // Notes / Étoiles (cachées — déjà affichées dans les onglets)
-    .woocommerce-product-rating {
-      display: none;
-    }
-
-    // Prix
-    .price {
-      font-family: $font-secondary;
-      font-size: 1.5rem;
-      color: $color-secondary;
-      font-weight: 700;
-      margin-bottom: $spacing-md;
-      display: flex;
-      gap: $spacing-sm;
-      align-items: baseline;
-
-      @media (min-width: $bp-medium + 1px) {
-        font-size: $font-size-h2;
-        margin-bottom: $spacing-lg;
-      }
-
-      @media (min-width: $bp-desktop) {
-        font-size: 2rem;
-      }
-
-      del {
-        font-size: 1.2rem;
-        color: $color-text-light;
-        font-weight: 400;
-
-        @media (min-width: $bp-medium + 1px) {
-          font-size: $font-size-h3;
-        }
-      }
-      ins {
-        text-decoration: none;
-      }
-    }
-
-    // Courte description
-    .woocommerce-product-details__short-description {
-      color: $color-text-light;
-      border-bottom: 1px solid $color-border;
-      padding-bottom: $spacing-lg;
-      margin-bottom: $spacing-lg;
-    }
-
-    // Formulaire d'ajout au panier (Quantité + Bouton)
-    form.cart {
-      display: flex;
-      flex-wrap: wrap;
-      gap: $spacing-lg;
-      margin-bottom: $spacing-lg;
-      align-items: center;
-
-      @media (min-width: $bp-desktop) {
-        margin-bottom: $spacing-xl;
-      }
-
-      // Input quantité avec boutons +/-
-      .quantity {
-        display: inline-flex;
-        align-items: center;
-        border: 1px solid $color-border;
-        border-radius: $radius-sm;
-        overflow: hidden;
-
-        input.qty {
-          width: 44px;
-          height: 44px;
-          text-align: center;
-          border: none;
-          background-color: $color-white;
-          color: $color-text;
-          font-family: $font-primary;
-          font-weight: 600;
-          font-size: $font-size-small;
-          -moz-appearance: textfield;
-          appearance: textfield;
-
-          @media (min-width: $bp-desktop) {
-            width: 50px;
-            height: 48px;
-          }
-
-          &::-webkit-outer-spin-button,
-          &::-webkit-inner-spin-button {
-            appearance: none;
-            margin: 0;
-          }
-
-          &:focus {
-            @include focus-ring($color-primary);
-          }
-        }
-
-        .qty-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 44px;
-          background: $color-surface;
-          border: none;
-          color: $color-text;
-          font-size: 1.2rem;
-          cursor: pointer;
-          transition: background $transition-fast;
-
-          @media (min-width: $bp-desktop) {
-            height: 48px;
-          }
-
-          &:hover {
-            background: $color-primary-light;
-          }
-        }
-      }
-
-      // Bouton Ajouter au panier
-      button.single_add_to_cart_button {
-        @include button-base;
-        height: 44px;
-        padding: 0 $spacing-lg;
-        background-color: $color-primary;
-        color: $color-white;
-        border: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-size: $font-size-small;
-        white-space: nowrap;
-
-        @media (min-width: $bp-medium) {
-          padding: 0 32px;
-        }
-
-        @media (min-width: $bp-desktop) {
-          height: 48px;
-          padding: 0 $spacing-xl;
-        }
-
-        &:hover {
-          background-color: $color-primary-dark;
-        }
-      }
-
-      // Variations (Tailles, Couleurs si produit variable)
-      &.variations_form {
-        flex-direction: column;
-        align-items: flex-start;
-
-        .variations {
-          width: 100%;
-          margin-bottom: $spacing-md;
-          border-collapse: collapse;
-
-          td {
-            padding: $spacing-sm 0;
-          }
-
-          // Cache le label "Size" et le lien "Effacer" (style parent)
-          th.label {
-            display: none;
-          }
-
-          .reset_variations {
-            display: none;
-          }
-
-          select {
-            width: 100%;
-            max-width: 300px;
-            height: 40px;
-            padding: 0 $spacing-sm;
-            border: 1px solid $color-border;
-            background-color: $color-white;
-            border-radius: $radius-sm;
-            -webkit-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%232c1810' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 4 4 4 4-4'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 12px;
-            padding-right: 32px;
-          }
-        }
-
-        .single_variation_wrap {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: $spacing-md;
-        }
-      }
-    }
-
-    // Méta (SKU, Catégories)
-    .product_meta {
-      font-size: $font-size-small;
-      color: $color-text-light;
-      padding-top: $spacing-md;
-      border-top: 1px dashed $color-border;
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-xs;
-
-      .sku_wrapper {
-        display: none;
-      }
-
-      span span,
-      span a {
-        color: $color-text;
-        font-weight: 600;
-      }
-    }
-  }
-
-  // ----------------------------------------------------
-  // 3. LA DESCRIPTION COMPLÈTE & ONGLETS (En dessous)
-  // ----------------------------------------------------
-  &__description {
-    grid-column: 1 / -1; // Prend toute la largeur sur Desktop
-    margin-top: $spacing-lg;
-    border-top: 1px solid $color-border;
-    padding-top: $spacing-lg;
-
-    @media (min-width: $bp-desktop) {
-      margin-top: $spacing-xl;
-      padding-top: $spacing-xl;
-    }
-
-    // Onglets WooCommerce (Description, Avis, Infos sup)
-    .woocommerce-tabs {
-      ul.tabs {
-        display: flex;
-        gap: $spacing-md;
-        list-style: none;
-        margin: 0 0 $spacing-lg 0;
-        padding: 0;
-        border-bottom: 1px solid $color-border;
-
-        @media (max-width: $bp-tablet) {
-          flex-direction: column;
-          gap: 0;
-          border-bottom: none;
-        }
-
-        @media (min-width: $bp-desktop) {
-          gap: $spacing-lg;
-          margin: 0 0 $spacing-xl 0;
-        }
-
-        li {
-          padding: $spacing-md 0;
-          position: relative;
-
-          @media (max-width: $bp-tablet) {
-            padding: 0;
-            border-bottom: 1px solid $color-border;
-          }
-
-          a {
-            font-family: $font-secondary;
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: $color-text-light;
-
-            // Override agressif pour supprimer toute décoration (y compris :visited)
-            text-decoration: none !important;
-            text-decoration-line: none !important;
-            -webkit-text-decoration: none !important;
-
-            @media (max-width: $bp-tablet) {
-              display: block;
-              padding: $spacing-md 0;
-              font-size: 1.2rem;
-            }
-
-            @media (min-width: $bp-desktop) {
-              font-size: $font-size-h3;
-            }
-
-            &:link,
-            &:visited,
-            &:hover,
-            &:focus,
-            &:active {
-              text-decoration: none !important;
-              text-decoration-line: none !important;
-            }
-          }
-
-          &.active {
-            border-bottom: 2px solid $color-primary;
-
-            a {
-              color: $color-primary;
-            }
-          }
-        }
-      }
-
-      // Désactive la flèche chevron injectée par storefront-icons.css
-      ul.tabs li::after {
-        display: none !important;
-      }
-
-      .woocommerce-Tabs-panel {
-        animation: fadeIn 0.4s ease;
-        padding: 0 $spacing-sm;
-        max-width: 100%;
-        overflow-x: auto;
-
-        @media (min-width: $bp-desktop) {
-          padding: 0 $spacing-md;
-        }
-
-        h2 {
-          display: none;
-        }
-
-        // Éviter les débordements du contenu (tableaux, images)
-        table,
-        img,
-        iframe,
-        video {
-          max-width: 100%;
-          height: auto;
-        }
-
-        // ----------------------------------------------------
-        // 4. AVIS CLIENTS
-        // ----------------------------------------------------
-        .woocommerce-Reviews {
-          max-width: 720px;
-
-          // Liste des avis
-          .commentlist {
-            list-style: none;
-            margin: 0 0 $spacing-xl;
-            padding: 0;
-
-            li {
-              padding: $spacing-md 0;
-              border-bottom: 1px solid $color-border;
-
-              &:first-child {
-                padding-top: 0;
-              }
-
-              .comment_container {
-                display: flex;
-                gap: $spacing-md;
-                align-items: flex-start;
-              }
-
-              img.avatar {
-                border-radius: 50%;
-                width: 48px;
-                height: 48px;
-                flex-shrink: 0;
-              }
-
-              .comment-text {
-                flex: 1;
-
-                .star-rating {
-                  display: inline-block;
-                  overflow: hidden;
-                  position: relative;
-                  height: 1em;
-                  line-height: 1;
-                  font-size: 0.9rem;
-                  width: 4.2em;
-
-                  // Étoiles vides (fond)
-                  &::before {
-                    content: "★★★★★";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    color: $color-border;
-                    opacity: 0.4;
-                  }
-
-                  // Étoiles pleines (largeur selon la note)
-                  span {
-                    overflow: hidden;
-                    float: left;
-                    top: 0;
-                    left: 0;
-                    position: absolute;
-                    padding-top: 1.5em;
-
-                    &::before {
-                      content: "★★★★★";
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      color: $color-primary;
-                    }
-                  }
-                }
-
-                .meta {
-                  font-size: $font-size-small;
-                  color: $color-text-light;
-                  margin-bottom: $spacing-xs;
-
-                  strong {
-                    color: $color-text;
-                    font-weight: 600;
-                  }
-                }
-
-                .description {
-                  p {
-                    margin: 0;
-                    color: $color-text;
-                    line-height: 1.6;
-                  }
-                }
-              }
-            }
-          }
-
-          // Message "aucun avis"
-          .woocommerce-noreviews {
-            color: $color-text-light;
-            font-size: $font-size-small;
-            margin-bottom: $spacing-lg;
-          }
-
-          // Message "connectez-vous"
-          .woocommerce-verification-required {
-            color: $color-text-light;
-            font-size: $font-size-small;
-
-            a {
-              color: $color-primary;
-              font-weight: 600;
-            }
-          }
-
-          // Formulaire d'ajout d'avis
-          #review_form_wrapper {
-            margin-top: $spacing-xl;
-
-            #reply-title {
-              font-family: $font-secondary;
-              font-size: 1.2rem;
-              color: $color-text;
-              margin-bottom: $spacing-md;
-              display: block;
-
-              small {
-                font-family: $font-primary;
-                font-size: $font-size-small;
-                margin-left: $spacing-sm;
-              }
-            }
-
-            .comment-form {
-              display: flex;
-              flex-direction: column;
-              gap: $spacing-md;
-
-              p {
-                margin: 0;
-
-                label {
-                  display: block;
-                  font-size: $font-size-small;
-                  font-weight: 600;
-                  color: $color-text;
-                  margin-bottom: $spacing-xs;
-
-                  .required {
-                    color: $color-error;
-                  }
-                }
-
-                input[type="text"],
-                input[type="email"] {
-                  width: 100%;
-                  height: 40px;
-                  padding: 0 $spacing-sm;
-                  border: 1px solid $color-border;
-                  border-radius: $radius-sm;
-                  font-family: $font-primary;
-                  font-size: $font-size-small;
-                  color: $color-text;
-                  background: $color-white;
-                  box-sizing: border-box;
-
-                  &:focus {
-                    @include focus-ring($color-primary);
-                    border-color: $color-primary;
-                  }
-                }
-              }
-
-              // Champs nom / email côte à côte
-              .comment-form-author,
-              .comment-form-email {
-                @media (min-width: $bp-tablet) {
-                  display: inline-block;
-                  width: calc(50% - #{$spacing-sm});
-                }
-              }
-
-              .comment-form-author {
-                @media (min-width: $bp-tablet) {
-                  margin-right: $spacing-md;
-                }
-              }
-
-              // Sélecteur d'étoiles
-              .comment-form-rating {
-                label {
-                  display: block;
-                  font-size: $font-size-small;
-                  font-weight: 600;
-                  color: $color-text;
-                  margin-bottom: $spacing-xs;
-                }
-
-                select {
-                  // caché par WC JS ; visible en fallback
-                }
-
-                // Dans ton SCSS, remplace la partie .stars par :
-                .stars {
-                  margin: 0;
-
-                  [role="group"] {
-                    display: inline-flex;
-                    flex-direction: row-reverse;
-                    gap: 2px;
-                  }
-
-                  a {
-                    font-size: 0;
-                    overflow: hidden;
-
-                    &::before {
-                      content: "\2605";
-                      font-size: 1.3rem;
-                      color: $color-border;
-                      transition: color $transition-fast;
-                      text-indent: 0;
-                    }
-
-                    // row-reverse : hover sur une étoile colorie elle + les "suivantes DOM" = précédentes visuelles
-                    &:hover::before,
-                    &:hover ~ a::before {
-                      color: $color-primary;
-                    }
-
-                    // État actif (cliqué via JS)
-                    &.active::before {
-                      color: $color-primary;
-                    }
-                  }
-
-                  // Quand une note est sélectionnée, le hover repart de zéro
-                  &.selected a:hover ~ a::before {
-                    color: $color-primary;
-                  }
-                }
-              }
-
-              // Zone de texte
-              .comment-form-comment {
-                textarea {
-                  width: 100%;
-                  min-height: 120px;
-                  padding: $spacing-sm;
-                  border: 1px solid $color-border;
-                  border-radius: $radius-sm;
-                  font-family: $font-primary;
-                  font-size: $font-size-small;
-                  color: $color-text;
-                  background: $color-white;
-                  resize: vertical;
-                  box-sizing: border-box;
-
-                  &:focus {
-                    @include focus-ring($color-primary);
-                    border-color: $color-primary;
-                  }
-                }
-              }
-
-              // Bouton submit
-              .form-submit {
-                .submit {
-                  @include button-base;
-                  height: 44px;
-                  padding: 0 $spacing-lg;
-                  background-color: $color-primary;
-                  color: $color-white;
-                  border: none;
-                  cursor: pointer;
-                  text-transform: uppercase;
-                  letter-spacing: 0.5px;
-                  font-size: $font-size-small;
-                  white-space: nowrap;
-                  align-self: flex-start;
-
-                  &:hover {
-                    background-color: $color-primary-dark;
-                  }
-                }
-              }
-            }
-
-            // Message "vous devez être connecté"
-            .must-log-in {
-              font-size: $font-size-small;
-              color: $color-text-light;
-
-              a {
-                color: $color-primary;
-                font-weight: 600;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    // Section Produits Apparentés / Cross-sells
-    section.related,
-    section.upsells {
-      margin-top: $spacing-lg;
-      border-top: 1px solid $color-border;
-      padding-top: $spacing-lg;
-
-      @media (min-width: $bp-desktop) {
-        margin-top: $spacing-xl;
-        padding-top: $spacing-xl;
-      }
-
-      h2 {
-        margin-bottom: $spacing-lg;
-        text-align: center;
-
-        @media (max-width: $bp-mobile) {
-          font-size: 1.4rem;
-        }
-      }
-
-      ul.products {
-        display: grid !important;
-        gap: $spacing-md;
-        grid-template-columns: 1fr;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-
-        &::before,
-        &::after {
-          display: none !important;
-        }
-
-        @media (min-width: $bp-tablet) {
-          grid-template-columns: repeat(2, 1fr);
-          gap: $spacing-md;
-        }
-
-        @media (min-width: $bp-medium) {
-          grid-template-columns: repeat(3, 1fr);
-          gap: $spacing-lg;
-        }
-
-        li.product {
-          margin: 0 !important;
-          width: 100% !important;
-          float: none !important;
-          clear: none !important;
-          padding: 0 !important;
-
-          &.first,
-          &.last {
-            clear: none !important;
-          }
-
-          .card {
-            margin: 0;
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  // Wrapper titre + résumé (évite le gap grid entre eux sur desktop)
-  // Wrapper titre + résumé (évite le gap grid entre eux sur desktop)
-  &__info {
-    display: flex;
-    flex-direction: column;
-
-    @media (max-width: $bp-tablet - 1px) {
-      display: contents; // dissout le wrapper, les enfants deviennent items de la grid
-    }
-  }
-
-  // Titre du produit
-  &__title {
-    .product_title {
-      font-size: 1.75rem;
-      color: $color-text;
-      margin-bottom: $spacing-sm;
-
-      @media (min-width: $bp-medium + 1px) {
-        font-size: $font-size-h1;
-      }
-
-      @media (min-width: $bp-desktop) {
-        font-size: 2.5rem;
-      }
-    }
-  }
-
-  // Desktop : [Gallery col1] [Info (Title + Summary) col2]
-  //           [            Description (full)             ]
-  @media (min-width: $bp-tablet) {
-    &__gallery {
-      grid-column: 1;
-      grid-row: 1 / 3;
-    }
-
-    &__info {
-      grid-column: 2;
-      grid-row: 1 / 3;
-      align-self: stretch; // Prend toute la hauteur de la grille
-      padding-top: 2.875em; // Descendre sous la loupe de la galerie
-    }
-
-    &__description {
-      grid-column: 1 / -1;
-      grid-row: 3;
-    }
-  }
-
-  // Mobile : Title → Gallery → Summary → Description
-  @media (max-width: $bp-tablet - 1px) {
-    &__gallery {
-      order: 1;
-    }
-
-    &__summary {
-      order: 2;
-    }
-
-    &__description {
-      order: 3;
-    }
+@media (max-width: $bp-tablet - 1px) {
+  .product-detail__info {
+    display: contents;
   }
 }
 
-// Petite animation pour l'apparition des panneaux d'onglets
+// ─── TITRE ───────────────────────────────────────────
+
+.product-detail__title .product_title {
+  font-size: 1.75rem;
+  color: $color-text;
+  margin-bottom: $spacing-sm;
+}
+
+@media (min-width: $bp-medium + 1px) {
+  .product-detail__title .product_title {
+    font-size: $font-size-h1;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__title .product_title {
+    font-size: 2.5rem;
+  }
+}
+
+// ─── POSITIONNEMENT GRILLE DESKTOP ──────────────────
+
+@media (min-width: $bp-tablet) {
+  .product-detail__gallery {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .product-detail__info {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: stretch;
+    padding-top: 2.875em;
+  }
+
+  .product-detail__description {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+
+// ─── ORDRE MOBILE ────────────────────────────────────
+
+@media (max-width: $bp-tablet - 1px) {
+  .product-detail__gallery {
+    order: 1;
+  }
+
+  .product-detail__summary {
+    order: 2;
+  }
+
+  .product-detail__description {
+    order: 3;
+  }
+}
+
+// ─── ANIMATION ───────────────────────────────────────
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

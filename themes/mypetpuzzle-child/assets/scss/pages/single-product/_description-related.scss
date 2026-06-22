@@ -1,0 +1,82 @@
+@use "../../variables" as *;
+
+.product-detail__description section.related,
+.product-detail__description section.upsells {
+  margin-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+  padding-top: $spacing-lg;
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__description section.related,
+  .product-detail__description section.upsells {
+    margin-top: $spacing-xl;
+    padding-top: $spacing-xl;
+  }
+}
+
+.product-detail__description section.related h2,
+.product-detail__description section.upsells h2 {
+  margin-bottom: $spacing-lg;
+  text-align: center;
+}
+
+@media (max-width: $bp-mobile) {
+  .product-detail__description section.related h2,
+  .product-detail__description section.upsells h2 {
+    font-size: 1.4rem;
+  }
+}
+
+.product-detail__description section.related ul.products,
+.product-detail__description section.upsells ul.products {
+  display: grid !important;
+  gap: $spacing-md;
+  grid-template-columns: 1fr;
+  margin: 0;
+}
+
+.product-detail__description section.related ul.products::before,
+.product-detail__description section.related ul.products::after,
+.product-detail__description section.upsells ul.products::before,
+.product-detail__description section.upsells ul.products::after {
+  display: none !important;
+}
+
+@media (min-width: $bp-tablet) {
+  .product-detail__description section.related ul.products,
+  .product-detail__description section.upsells ul.products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+}
+
+@media (min-width: $bp-medium) {
+  .product-detail__description section.related ul.products,
+  .product-detail__description section.upsells ul.products {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+  }
+}
+
+.product-detail__description section.related ul.products li.product,
+.product-detail__description section.upsells ul.products li.product {
+  margin: 0 !important;
+  width: 100% !important;
+  float: none !important;
+  clear: none !important;
+  padding: 0 !important;
+}
+
+.product-detail__description section.related ul.products li.product.first,
+.product-detail__description section.related ul.products li.product.last,
+.product-detail__description section.upsells ul.products li.product.first,
+.product-detail__description section.upsells ul.products li.product.last {
+  clear: none !important;
+}
+
+.product-detail__description section.related ul.products li.product .card,
+.product-detail__description section.upsells ul.products li.product .card {
+  margin: 0;
+  width: 100%;
+}
