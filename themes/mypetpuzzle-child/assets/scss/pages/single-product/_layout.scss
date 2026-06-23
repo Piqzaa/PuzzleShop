@@ -1,12 +1,5 @@
-@use "../variables" as *;
-@use "../mixins" as *;
-@use "single-product/gallery";
-@use "single-product/summary";
-@use "single-product/description-tabs";
-@use "single-product/description-reviews";
-@use "single-product/description-related";
-
-// ─── Base ─────────────────────────────────────────────
+@use "../../variables" as *;
+@use "../../mixins" as *;
 
 .product-detail {
   display: grid;
@@ -46,8 +39,6 @@
   }
 }
 
-// ─── INFO (TITRE + RÉSUMÉ) ──────────────────────────
-
 .product-detail__info {
   display: flex;
   flex-direction: column;
@@ -58,8 +49,6 @@
     display: contents;
   }
 }
-
-// ─── TITRE ───────────────────────────────────────────
 
 .product-detail__title .product_title {
   font-size: 1.75rem;
@@ -78,8 +67,6 @@
     font-size: 2.5rem;
   }
 }
-
-// ─── POSITIONNEMENT GRILLE DESKTOP ──────────────────
 
 @media (min-width: $bp-tablet) {
   .product-detail__gallery {
@@ -100,8 +87,6 @@
   }
 }
 
-// ─── ORDRE MOBILE ────────────────────────────────────
-
 @media (max-width: $bp-tablet - 1px) {
   .product-detail__gallery {
     order: 1;
@@ -115,8 +100,6 @@
     order: 3;
   }
 }
-
-// ─── ANIMATION ───────────────────────────────────────
 
 @keyframes fadeIn {
   from {
