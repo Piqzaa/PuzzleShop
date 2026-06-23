@@ -140,15 +140,33 @@ get_header();
                             $variation_obj = wc_get_product($variation['variation_id']);
                             if (!$variation_obj) continue;
 
-                            $attrs     = $variation['attributes'];
-                            $size_attr = isset($attrs['attribute_pa_format']) ? $attrs['attribute_pa_format'] : '';
-                            $pieces_attr = isset($attrs['attribute_pa_pieces']) ? $attrs['attribute_pa_pieces'] : '';
+                            $attrs_raw = $variation['attributes'];
+                            $attrs_normalized = [];
+                            foreach ($attrs_raw as $k => $v) {
+                                $attrs_normalized[preg_replace('/^attribute_/', '', $k)] = $v;
+                            }
 
-                            $size_term   = $size_attr   ? get_term_by('slug', $size_attr,   'pa_format')  : null;
-                            $pieces_term = $pieces_attr ? get_term_by('slug', $pieces_attr, 'pa_pieces')  : null;
+                            $size_label   = '';
+                            $pieces_label = '';
 
-                            $size_label   = $size_term   ? $size_term->name   : $size_attr;
-                            $pieces_label = $pieces_term ? $pieces_term->name : $pieces_attr;
+                            if (isset($attrs_normalized['size'])) {
+                                // Attribut custom combiné : ex. '10" × 8" (120 pcs)'
+                                $combined = $attrs_normalized['size'];
+                                if (preg_match('/^(.+?)\s*\((\d+)\s*pcs\)$/', $combined, $m)) {
+                                    $size_label   = trim($m[1]);
+                                    $pieces_label = $m[2] . ' pièces';
+                                } else {
+                                    $size_label = $combined;
+                                }
+                            } else {
+                                // Attributs taxonomies séparés : pa_format / pa_pieces
+                                $size_attr   = $attrs_normalized['pa_format'] ?? '';
+                                $pieces_attr = $attrs_normalized['pa_pieces'] ?? '';
+                                $size_term   = $size_attr   ? get_term_by('slug', $size_attr,   'pa_format')  : null;
+                                $pieces_term = $pieces_attr ? get_term_by('slug', $pieces_attr, 'pa_pieces')  : null;
+                                $size_label   = $size_term   ? $size_term->name   : $size_attr;
+                                $pieces_label = $pieces_term ? $pieces_term->name : $pieces_attr;
+                            }
 
                             $price      = wc_price($variation_obj->get_price());
                             $var_id     = $variation['variation_id'];
@@ -250,6 +268,14 @@ get_header();
     <div class="col-full">
 
 <?php
+wp_enqueue_script(
+    'mypetpuzzle-custom-puzzle',
+    content_url('plugins/mypetpuzzle-core/custome-puzzle.js'),
+    [],
+    '1.0.0',
+    true
+);
+
 wp_localize_script('mypetpuzzle-custom-puzzle', 'cpzData', [
     'ajaxUrl'   => admin_url('admin-ajax.php'),
     'nonce'     => wp_create_nonce('cpz_upload_nonce'),

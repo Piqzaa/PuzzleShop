@@ -2733,14 +2733,13 @@ body [role=button] {
   width: 100%;
   height: 100%;
   opacity: 0;
-  cursor: pointer;
+  pointer-events: none;
   z-index: 1;
 }
 
 .cpz-dropzone label.btn {
   position: relative;
   z-index: 2;
-  pointer-events: none;
 }
 
 .cpz-dropzone__overlay {
