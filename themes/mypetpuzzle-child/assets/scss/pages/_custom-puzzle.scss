@@ -1,116 +1,176 @@
 @use "../variables" as *;
+@use "../responsive" as *;
+@use "../mixins" as *;
 
-// ─── Page ────────────────────────────────
+// ============================================================
+//  PAGE PUZZLE PERSONNALISÉ — page-page-puzzle
+//  BEM : .cpz-* (custom puzzle)
+// ============================================================
+
+// ─── Layout global ──────────────────────────────────────────
 
 .cpz-page {
-  padding-bottom: $spacing-xl;
+  background-color: $color-bg;
+  min-height: 100vh;
 }
 
-// ─── Hero ────────────────────────────────
+.cpz-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-lg;
+
+  @include respond-to(mobile) {
+    padding: $spacing-lg $spacing-md;
+  }
+}
+// ─── Hero ────────────────────────────────────────────────────
 
 .cpz-hero {
-  background-color: $color-primary-light;
-  padding: $spacing-xl $spacing-md;
+  position: relative;
+  background: linear-gradient(rgba($color-surface, 0.88), rgba($color-surface, 0.88)), url('../images/bg-custompuzzle.png') center / cover no-repeat;
+  border-bottom: 1px solid $color-border;
+  padding: 96px $spacing-lg 72px;
   text-align: center;
+
+  @include respond-to(mobile) {
+    padding: 64px $spacing-md 48px;
+  }
 }
 
 .cpz-hero__inner {
-  max-width: 640px;
+  max-width: 620px;
   margin: 0 auto;
 }
 
 .cpz-hero__eyebrow {
   display: inline-block;
+  font-family: $font-primary;
   font-size: $font-size-small;
   font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: $color-primary;
-  margin-bottom: $spacing-sm;
+  color: $color-secondary;
+  margin-bottom: $spacing-md;
 }
 
 .cpz-hero__title {
   font-family: $font-secondary;
-  font-size: 2.25rem;
+  font-size: clamp(2.2rem, 5.5vw, 3.2rem);
   color: $color-text;
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-lg;
   line-height: 1.2;
 }
 
 .cpz-hero__sub {
-  font-size: 1.125rem;
+  font-family: $font-primary;
+  font-size: 1.1rem;
   color: $color-text-light;
   max-width: 480px;
   margin: 0 auto;
 }
 
-// ─── Stepper ─────────────────────────────
+// ─── Stepper ─────────────────────────────────────────────────
 
 .cpz-stepper {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $spacing-md;
-  padding: $spacing-lg $spacing-md;
-  max-width: 640px;
-  margin: 0 auto;
+  gap: 0;
+  padding: 0 0 $spacing-lg;
+
+  @include respond-down-to(tablet) {
+    display: none;
+  }
 }
 
 .cpz-stepper__item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-xs;
-  cursor: default;
+  gap: $spacing-sm;
+  opacity: 0.4;
+  transition: opacity $transition-base;
+
+  @include respond-down-to(tablet) {
+    padding: $spacing-xs 0;
+  }
+}
+
+.cpz-stepper__item.is-active,
+.cpz-stepper__item.is-done {
+  opacity: 1;
 }
 
 .cpz-stepper__num {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: $color-surface;
+  border: 2px solid $color-border;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: $color-border;
-  color: $color-text-light;
+  font-family: $font-primary;
+  font-size: 15px;
   font-weight: 700;
-  font-size: $font-size-small;
-  transition: all $transition-fast;
+  color: $color-text-light;
+  transition:
+    background-color $transition-base,
+    border-color $transition-base,
+    color $transition-base;
 }
 
 .cpz-stepper__item.is-active .cpz-stepper__num {
   background-color: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
+}
+
+.cpz-stepper__item.is-done .cpz-stepper__num {
+  background-color: $color-success;
+  border-color: $color-success;
   color: $color-white;
 }
 
 .cpz-stepper__label {
+  font-family: $font-primary;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   color: $color-text-light;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   white-space: nowrap;
-}
 
-.cpz-stepper__item.is-active .cpz-stepper__label {
-  color: $color-text;
+  @include respond-down-to(tablet) {
+    display: block;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: normal;
+    color: $color-text-light;
+    margin-top: 2px;
+  }
 }
 
 .cpz-stepper__divider {
-  flex: 0 0 24px;
-  height: 2px;
+  flex: 1;
+  max-width: 96px;
+  height: 1px;
   background-color: $color-border;
+  margin: 0 $spacing-md;
+  margin-bottom: 20px;
+
+  @include respond-down-to(tablet) {
+    flex: none;
+    width: 40px;
+    height: 1px;
+    background-color: $color-border;
+    margin: 12px auto;
+  }
 }
 
-// ─── Container ───────────────────────────
-
-.cpz-container {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 $spacing-md;
-}
-
-// ─── Steps ───────────────────────────────
+// ─── Steps (sections) ────────────────────────────────────────
 
 .cpz-step {
   display: none;
@@ -122,33 +182,42 @@
 
 .cpz-step__title {
   font-family: $font-secondary;
-  font-size: 1.5rem;
+  font-size: $font-size-h3;
   color: $color-text;
-  margin-bottom: $spacing-xs;
+  margin-bottom: $spacing-sm;
 }
 
 .cpz-step__hint {
+  font-family: $font-primary;
   font-size: $font-size-small;
   color: $color-text-light;
   margin-bottom: $spacing-lg;
 }
 
-// ─── Dropzone ────────────────────────────
+// ─── Dropzone ────────────────────────────────────────────────
 
 .cpz-dropzone {
   position: relative;
   border: 2px dashed $color-border;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
   padding: $spacing-xl $spacing-lg;
   text-align: center;
   cursor: pointer;
-  transition: border-color $transition-base, background-color $transition-base;
-}
+  transition:
+    border-color $transition-base,
+    background-color $transition-base;
 
-.cpz-dropzone:hover,
-.cpz-dropzone--drag-over {
-  border-color: $color-primary;
-  background-color: $color-primary-light;
+  &:hover,
+  &.is-dragover {
+    border-color: $color-primary;
+    background-color: $color-primary-light;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
 }
 
 .cpz-dropzone__inner {
@@ -159,58 +228,72 @@
 }
 
 .cpz-dropzone__icon {
-  color: $color-primary;
-  margin-bottom: $spacing-xs;
+  color: $color-secondary;
+  opacity: 0.7;
 }
 
 .cpz-dropzone__text {
-  font-weight: 600;
+  font-family: $font-primary;
+  font-size: 1rem;
   color: $color-text;
-  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0;
 }
 
 .cpz-dropzone__or {
+  font-family: $font-primary;
   font-size: $font-size-small;
   color: $color-text-light;
 }
 
 .cpz-dropzone__input {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+// Masque le label btn quand l'input est positionné en absolute
+.cpz-dropzone label.btn {
+  position: relative;
+  z-index: 2;
+  pointer-events: none; // l'input transparent capte le clic
 }
 
 .cpz-dropzone__overlay {
-  display: none;
   position: absolute;
   inset: 0;
+  background-color: rgba($color-primary, 0.08);
+  border-radius: $radius-xl;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba($color-primary, 0.08);
-  border-radius: $radius-lg;
-  font-weight: 600;
+  font-family: $font-primary;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: $color-primary;
-  font-size: 1.125rem;
+  opacity: 0;
+  transition: opacity $transition-fast;
+  pointer-events: none;
 }
 
-.cpz-dropzone--drag-over .cpz-dropzone__overlay {
-  display: flex;
+.cpz-dropzone.is-dragover .cpz-dropzone__overlay {
+  opacity: 1;
 }
-
-// ─── Upload error ────────────────────────
 
 .cpz-upload-error,
 .cpz-add-error {
-  color: $color-error;
+  margin-top: $spacing-md;
+  font-family: $font-primary;
   font-size: $font-size-small;
-  margin-top: $spacing-sm;
-  min-height: 1.4em;
+  color: $color-error;
+  min-height: 20px;
 }
 
-// ─── Preview ─────────────────────────────
+// ─── Preview canvas ───────────────────────────────────────────
 
 .cpz-preview {
   display: flex;
@@ -221,144 +304,146 @@
 
 .cpz-preview__frame {
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1;
-  background-color: $color-surface;
   border-radius: $radius-lg;
   overflow: hidden;
-  box-shadow: $shadow-md;
+  box-shadow: $shadow-lg;
+  max-width: 100%;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
 }
 
 .cpz-preview__canvas {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.cpz-preview__overlay-grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0, rgba(0, 0, 0, 0.06) 1px, transparent 1px, transparent 12.5%),
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0, rgba(0, 0, 0, 0.06) 1px, transparent 1px, transparent 12.5%);
+  max-width: 100%;
+  height: auto;
 }
 
 .cpz-preview__actions {
   display: flex;
   gap: $spacing-md;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-// ─── Variants ────────────────────────────
+// ─── Sélecteur de variations ──────────────────────────────────
 
 .cpz-variants {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: $spacing-md;
+  margin-bottom: $spacing-xl;
 
-  @media (min-width: $bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
   }
 }
 
 .cpz-variant {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid $color-border;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
   cursor: pointer;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base,
+    background-color $transition-base;
+
+  &:hover {
+    border-color: $color-primary;
+    box-shadow: $shadow-md;
+  }
+
+  &.is-selected {
+    border-color: $color-primary;
+    background-color: $color-primary-light;
+    box-shadow: $shadow-md;
+  }
 }
 
 .cpz-variant__radio {
   position: absolute;
   opacity: 0;
-  width: 1px;
-  height: 1px;
+  width: 0;
+  height: 0;
 }
 
 .cpz-variant__inner {
-  display: block;
-  background-color: $color-surface;
-  border: 2px solid $color-border;
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
-  text-align: center;
-  transition: all $transition-fast;
-}
-
-.cpz-variant:hover .cpz-variant__inner {
-  border-color: $color-primary;
-}
-
-.cpz-variant__radio:checked + .cpz-variant__inner {
-  border-color: $color-primary;
-  background-color: $color-primary-light;
-}
-
-.cpz-variant.is-selected .cpz-variant__inner {
-  border-color: $color-primary;
-  background-color: $color-primary-light;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-lg $spacing-md $spacing-md;
 }
 
 .cpz-variant__size {
-  display: block;
   font-family: $font-secondary;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
   color: $color-text;
-  margin-bottom: $spacing-xs;
 }
 
 .cpz-variant__pieces {
-  display: block;
+  font-family: $font-primary;
   font-size: $font-size-small;
-  color: $color-text-light;
-  margin-bottom: $spacing-xs;
+  font-weight: 600;
+  color: $color-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .cpz-variant__desc {
-  display: block;
-  font-size: $font-size-small;
+  font-family: $font-primary;
+  font-size: 12px;
   color: $color-text-light;
-  font-style: italic;
-  margin-bottom: $spacing-sm;
+  line-height: 1.4;
 }
 
 .cpz-variant__price {
-  display: block;
+  font-family: $font-primary;
   font-size: 1.25rem;
   font-weight: 700;
   color: $color-primary;
+  margin-top: $spacing-sm;
+
+  .woocommerce-Price-amount {
+    font-size: inherit;
+    color: inherit;
+  }
 }
 
 .cpz-variant__check {
   position: absolute;
   top: $spacing-sm;
   right: $spacing-sm;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: $color-primary;
   color: $color-white;
-  font-size: $font-size-small;
-  font-weight: 700;
-}
-
-.cpz-variant__radio:checked ~ .cpz-variant__check,
-.cpz-variant.is-selected .cpz-variant__check {
+  font-size: 13px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity $transition-fast;
 }
 
-// ─── Options actions ─────────────────────
+.cpz-variant.is-selected .cpz-variant__check {
+  opacity: 1;
+}
+
+// ─── Actions (nav entre étapes) ───────────────────────────────
 
 .cpz-options__actions {
   display: flex;
+  gap: $spacing-md;
   justify-content: space-between;
-  margin-top: $spacing-lg;
+  flex-wrap: wrap;
 }
 
-// ─── Confirm ─────────────────────────────
+// ─── Confirmation ─────────────────────────────────────────────
 
 .cpz-confirm {
   text-align: center;
@@ -366,26 +451,27 @@
 }
 
 .cpz-confirm__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 64px;
   height: 64px;
   border-radius: 50%;
   background-color: $color-success;
   color: $color-white;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto $spacing-lg;
 }
 
 .cpz-confirm__title {
   font-family: $font-secondary;
-  font-size: 1.75rem;
+  font-size: $font-size-h2;
   color: $color-text;
   margin-bottom: $spacing-sm;
 }
 
 .cpz-confirm__text {
+  font-family: $font-primary;
   color: $color-text-light;
   margin-bottom: $spacing-lg;
 }
@@ -394,18 +480,20 @@
   display: flex;
   gap: $spacing-md;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-// ─── Reassurance ─────────────────────────
+// ─── Réassurance ─────────────────────────────────────────────
 
 .cpz-reassurance {
-  max-width: 720px;
-  margin: $spacing-xl auto 0;
-  padding: $spacing-lg $spacing-md;
+  background-color: $color-surface;
   border-top: 1px solid $color-border;
+  padding: $spacing-xl $spacing-lg;
 }
 
 .cpz-reassurance__inner {
+  max-width: 760px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   gap: $spacing-xl;
@@ -416,8 +504,10 @@
   display: flex;
   align-items: center;
   gap: $spacing-sm;
+  font-family: $font-primary;
   font-size: $font-size-small;
   color: $color-text-light;
+  font-weight: 500;
 }
 
 .cpz-reassurance__icon {
