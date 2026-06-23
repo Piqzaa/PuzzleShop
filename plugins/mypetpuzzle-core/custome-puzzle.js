@@ -90,7 +90,8 @@
     });
 
     // Clic sur la dropzone (hors label)
-    dropzone.addEventListener("click", function () {
+    dropzone.addEventListener("click", function (e) {
+      if (e.target.closest("label[for='cpz-file-input']")) return;
       fileInput.click();
     });
 
