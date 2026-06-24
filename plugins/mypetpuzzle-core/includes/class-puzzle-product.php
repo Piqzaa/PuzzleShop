@@ -100,14 +100,6 @@ class Cpz_Puzzle_Product {
 	 * @return array
 	 */
 	public function display_cart_item_meta( array $item_data, array $cart_item ): array {
-		if ( ! empty( $cart_item['cpz_image_filename'] ) ) {
-			$item_data[] = [
-				'key'     => __( 'Photo', 'mypetpuzzle-child' ),
-				'value'   => esc_html( $cart_item['cpz_image_filename'] ),
-				'display' => '',
-			];
-		}
-
 		if ( ! empty( $cart_item['cpz_variation_label'] ) ) {
 			$item_data[] = [
 				'key'     => __( 'Format', 'mypetpuzzle-child' ),
