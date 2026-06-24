@@ -28,7 +28,7 @@ if (isset($_POST['submit_contact'])) {
                         . ($command ? "Commande : $command\n" : '')
                         . "Sujet : $subject\n\n"
                         . "Message :\n$message\n";
-            $headers = ['From: ' . $name . ' <' . $email . '>', 'Reply-To: ' . $email];
+            $headers = ['From: MyPetPuzzle <' . get_option('admin_email') . '>', 'Reply-To: ' . $email];
 
             if (wp_mail($to, $email_subject, $email_body, $headers)) {
                 $contact_message = 'Votre message a bien été envoyé. Nous vous répondrons sous 24h ouvrées.';
