@@ -946,7 +946,8 @@ body [role=button] {
   flex-shrink: 0;
 }
 
-.header__account-link {
+.header__account-link,
+.header__logout-link {
   display: flex;
   align-items: center;
   color: #2c1810;
@@ -954,7 +955,23 @@ body [role=button] {
 }
 
 .header__account-link:hover,
-.header__account-link:focus-visible {
+.header__account-link:focus-visible,
+.header__logout-link:hover,
+.header__logout-link:focus-visible {
+  color: #c9a84c;
+}
+
+.header__auth-link {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c1810;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.header__auth-link:hover,
+.header__auth-link:focus-visible {
   color: #c9a84c;
 }
 
@@ -1037,7 +1054,9 @@ body [role=button] {
   .header__nav-list .current_page_item a::after {
     display: none;
   }
-  .header__account-link {
+  .header__account-link,
+  .header__logout-link,
+  .header__auth-link {
     display: none;
   }
 }

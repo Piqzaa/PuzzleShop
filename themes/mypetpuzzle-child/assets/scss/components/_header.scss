@@ -177,7 +177,8 @@
   flex-shrink: 0;
 }
 
-.header__account-link {
+.header__account-link,
+.header__logout-link {
   display: flex;
   align-items: center;
   color: $color-text;
@@ -185,7 +186,23 @@
 }
 
 .header__account-link:hover,
-.header__account-link:focus-visible {
+.header__account-link:focus-visible,
+.header__logout-link:hover,
+.header__logout-link:focus-visible {
+  color: $color-primary;
+}
+
+.header__auth-link {
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: $color-text;
+  text-decoration: none;
+  transition: color $transition-fast;
+}
+
+.header__auth-link:hover,
+.header__auth-link:focus-visible {
   color: $color-primary;
 }
 
@@ -278,7 +295,9 @@
     display: none;
   }
 
-  .header__account-link {
+  .header__account-link,
+  .header__logout-link,
+  .header__auth-link {
     display: none;
   }
 }

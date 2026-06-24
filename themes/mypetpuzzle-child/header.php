@@ -47,6 +47,7 @@ defined('ABSPATH') || exit;
                         <li><a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__nav-link">Déconnexion</a></li>
                     <?php else : ?>
                         <li><a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__nav-link">Connexion</a></li>
+                        <li><a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__nav-link">Inscription</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -59,13 +60,16 @@ defined('ABSPATH') || exit;
                             <path d="M10 12C4.47715 12 0 15.5817 0 20H20C20 15.5817 15.5228 12 10 12Z" fill="currentColor"/>
                         </svg>
                     </a>
-                <?php else : ?>
-                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__account-link" aria-label="Connexion">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor"/>
-                            <path d="M10 12C4.47715 12 0 15.5817 0 20H20C20 15.5817 15.5228 12 10 12Z" fill="currentColor"/>
+                    <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__logout-link" aria-label="Déconnexion">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
                         </svg>
                     </a>
+                <?php else : ?>
+                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__auth-link">Connexion</a>
+                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__auth-link">Inscription</a>
                 <?php endif; ?>
 
                 <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="header__cart-link" aria-label="Panier">
