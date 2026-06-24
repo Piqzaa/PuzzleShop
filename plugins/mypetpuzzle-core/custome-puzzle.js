@@ -1,9 +1,9 @@
 /**
- * custom-puzzle.js
+ * custome-puzzle.js
  * Gère le flow complet de la page puzzle personnalisé :
- * Upload → Preview canvas → Choix variation → AJAX add-to-cart
+ * Upload → Crop (Cropper.js) → Choix variation → AJAX add-to-cart
  *
- * Dépend de cpzData (wp_localize_script) :
+ * Dépend de cpzData (wp_localize_script) et de Cropper.js (CDN)
  *   cpzData.ajaxUrl   — admin-ajax.php
  *   cpzData.nonce     — nonce cpz_upload_nonce
  *   cpzData.productId — ID produit WC (151)
@@ -16,13 +16,11 @@
   // ─── Config ────────────────────────────────────────────────────
   const MAX_FILE_SIZE_MB = 20;
   const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
-  const CANVAS_MAX_W = 680; // largeur max du canvas de preview (px)
 
-  // Grille simulée selon le nb de pièces sélectionné
-  const GRID_MAP = {
-    120: { cols: 12, rows: 10 },
-    252: { cols: 18, rows: 14 },
-    500: { cols: 25, rows: 20 },
+  const ASPECT_MAP = {
+    153: 10 / 8,
+    154: 14 / 11,
+    155: 20 / 16,
   };
 
   // ─── Refs DOM ──────────────────────────────────────────────────
@@ -30,8 +28,7 @@
   const fileInput = document.getElementById("cpz-file-input");
   const uploadError = document.getElementById("cpz-upload-error");
   const addError = document.getElementById("cpz-add-error");
-  const canvas = document.getElementById("cpz-canvas");
-  const ctx = canvas ? canvas.getContext("2d") : null;
+  const cropperImage = document.getElementById("cpz-cropper-image");
   const btnReupload = document.getElementById("cpz-btn-reupload");
   const btnToOptions = document.getElementById("cpz-btn-to-options");
   const btnBackPreview = document.getElementById("cpz-btn-back-preview");
@@ -42,15 +39,16 @@
 
   // ─── State ─────────────────────────────────────────────────────
   let state = {
-    file: null, // File object
-    imageDataUrl: null, // base64 pour le canvas
-    variationId: null, // ID variation WC sélectionnée
-    pieces: null, // nb de pièces (pour la grille)
+    file: null,
+    imageDataUrl: null,
+    variationId: null,
   };
+
+  let cropper = null;
 
   // ─── Init ──────────────────────────────────────────────────────
   function init() {
-    if (!dropzone || !fileInput || !canvas) {
+    if (!dropzone || !fileInput || !cropperImage) {
       console.warn("[cpz] Éléments DOM manquants, abort init.");
       return;
     }
@@ -66,13 +64,11 @@
   // ═══════════════════════════════════════════════════════════════
 
   function bindUpload() {
-    // Clic sur la dropzone (délégué à l'input file en absolu)
     fileInput.addEventListener("change", function (e) {
       const file = e.target.files[0];
       if (file) handleFile(file);
     });
 
-    // Drag & drop
     dropzone.addEventListener("dragover", function (e) {
       e.preventDefault();
       dropzone.classList.add("is-dragover");
@@ -89,13 +85,11 @@
       if (file) handleFile(file);
     });
 
-    // Clic sur la dropzone (hors label)
     dropzone.addEventListener("click", function (e) {
       if (e.target.closest("label[for='cpz-file-input']")) return;
       fileInput.click();
     });
 
-    // Accessibilité clavier sur la dropzone
     dropzone.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -107,13 +101,11 @@
   function handleFile(file) {
     clearError(uploadError);
 
-    // Validation type
     if (!ALLOWED_TYPES.includes(file.type)) {
       showError(uploadError, "Format non supporté. Utilisez JPG, PNG ou WebP.");
       return;
     }
 
-    // Validation taille
     const sizeMB = file.size / (1024 * 1024);
     if (sizeMB > MAX_FILE_SIZE_MB) {
       showError(
@@ -129,79 +121,56 @@
     reader.onload = function (e) {
       state.imageDataUrl = e.target.result;
       goToStep(2);
-      renderCanvas(state.imageDataUrl);
+      initCropper(state.imageDataUrl);
     };
     reader.readAsDataURL(file);
   }
 
   // ═══════════════════════════════════════════════════════════════
-  //  CANVAS PREVIEW
+  //  CROPPER.JS
   // ═══════════════════════════════════════════════════════════════
 
-  function renderCanvas(dataUrl) {
-    const img = new Image();
-    img.onload = function () {
-      // Calcule les dimensions du canvas en respectant le ratio
-      const ratio = img.height / img.width;
-      const width = Math.min(img.width, CANVAS_MAX_W);
-      const height = Math.round(width * ratio);
-
-      canvas.width = width;
-      canvas.height = height;
-
-      // Dessine l'image
-      ctx.drawImage(img, 0, 0, width, height);
-
-      // Superpose la grille selon la variation sélectionnée
-      drawGrid(width, height);
-    };
-    img.src = dataUrl;
+  function getCurrentAspectRatio() {
+    return ASPECT_MAP[state.variationId] || 10 / 8;
   }
 
-  function drawGrid(width, height) {
-    const pieces = state.pieces || "252"; // défaut
-    const grid = GRID_MAP[pieces] || GRID_MAP["252"];
-    const cellW = width / grid.cols;
-    const cellH = height / grid.rows;
-
-    ctx.save();
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.55)";
-    ctx.lineWidth = 0.8;
-
-    // Lignes verticales
-    for (let c = 1; c < grid.cols; c++) {
-      ctx.beginPath();
-      ctx.moveTo(c * cellW, 0);
-      ctx.lineTo(c * cellW, height);
-      ctx.stroke();
-    }
-
-    // Lignes horizontales
-    for (let r = 1; r < grid.rows; r++) {
-      ctx.beginPath();
-      ctx.moveTo(0, r * cellH);
-      ctx.lineTo(width, r * cellH);
-      ctx.stroke();
-    }
-
-    // Bordure extérieure
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(0, 0, width, height);
-
-    ctx.restore();
+  function initCropper(dataUrl) {
+    destroyCropper();
+    cropperImage.src = dataUrl;
+    cropper = new Cropper(cropperImage, {
+      aspectRatio: getCurrentAspectRatio(),
+      viewMode: 2,
+      autoCropArea: 1,
+      background: false,
+      responsive: true,
+    });
   }
 
-  // Re-render le canvas quand la variation change (grille différente)
-  function refreshGrid() {
-    if (!state.imageDataUrl) return;
-    const img = new Image();
-    img.onload = function () {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      drawGrid(canvas.width, canvas.height);
-    };
-    img.src = state.imageDataUrl;
+  function destroyCropper() {
+    if (cropper) {
+      cropper.destroy();
+      cropper = null;
+    }
+  }
+
+  function updateCropperAspectRatio() {
+    if (cropper) {
+      cropper.setAspectRatio(getCurrentAspectRatio());
+    }
+  }
+
+  function getCroppedBlob() {
+    if (!cropper) return null;
+    const canvas = cropper.getCroppedCanvas({
+      maxWidth: 4096,
+      maxHeight: 4096,
+    });
+    const mimeType =
+      state.file && state.file.type === "image/png" ? "image/png" : "image/jpeg";
+    const quality = mimeType === "image/jpeg" ? 0.92 : undefined;
+    return new Promise(function (resolve) {
+      canvas.toBlob(resolve, mimeType, quality);
+    });
   }
 
   // ═══════════════════════════════════════════════════════════════
@@ -214,7 +183,6 @@
         selectVariant(card);
       });
 
-      // Accessibilité : sélection au clavier via l'input radio natif
       const radio = card.querySelector(".cpz-variant__radio");
       if (radio) {
         radio.addEventListener("change", function () {
@@ -225,30 +193,23 @@
   }
 
   function selectVariant(card) {
-    // Retire la sélection de toutes les cards
     variantCards.forEach(function (c) {
       c.classList.remove("is-selected");
       const r = c.querySelector(".cpz-variant__radio");
       if (r) r.checked = false;
     });
 
-    // Active la card cliquée
     card.classList.add("is-selected");
     const radio = card.querySelector(".cpz-variant__radio");
     if (radio) {
       radio.checked = true;
       state.variationId = radio.value;
-      state.pieces = radio.dataset.pieces
-        ? radio.dataset.pieces.replace(/[^0-9]/g, "")
-        : "252";
     }
 
-    // Refresh la grille si on est déjà sur l'étape preview
-    refreshGrid();
+    updateCropperAspectRatio();
   }
 
   function initDefaultVariant() {
-    // Pré-sélectionne la première card au chargement
     const firstCard = document.querySelector(".cpz-variant");
     if (firstCard) selectVariant(firstCard);
   }
@@ -276,23 +237,19 @@
   }
 
   function goToStep(stepNum) {
-    // Masque toutes les sections
     document.querySelectorAll(".cpz-step").forEach(function (el) {
       el.classList.remove("is-current");
       el.hidden = true;
     });
 
-    // Affiche la section cible
     const target = document.querySelector(`.cpz-step[data-step="${stepNum}"]`);
     if (target) {
       target.classList.add("is-current");
       target.hidden = false;
     }
 
-    // Met à jour le stepper visuel
     updateStepper(stepNum);
 
-    // Scroll en haut de la section
     const page = document.getElementById("custom-puzzle-page");
     if (page) {
       page.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -316,7 +273,7 @@
   //  ADD TO CART — AJAX
   // ═══════════════════════════════════════════════════════════════
 
-  function handleAddToCart() {
+  async function handleAddToCart() {
     clearError(addError);
 
     if (!state.variationId) {
@@ -332,13 +289,20 @@
     btnToCart.disabled = true;
     btnToCart.textContent = "Envoi en cours…";
 
-    // Prépare le FormData pour l'upload AJAX
+    const blob = await getCroppedBlob();
+    if (!blob) {
+      showError(addError, "Erreur de recadrage. Réessayez.");
+      btnToCart.disabled = false;
+      btnToCart.textContent = "Ajouter au panier";
+      return;
+    }
+
     const formData = new FormData();
     formData.append("action", "cpz_upload_and_add_to_cart");
     formData.append("nonce", cpzData.nonce);
     formData.append("product_id", cpzData.productId);
     formData.append("variation_id", state.variationId);
-    formData.append("puzzle_image", state.file, state.file.name);
+    formData.append("puzzle_image", blob, "puzzle.jpg");
 
     fetch(cpzData.ajaxUrl, {
       method: "POST",
@@ -379,23 +343,15 @@
   // ═══════════════════════════════════════════════════════════════
 
   function resetFlow() {
+    destroyCropper();
     state = {
       file: null,
       imageDataUrl: null,
       variationId: null,
-      pieces: null,
     };
 
-    // Reset input file
     if (fileInput) fileInput.value = "";
-
-    // Reset canvas
-    if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Reset variants
     initDefaultVariant();
-
-    // Retour étape 1
     goToStep(1);
   }
 

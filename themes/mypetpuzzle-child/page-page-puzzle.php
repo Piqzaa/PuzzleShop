@@ -110,13 +110,12 @@ get_header();
 
                 <!-- ÉTAPE 2 : Preview -->
                 <section class="cpz-step cpz-step--preview" data-step="2" aria-labelledby="step2-title" hidden>
-                    <h2 id="step2-title" class="cpz-step__title">Aperçu de votre puzzle</h2>
-                    <p class="cpz-step__hint">Simulation du quadrillage · Le rendu final peut varier légèrement</p>
+                    <h2 id="step2-title" class="cpz-step__title">Ajustez votre photo</h2>
+                    <p class="cpz-step__hint">Déplacez et zoomez pour recadrer l'image au format du puzzle</p>
 
                     <div class="cpz-preview">
                         <div class="cpz-preview__frame">
-                            <canvas id="cpz-canvas" class="cpz-preview__canvas" aria-label="Aperçu du puzzle avec quadrillage"></canvas>
-                            <div class="cpz-preview__overlay-grid" id="cpz-grid-overlay" aria-hidden="true"></div>
+                            <img id="cpz-cropper-image" src="" alt="Aperçu avec recadrage">
                         </div>
 
                         <div class="cpz-preview__actions">
@@ -268,10 +267,25 @@ get_header();
     <div class="col-full">
 
 <?php
+wp_enqueue_style(
+    'cropperjs',
+    'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css',
+    [],
+    '1.6.2'
+);
+
+wp_enqueue_script(
+    'cropperjs',
+    'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js',
+    [],
+    '1.6.2',
+    true
+);
+
 wp_enqueue_script(
     'mypetpuzzle-custom-puzzle',
     content_url('plugins/mypetpuzzle-core/custome-puzzle.js'),
-    [],
+    ['cropperjs'],
     '1.0.0',
     true
 );
