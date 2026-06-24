@@ -121,6 +121,20 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
     return $rates;
 }, 10, 2);
 
+add_filter('woocommerce_product_is_visible', function (bool $visible, int $product_id): bool {
+    if ($product_id === MYPETPUZZLE_CUSTOM_PRODUCT_ID) {
+        return false;
+    }
+    return $visible;
+}, 10, 2);
+
+add_action('template_redirect', function () {
+    if (is_singular('product') && get_queried_object_id() === MYPETPUZZLE_CUSTOM_PRODUCT_ID) {
+        wp_safe_redirect(cpz_puzzle_page_url(), 301);
+        exit;
+    }
+});
+
 function cpz_get_product_variations_data(WC_Product $product): array {
     $data = [
         'variations'            => [],
