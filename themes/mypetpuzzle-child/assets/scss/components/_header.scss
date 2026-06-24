@@ -195,15 +195,37 @@
 .header__auth-link {
   font-family: $font-primary;
   font-size: $font-size-small;
-  font-weight: 500;
-  color: $color-text;
+  font-weight: 600;
   text-decoration: none;
-  transition: color $transition-fast;
-}
+  border-radius: 6px;
+  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
 
-.header__auth-link:hover,
-.header__auth-link:focus-visible {
-  color: $color-primary;
+  &:first-of-type {
+    padding: 6px 14px;
+    color: $color-text;
+    border: 1.5px solid $color-border;
+    background: transparent;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
+  }
+
+  &:last-of-type {
+    padding: 7px 18px;
+    color: $color-white;
+    background-color: $color-primary;
+    border: 1.5px solid $color-primary;
+
+    &:hover,
+    &:focus-visible {
+      background-color: #b8942e;
+      border-color: #b8942e;
+      color: $color-white;
+    }
+  }
 }
 
 // ── Dropdown wrappers ────────────────────────
@@ -429,9 +451,46 @@
 
   .header__nav-list--actions {
     display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
     border-top: 1px solid $color-border;
-    padding-top: $spacing-sm;
+    padding: $spacing-sm $spacing-lg;
     margin-top: $spacing-sm;
+
+    li:first-child .header__nav-link {
+      flex: 1;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: $color-text;
+      border: 1.5px solid $color-border;
+      background: transparent;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+
+    li:last-child .header__nav-link {
+      flex: 1;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: $color-white;
+      background-color: $color-primary;
+      border: 1.5px solid $color-primary;
+
+      &:hover,
+      &:focus-visible {
+        background-color: #b8942e;
+        border-color: #b8942e;
+        color: $color-white;
+      }
+    }
   }
 
   .header__nav-list a,

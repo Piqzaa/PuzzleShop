@@ -964,15 +964,31 @@ body [role=button] {
 .header__auth-link {
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
-  font-weight: 500;
-  color: #2c1810;
+  font-weight: 600;
   text-decoration: none;
-  transition: color 0.15s ease;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-
-.header__auth-link:hover,
-.header__auth-link:focus-visible {
+.header__auth-link:first-of-type {
+  padding: 6px 14px;
+  color: #2c1810;
+  border: 1.5px solid #c5b7a3;
+  background: transparent;
+}
+.header__auth-link:first-of-type:hover, .header__auth-link:first-of-type:focus-visible {
   color: #c9a84c;
+  border-color: #c9a84c;
+}
+.header__auth-link:last-of-type {
+  padding: 7px 18px;
+  color: #ffffff;
+  background-color: #c9a84c;
+  border: 1.5px solid #c9a84c;
+}
+.header__auth-link:last-of-type:hover, .header__auth-link:last-of-type:focus-visible {
+  background-color: #b8942e;
+  border-color: #b8942e;
+  color: #ffffff;
 }
 
 .header__account-wrapper,
@@ -1178,9 +1194,40 @@ body [role=button] {
   }
   .header__nav-list--actions {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     border-top: 1px solid #c5b7a3;
-    padding-top: 8px;
+    padding: 8px 24px;
     margin-top: 8px;
+  }
+  .header__nav-list--actions li:first-child .header__nav-link {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #2c1810;
+    border: 1.5px solid #c5b7a3;
+    background: transparent;
+  }
+  .header__nav-list--actions li:first-child .header__nav-link:hover, .header__nav-list--actions li:first-child .header__nav-link:focus-visible {
+    color: #c9a84c;
+    border-color: #c9a84c;
+  }
+  .header__nav-list--actions li:last-child .header__nav-link {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #c9a84c;
+    border: 1.5px solid #c9a84c;
+  }
+  .header__nav-list--actions li:last-child .header__nav-link:hover, .header__nav-list--actions li:last-child .header__nav-link:focus-visible {
+    background-color: #b8942e;
+    border-color: #b8942e;
+    color: #ffffff;
   }
   .header__nav-list a,
   .header__nav-link {
@@ -6558,3 +6605,5 @@ body.woocommerce-account .show-password-input {
   padding: 0;
   margin: 0;
 }
+
+/*# sourceMappingURL=main.css.map */
