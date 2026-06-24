@@ -6,7 +6,7 @@
             <h1 class="hero__title">L'art du puzzle, <span class="hero__title-highlight">à l'image</span> de votre animal</h1>
             <p class="hero__subtitle">Importez une photo, on la transforme en puzzle unique. Cadeau sincère, souvenir précieux.</p>
             <div class="hero__actions">
-                <a class="btn btn--primary" href="<?php echo esc_url(home_url('/creer-mon-puzzle')); ?>">Créer mon puzzle</a>
+                <a class="btn btn--primary" href="<?php echo esc_url(cpz_puzzle_page_url()); ?>">Créer mon puzzle</a>
                 <a class="btn btn--secondary" href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>">Voir les modèles animaux</a>
             </div>
             <ul class="hero__trust">

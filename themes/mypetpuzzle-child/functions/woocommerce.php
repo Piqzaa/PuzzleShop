@@ -100,4 +100,7 @@ add_filter('gettext', function ($translation, $text, $domain) {
     return $translation;
 }, 10, 3);
 
-
+function cpz_puzzle_page_url(): string {
+    $page = get_page_by_path('page-puzzle');
+    return $page ? get_permalink($page->ID) : home_url('/');
+}
