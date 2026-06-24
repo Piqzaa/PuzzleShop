@@ -1,0 +1,49 @@
+@use "../../variables" as *;
+
+.whyus__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.whyus__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  text-align: center;
+  color: $color-text;
+  margin-bottom: $spacing-xl;
+}
+
+.whyus__item {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+}
+
+.whyus__check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: $color-primary-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.whyus__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: $font-size-small;
+  color: $color-text-light;
+  line-height: 1.5;
+}
+
+.whyus__content strong {
+  font-weight: 600;
+  color: $color-text;
+}

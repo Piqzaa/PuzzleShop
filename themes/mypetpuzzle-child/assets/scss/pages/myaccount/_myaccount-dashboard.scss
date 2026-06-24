@@ -1,0 +1,225 @@
+@use "../../variables" as *;
+
+.myaccount-page__content {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: $spacing-lg;
+
+  @media (min-width: $bp-tablet) {
+    padding: $spacing-xl;
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: $spacing-md;
+  }
+}
+
+.myaccount-dashboard__welcome {
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: $bp-tablet) {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.myaccount-dashboard__greeting {
+  font-family: $font-secondary;
+  font-size: 1.75rem;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.myaccount-dashboard__subtitle {
+  color: $color-text-light;
+  margin: $spacing-xs 0 0;
+  font-size: 1rem;
+}
+
+.myaccount-dashboard__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.myaccount-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: $spacing-lg $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(44, 24, 16, 0.1);
+    border-color: $color-primary;
+  }
+}
+
+.myaccount-stat__value {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $color-primary;
+  line-height: 1;
+}
+
+.myaccount-stat__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.myaccount-stat__label {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  font-weight: 500;
+}
+
+.myaccount-dashboard__section {
+  & + .myaccount-dashboard__section {
+    margin-top: $spacing-xl;
+
+    @media (max-width: $bp-tablet) {
+      margin-top: $spacing-lg;
+    }
+  }
+}
+
+.myaccount-dashboard__section-title {
+  font-family: $font-secondary;
+  font-size: $font-size-h3;
+  color: $color-text;
+  margin: 0 0 $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.myaccount-dashboard__section-link {
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+}
+
+.myaccount-dashboard__orders {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.myaccount-order {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color $transition-fast, transform $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    transform: translateX(4px);
+  }
+}
+
+.myaccount-order__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.myaccount-order__id {
+  font-weight: 600;
+  color: $color-text;
+  font-size: 1rem;
+}
+
+.myaccount-order__date {
+  font-size: $font-size-small;
+  color: $color-text-light;
+}
+
+.myaccount-order__total {
+  font-weight: 600;
+  color: $color-text;
+  white-space: nowrap;
+}
+
+.myaccount-order__status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-transform: capitalize;
+
+  &--pending {
+    background: rgba($color-primary, 0.12);
+    color: $color-secondary;
+  }
+
+  &--processing {
+    background: rgba($color-primary, 0.15);
+    color: $color-primary-dark;
+  }
+
+  &--on-hold {
+    background: rgba($color-secondary, 0.1);
+    color: $color-secondary;
+  }
+
+  &--completed {
+    background: rgba($color-success, 0.1);
+    color: $color-success;
+  }
+
+  &--cancelled {
+    background: rgba($color-text-light, 0.1);
+    color: $color-text-light;
+  }
+
+  &--refunded {
+    background: rgba($color-error, 0.08);
+    color: $color-error;
+  }
+
+  &--failed {
+    background: rgba($color-error, 0.08);
+    color: $color-error;
+  }
+}
+
+.myaccount-dashboard__quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}

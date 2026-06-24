@@ -1,0 +1,62 @@
+@use "../../variables" as *;
+
+.myaccount-page__content .myaccount-addresses__desc {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin-bottom: $spacing-lg;
+}
+
+.myaccount-page__content .myaccount-addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  margin-top: 0;
+}
+
+@media (max-width: $bp-tablet) {
+  .myaccount-page__content .myaccount-addresses {
+    grid-template-columns: 1fr;
+  }
+}
+
+.myaccount-page__content .myaccount-address {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: $spacing-md;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.myaccount-page__content .myaccount-address__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-sm;
+}
+
+.myaccount-page__content .myaccount-address__title {
+  font-family: $font-secondary;
+  font-size: 1.2rem;
+  color: $color-text;
+  margin: 0;
+}
+
+.myaccount-page__content .myaccount-address__edit {
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  color: $color-primary;
+  text-decoration: none;
+}
+
+.myaccount-page__content .myaccount-address__edit:hover {
+  text-decoration: underline;
+}
+
+.myaccount-page__content .myaccount-address__content {
+  font-style: normal;
+  color: $color-text;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}

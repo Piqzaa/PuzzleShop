@@ -1,0 +1,382 @@
+@use "../../variables" as *;
+
+.myaccount-page__content .woocommerce-orders-table,
+.myaccount-page__content .shop_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+}
+
+.myaccount-page__content .woocommerce-orders-table th,
+.myaccount-page__content .shop_table th {
+  text-align: left;
+  padding: $spacing-sm $spacing-md;
+  font-weight: 600;
+  color: $color-text;
+  border-bottom: 2px solid $color-border;
+}
+
+.myaccount-page__content .woocommerce-orders-table td,
+.myaccount-page__content .shop_table td {
+  padding: $spacing-sm $spacing-md;
+  color: $color-text;
+  border-bottom: 1px solid $color-border;
+}
+
+.myaccount-page__content .woocommerce-orders-table tr:last-child td,
+.myaccount-page__content .shop_table tr:last-child td {
+  border-bottom: none;
+}
+
+.myaccount-page__content .woocommerce-orders-table .button,
+.myaccount-page__content .shop_table .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 2px solid $color-primary;
+  color: $color-text;
+  background-color: transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+  padding: 6px 16px;
+  font-size: 12px;
+}
+
+.myaccount-page__content .woocommerce-orders-table .button:hover,
+.myaccount-page__content .shop_table .button:hover {
+  background-color: $color-primary-light;
+  border-color: $color-primary-dark;
+}
+
+@media (max-width: $bp-tablet) {
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table thead {
+    display: none !important;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table tbody {
+    display: flex !important;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table tr {
+    display: block !important;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    padding: $spacing-md;
+    margin: 0;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+    font-family: $font-primary;
+    background: none;
+    width: auto;
+    float: none;
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td::before,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th::before {
+    content: attr(data-title);
+    font-weight: 600;
+    color: $color-text-light;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-right: $spacing-md;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td:first-child,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th:first-child {
+    padding-top: 0;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td:last-child,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th:last-child {
+    padding-bottom: 0;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-number,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-number {
+    font-family: $font-secondary;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $color-border;
+    margin-bottom: 8px;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-number a,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-number a {
+    color: $color-text;
+    text-decoration: none;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-number a:hover,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-number a:hover {
+    color: $color-primary;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-number::before,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-number::before {
+    display: none !important;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-actions {
+    padding-top: 8px;
+    border-top: 1px solid $color-border;
+    margin-top: 8px;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions::before,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-actions::before {
+    display: none !important;
+  }
+
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions .button,
+  body.woocommerce-account .myaccount-page__content .woocommerce-orders-table th.woocommerce-orders-table__cell-order-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.myaccount-page__content .myaccount-order-view__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: $color-primary;
+  text-decoration: none;
+  margin-bottom: $spacing-lg;
+  transition: color $transition-fast;
+}
+
+.myaccount-page__content .myaccount-order-view__back:hover {
+  color: $color-primary-dark;
+}
+
+.myaccount-page__content .myaccount-order-view__status {
+  margin-bottom: $spacing-lg;
+  font-size: 1rem;
+  color: $color-text;
+}
+
+.myaccount-page__content .myaccount-order-view__status mark {
+  background: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.myaccount-page__content .myaccount-order-view__status .order-status {
+  color: $color-primary;
+}
+
+.myaccount-page__content .woocommerce-table--order-details {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  color: $color-text;
+  margin: 0;
+  background: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details thead th {
+  font-weight: 600;
+  font-size: $font-size-small;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-light;
+  text-align: left;
+  padding: $spacing-sm $spacing-xs $spacing-md;
+  border-bottom: 1px solid $color-border;
+  background: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details thead .product-total {
+  text-align: right;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody tr {
+  border-bottom: 1px solid $color-border;
+  background: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody tr:last-child {
+  border-bottom: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody td {
+  padding: $spacing-md $spacing-xs;
+  vertical-align: top;
+  background: none;
+  border: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody td.product-name {
+  font-weight: 500;
+  color: $color-text;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody td.product-name a {
+  color: $color-text;
+  text-decoration: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody td.product-name a:hover {
+  color: $color-primary;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody td.product-name .product-quantity {
+  font-weight: 400;
+  color: $color-text-light;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody td.product-total {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody .wc-item-meta {
+  list-style: none;
+  margin: $spacing-xs 0 0;
+  padding: 0;
+  font-size: 13px;
+  color: $color-text-light;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody .wc-item-meta li {
+  margin: 2px 0;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tbody .wc-item-meta p {
+  margin: 0;
+  display: inline;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot tr {
+  border-top: 1px solid $color-border;
+  background: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot tr:first-child {
+  border-top: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot th {
+  text-align: left;
+  padding: $spacing-sm $spacing-xs;
+  font-weight: 500;
+  font-size: $font-size-small;
+  color: $color-text-light;
+  border: none;
+  background: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot td {
+  text-align: right;
+  padding: $spacing-sm $spacing-xs;
+  font-weight: 500;
+  font-size: $font-size-small;
+  border: none;
+  background: none;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot tr:last-child th,
+.myaccount-page__content .woocommerce-table--order-details tfoot tr:last-child td {
+  font-family: $font-secondary;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: $spacing-md $spacing-xs $spacing-sm;
+  border-top: 2px solid $color-text;
+  color: $color-text;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot .order-actions--heading {
+  font-weight: 600;
+  color: $color-text;
+}
+
+.myaccount-page__content .woocommerce-table--order-details tfoot .order-actions-button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: $font-size-small;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color $transition-fast, color $transition-fast;
+}
+
+.myaccount-page__content .woocommerce-order-details,
+.myaccount-page__content .woocommerce-customer-details {
+  margin-top: $spacing-lg;
+}
+
+.myaccount-page__content .woocommerce-customer-details {
+  text-align: left;
+}
+
+.myaccount-page__content .woocommerce-customer-details address {
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-style: normal;
+  line-height: 1.7;
+  color: $color-text;
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: 6px;
+  margin: 0;
+  border: none;
+}
+
+.myaccount-page__content .woocommerce-customer-details .woocommerce-customer-details--phone,
+.myaccount-page__content .woocommerce-customer-details .woocommerce-customer-details--email {
+  margin: $spacing-xs 0 0;
+  font-size: $font-size-small;
+  color: $color-text;
+}
+
+.myaccount-page__content .woocommerce-customer-details .woocommerce-customer-details--email {
+  margin-top: 2px;
+}
+
+.myaccount-page__content .woocommerce-OrderUpdates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.myaccount-page__content .woocommerce-OrderUpdates .woocommerce-OrderUpdate {
+  padding: $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  margin-bottom: $spacing-sm;
+}
+
+.myaccount-page__content .woocommerce-OrderUpdates .woocommerce-OrderUpdate .woocommerce-OrderUpdate-meta {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin-bottom: $spacing-xs;
+}
+
+.myaccount-page__content .woocommerce-OrderUpdates .woocommerce-OrderUpdate .woocommerce-OrderUpdate-description {
+  font-size: $font-size-small;
+  color: $color-text;
+}

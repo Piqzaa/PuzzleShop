@@ -1,0 +1,55 @@
+@use "../variables" as *;
+
+.puzzle-cursor {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    transform 0.25s ease;
+  background-image: url("../images/puzzle-piece.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+  will-change: transform, left, top;
+}
+
+.puzzle-cursor--hover {
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%) rotate(12deg);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+body {
+  cursor: none;
+}
+
+body * {
+  cursor: none;
+}
+
+body a,
+body button,
+body input,
+body select,
+body textarea,
+body [onclick],
+body [role="button"] {
+  cursor: none;
+}
+
+@media (max-width: ($bp-desktop - 1px)) {
+  .puzzle-cursor {
+    display: none;
+  }
+  body,
+  body * {
+    cursor: auto;
+  }
+}

@@ -1,0 +1,21 @@
+@use "../variables" as *;
+
+// ─────────────────────────────────────────────
+// Spécifique page remerciement
+// ─────────────────────────────────────────────
+
+.woocommerce-order-details .checkout-page__section-title {
+  text-align: left;
+}
+
+.checkout-page__addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}

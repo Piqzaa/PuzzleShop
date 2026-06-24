@@ -1,0 +1,51 @@
+// Couleurs
+$color-primary: #c9a84c;
+$color-primary-dark: #b59744;
+$color-primary-light: #efe5c9;
+$color-secondary: #8b6f47;
+$color-bg: #f5f0e8;
+$color-surface: #ede8dc;
+$color-text: #2c1810;
+$color-text-light: #6b5d58;
+$color-border: #c5b7a3;
+$color-white: #ffffff;
+$color-error: #d0021b;
+$color-success: #417505;
+
+// Typographie
+$font-primary: "DM Sans", sans-serif;
+$font-secondary: "Playfair Display", serif;
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.5rem;
+
+// Espacements
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 48px;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-medium: 900px;
+$bp-desktop: 1024px;
+$bp-wide: 1280px;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+
+// Ombres
+$shadow-sm: 0 1px 4px rgba(44, 24, 16, 0.08);
+$shadow-md: 0 4px 16px rgba(44, 24, 16, 0.12);
+$shadow-lg: 0 8px 32px rgba(44, 24, 16, 0.15);
+
+// Bordures
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;

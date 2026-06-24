@@ -1,0 +1,54 @@
+@use "../variables" as *;
+
+.legal-page {
+  padding: $spacing-xl $spacing-lg;
+}
+
+.legal-page__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-page__title {
+  font-family: $font-secondary;
+  font-size: $font-size-h2;
+  color: $color-text;
+  margin: 0 0 $spacing-lg;
+}
+
+.legal-page__date {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin-bottom: $spacing-xl;
+}
+
+.legal-page h2 {
+  font-family: $font-secondary;
+  font-size: 1.25rem;
+  color: $color-text;
+  margin: $spacing-xl 0 $spacing-md;
+}
+
+.legal-page p,
+.legal-page li {
+  color: $color-text-light;
+  line-height: 1.7;
+}
+
+.legal-page ul,
+.legal-page ol {
+  padding-left: $spacing-lg;
+}
+
+.legal-page li {
+  margin-bottom: $spacing-sm;
+}
+
+.legal-page a {
+  color: $color-primary;
+  text-decoration: underline;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+}

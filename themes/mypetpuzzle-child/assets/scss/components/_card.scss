@@ -1,0 +1,152 @@
+@use "../variables" as *;
+
+.card {
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.card--lg {
+  border-radius: 12px;
+}
+
+.card--hover {
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+}
+
+.card--hover:hover {
+  transform: translateY(-4px);
+  box-shadow: $shadow-md;
+}
+
+.card:hover {
+  border-color: $color-primary;
+  box-shadow:
+    0 0 0 1px $color-primary,
+    0 0 20px rgba($color-primary, 0.15);
+}
+
+.card__link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card__image img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+
+  @media (max-width: $bp-tablet - 1px) {
+    height: 200px;
+  }
+}
+
+.card__title {
+  font-family: $font-secondary;
+  font-size: 1.25rem;
+  color: $color-text;
+  padding: $spacing-md $spacing-lg 4px;
+  margin-bottom: 0;
+}
+
+.card__size-wrap {
+  padding: 0 $spacing-lg;
+  margin-bottom: $spacing-md;
+}
+
+.card__size-select {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  background-color: $color-white;
+  font-family: $font-primary;
+  font-size: 13px;
+  font-weight: 500;
+  color: $color-text;
+  cursor: pointer;
+  transition: border-color $transition-fast;
+  appearance: auto;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.15);
+  }
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-lg $spacing-md;
+  margin-top: auto;
+}
+
+.card__price {
+  display: block;
+  font-size: $font-size-small;
+  color: $color-primary;
+  font-weight: 600;
+}
+
+.card__add-to-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid $color-primary;
+  border-radius: 4px;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-primary;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-primary-light;
+  }
+
+  svg {
+    display: block;
+    flex-shrink: 0;
+    stroke: $color-primary;
+  }
+}
+
+.card__choose {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  background: transparent;
+  color: $color-text-light;
+  font-family: $font-primary;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+}
