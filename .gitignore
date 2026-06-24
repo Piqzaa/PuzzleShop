@@ -6,13 +6,16 @@ themes/twentytwentyfour/
 themes/twentytwentyfive/
 
 
-plugins/woocommerce/
-plugins/akismet/
+plugins/*
+!plugins/mypetpuzzle-core/
 languages/
 uploads/
 upgrade/
+updraft/
+wflogs/
 .DS_Store
 Thumbs.db
 
 cache/
 .vscode/
+jetpack-waf/

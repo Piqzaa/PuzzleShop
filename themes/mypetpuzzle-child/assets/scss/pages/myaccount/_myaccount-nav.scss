@@ -1,0 +1,165 @@
+@use "../../variables" as *;
+
+.myaccount-nav {
+  margin-bottom: $spacing-xl;
+}
+
+@media (max-width: $bp-desktop) {
+  .myaccount-nav {
+    display: none;
+  }
+}
+
+.myaccount-nav__inner {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.myaccount-nav__list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.myaccount-nav__item {
+  flex: 1;
+  min-width: 0;
+}
+
+.myaccount-nav__item:last-child {
+  margin-left: auto;
+}
+
+.myaccount-nav__item:last-child .myaccount-nav__link {
+  color: $color-text-light;
+}
+
+.myaccount-nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: $spacing-md $spacing-sm;
+  text-decoration: none;
+  color: $color-text-light;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-weight: 500;
+  transition: color $transition-fast, background-color $transition-fast, border-color $transition-fast;
+  position: relative;
+  white-space: nowrap;
+}
+
+.myaccount-nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: $spacing-md;
+  right: $spacing-md;
+  height: 3px;
+  background: $color-primary;
+  border-radius: 3px 3px 0 0;
+  transform: scaleX(0);
+  transition: transform $transition-base;
+}
+
+.myaccount-nav__link:hover {
+  color: $color-text;
+  background-color: rgba($color-primary-light, 0.3);
+}
+
+.myaccount-nav__item.is-active .myaccount-nav__link {
+  color: $color-text;
+  font-weight: 600;
+}
+
+.myaccount-nav__item.is-active .myaccount-nav__link::after {
+  transform: scaleX(1);
+}
+
+.myaccount-nav__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.myaccount-nav__label {
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (min-width: $bp-tablet) {
+  .myaccount-nav__label {
+    font-size: $font-size-small;
+  }
+}
+
+.myaccount-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: $color-white;
+  border-top: 1px solid $color-border;
+  padding: 6px 0 env(safe-area-inset-bottom, 6px);
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 0;
+}
+
+@media (max-width: $bp-desktop) {
+  .myaccount-bottom-nav {
+    display: flex;
+  }
+}
+
+.myaccount-bottom-nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 6px;
+  text-decoration: none;
+  color: $color-text-light;
+  font-family: $font-primary;
+  font-size: 11px;
+  font-weight: 500;
+  transition: color $transition-fast;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.myaccount-bottom-nav__link:hover {
+  color: $color-text;
+}
+
+.myaccount-bottom-nav__link.is-active {
+  color: $color-primary;
+}
+
+.myaccount-bottom-nav__icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.myaccount-bottom-nav__label {
+  text-align: center;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+@media (max-width: $bp-desktop) {
+  .myaccount-page {
+    padding-bottom: 80px;
+  }
+}

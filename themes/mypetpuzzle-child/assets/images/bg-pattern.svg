@@ -1,0 +1,25 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="paw">
+      <ellipse cx="0" cy="9" rx="9" ry="11"/>
+      <ellipse cx="-10" cy="-6" rx="4" ry="5.2" transform="rotate(-18 -10 -6)"/>
+      <ellipse cx="-4" cy="-12" rx="4.3" ry="5.5" transform="rotate(-6 -4 -12)"/>
+      <ellipse cx="4" cy="-12" rx="4.3" ry="5.5" transform="rotate(6 4 -12)"/>
+      <ellipse cx="10" cy="-6" rx="4" ry="5.2" transform="rotate(18 10 -6)"/>
+    </g>
+  </defs>
+
+  <use href="#paw" fill="#C9A84C" opacity="0.14" transform="translate(45,55) rotate(-20) scale(0.9)"/>
+  <use href="#paw" fill="#2C1810" opacity="0.10" transform="translate(165,50) rotate(35) scale(0.7)"/>
+  <use href="#paw" fill="#C9A84C" opacity="0.12" transform="translate(245,90) rotate(-10) scale(1.0)"/>
+  <use href="#paw" fill="#2C1810" opacity="0.09" transform="translate(95,150) rotate(60) scale(0.8)"/>
+  <use href="#paw" fill="#C9A84C" opacity="0.15" transform="translate(195,165) rotate(-45) scale(1.0)"/>
+  <use href="#paw" fill="#2C1810" opacity="0.08" transform="translate(65,205) rotate(15) scale(0.65)"/>
+  <use href="#paw" fill="#C9A84C" opacity="0.11" transform="translate(255,225) rotate(100) scale(0.85)"/>
+  <use href="#paw" fill="#C9A84C" opacity="0.13" transform="translate(135,235) rotate(-70) scale(1.05)"/>
+  <use href="#paw" fill="#2C1810" opacity="0.09" transform="translate(70,265) rotate(25) scale(0.7)"/>
+  <use href="#paw" fill="#C9A84C" opacity="0.12" transform="translate(215,270) rotate(-25) scale(0.9)"/>
+  <use href="#paw" fill="#2C1810" opacity="0.07" transform="translate(150,105) rotate(80) scale(0.6)"/>
+  <use href="#paw" fill="#C9A84C" opacity="0.10" transform="translate(260,40) rotate(-60) scale(0.65)"/>
+  <use href="#paw" fill="#2C1810" opacity="0.08" transform="translate(30,130) rotate(40) scale(0.6)"/>
+</svg>

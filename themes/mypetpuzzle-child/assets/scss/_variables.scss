@@ -1,17 +1,19 @@
 // Couleurs
-$color-primary: #4a90d9;
-$color-secondary: #f5a623;
-$color-accent: #7ed321;
-$color-bg: #fafafa;
-$color-text: #333333;
-$color-text-light: #777777;
-$color-border: #e0e0e0;
+$color-primary: #c9a84c;
+$color-primary-dark: #b59744;
+$color-primary-light: #efe5c9;
+$color-secondary: #8b6f47;
+$color-bg: #f5f0e8;
+$color-surface: #ede8dc;
+$color-text: #2c1810;
+$color-text-light: #6b5d58;
+$color-border: #c5b7a3;
 $color-white: #ffffff;
 $color-error: #d0021b;
 $color-success: #417505;
 
 // Typographie
-$font-primary: "Nunito", sans-serif;
+$font-primary: "DM Sans", sans-serif;
 $font-secondary: "Playfair Display", serif;
 $font-size-base: 16px;
 $font-size-small: 14px;
@@ -29,13 +31,21 @@ $spacing-xl: 48px;
 // Breakpoints
 $bp-mobile: 480px;
 $bp-tablet: 768px;
+$bp-medium: 900px;
 $bp-desktop: 1024px;
 $bp-wide: 1280px;
-
-// Dérivés
-$color-primary-dark: #4382c3;
-$color-primary-light: #c9def4;
 
 // Transitions
 $transition-fast: 0.15s ease;
 $transition-base: 0.3s ease;
+
+// Ombres
+$shadow-sm: 0 1px 4px rgba(44, 24, 16, 0.08);
+$shadow-md: 0 4px 16px rgba(44, 24, 16, 0.12);
+$shadow-lg: 0 8px 32px rgba(44, 24, 16, 0.15);
+
+// Bordures
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;

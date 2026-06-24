@@ -1,0 +1,49 @@
+@use "../../variables" as *;
+@use "../../responsive" as *;
+
+.bestsellers__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  text-align: center;
+  color: $color-text;
+  margin-bottom: $spacing-sm;
+}
+
+.bestsellers__desc {
+  text-align: center;
+  color: $color-text-light;
+  margin-bottom: $spacing-xl;
+}
+
+.bestsellers__grid.grid--3 {
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bestsellers-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: #417505;
+  color: #fff;
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.bestsellers-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

@@ -1,0 +1,114 @@
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  max-width: $bp-wide;
+  margin: $spacing-md auto;
+  padding: 0 $spacing-sm;
+}
+
+.product-detail a,
+.product-detail a:link,
+.product-detail a:visited,
+.product-detail a:hover,
+.product-detail a:focus,
+.product-detail a:active {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  -webkit-text-decoration: none !important;
+}
+
+@media (min-width: $bp-tablet) {
+  .product-detail {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: $spacing-lg;
+    margin: $spacing-lg auto;
+    padding: 0 $spacing-md;
+    align-items: start;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail {
+    gap: $spacing-xl;
+    margin: $spacing-xl auto;
+    padding: 0 $spacing-lg;
+  }
+}
+
+.product-detail__info {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: $bp-tablet - 1px) {
+  .product-detail__info {
+    display: contents;
+  }
+}
+
+.product-detail__title .product_title {
+  font-size: 1.75rem;
+  color: $color-text;
+  margin-bottom: $spacing-sm;
+}
+
+@media (min-width: $bp-medium + 1px) {
+  .product-detail__title .product_title {
+    font-size: $font-size-h1;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .product-detail__title .product_title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: $bp-tablet) {
+  .product-detail__gallery {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .product-detail__info {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: stretch;
+    padding-top: 2.875em;
+  }
+
+  .product-detail__description {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: $bp-tablet - 1px) {
+  .product-detail__gallery {
+    order: 1;
+  }
+
+  .product-detail__summary {
+    order: 2;
+  }
+
+  .product-detail__description {
+    order: 3;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

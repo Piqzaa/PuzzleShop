@@ -1,4 +1,8 @@
-@use 'variables' as *;
+@use "variables" as *;
+
+html {
+    overflow-x: hidden;
+}
 
 *,
 *::before,
@@ -15,6 +19,16 @@ body {
     line-height: 1.6;
 }
 
+#page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#content {
+    flex: 1;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -28,5 +42,59 @@ a {
 }
 
 a:hover {
-    color: $color-primary-dark;
+  color: $color-primary-dark;
+}
+
+// Conteneur Storefront (col-full) – nécessaire car storefront-style est déquéué
+.col-full {
+  max-width: $bp-wide;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-md;
+  padding-right: $spacing-md;
+
+  @media (min-width: $bp-tablet) {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+  }
+
+  @media (min-width: $bp-desktop) {
+    padding-left: 2.617924em;
+    padding-right: 2.617924em;
+  }
+}
+
+.site-content {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus,
+a:focus,
+.btn:focus,
+.card:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+.btn:focus:not(:focus-visible),
+.card:focus:not(:focus-visible),
+input:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+.btn:focus-visible,
+.card:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
 }

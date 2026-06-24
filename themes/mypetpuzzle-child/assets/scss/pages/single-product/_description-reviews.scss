@@ -1,0 +1,281 @@
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews {
+  max-width: 720px;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist {
+  list-style: none;
+  margin: 0 0 $spacing-xl;
+  padding: 0;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li {
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li:first-child {
+  padding-top: 0;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment_container {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-start;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li img.avatar {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text {
+  flex: 1;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .star-rating {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  height: 1em;
+  line-height: 1;
+  font-size: 0.9rem;
+  width: 4.2em;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .star-rating {
+  &::before {
+    content: "\2605\2605\2605\2605\2605";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $color-border;
+    opacity: 0.4;
+  }
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .star-rating span {
+  overflow: hidden;
+  float: left;
+  top: 0;
+  left: 0;
+  position: absolute;
+  padding-top: 1.5em;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .star-rating span {
+  &::before {
+    content: "\2605\2605\2605\2605\2605";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $color-primary;
+  }
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .meta {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin-bottom: $spacing-xs;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .meta strong {
+  color: $color-text;
+  font-weight: 600;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .commentlist li .comment-text .description p {
+  margin: 0;
+  color: $color-text;
+  line-height: 1.6;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .woocommerce-noreviews {
+  color: $color-text-light;
+  font-size: $font-size-small;
+  margin-bottom: $spacing-lg;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .woocommerce-verification-required {
+  color: $color-text-light;
+  font-size: $font-size-small;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews .woocommerce-verification-required a {
+  color: $color-primary;
+  font-weight: 600;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper {
+  margin-top: $spacing-xl;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper #reply-title {
+  font-family: $font-secondary;
+  font-size: 1.2rem;
+  color: $color-text;
+  margin-bottom: $spacing-md;
+  display: block;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper #reply-title small {
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  margin-left: $spacing-sm;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p {
+  margin: 0;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p label {
+  display: block;
+  font-size: $font-size-small;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: $spacing-xs;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p label .required {
+  color: $color-error;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p input[type="text"],
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p input[type="email"] {
+  width: 100%;
+  height: 40px;
+  padding: 0 $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  color: $color-text;
+  background: $color-white;
+  box-sizing: border-box;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p input[type="text"]:focus,
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form p input[type="email"]:focus {
+  @include focus-ring($color-primary);
+  border-color: $color-primary;
+}
+
+@media (min-width: $bp-tablet) {
+  .product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-author,
+  .product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-email {
+    display: inline-block;
+    width: calc(50% - #{$spacing-sm});
+  }
+}
+
+@media (min-width: $bp-tablet) {
+  .product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-author {
+    margin-right: $spacing-md;
+  }
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating label {
+  display: block;
+  font-size: $font-size-small;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: $spacing-xs;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars {
+  margin: 0;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars [role="group"] {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 2px;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars a {
+  font-size: 0;
+  overflow: hidden;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars a {
+  &::before {
+    content: "\2605";
+    font-size: 1.3rem;
+    color: $color-border;
+    transition: color $transition-fast;
+    text-indent: 0;
+  }
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars a:hover::before,
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars a:hover ~ a::before {
+  color: $color-primary;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars a.active::before {
+  color: $color-primary;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-rating .stars.selected a:hover ~ a::before {
+  color: $color-primary;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-comment textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  color: $color-text;
+  background: $color-white;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .comment-form-comment textarea:focus {
+  @include focus-ring($color-primary);
+  border-color: $color-primary;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .form-submit .submit {
+  @include button-base;
+  height: 44px;
+  padding: 0 $spacing-lg;
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: $font-size-small;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .comment-form .form-submit .submit {
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .must-log-in {
+  font-size: $font-size-small;
+  color: $color-text-light;
+}
+
+.product-detail__description .woocommerce-tabs .woocommerce-Tabs-panel .woocommerce-Reviews #review_form_wrapper .must-log-in a {
+  color: $color-primary;
+  font-weight: 600;
+}

@@ -1,0 +1,41 @@
+@use "../../variables" as *;
+
+.cta-emotion__grid {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  gap: $spacing-xl;
+  align-items: center;
+
+  @media (min-width: $bp-tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cta-emotion__content {
+  text-align: center;
+
+  @media (min-width: $bp-tablet) {
+    text-align: left;
+  }
+}
+
+.cta-emotion__title {
+  font-family: $font-secondary;
+  font-size: 2rem;
+  color: $color-text;
+  margin-bottom: $spacing-md;
+}
+
+.cta-emotion__text {
+  font-size: 1.125rem;
+  color: $color-text-light;
+  line-height: 1.7;
+  margin-bottom: $spacing-lg;
+}
+
+.cta-emotion__placeholder {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e8e0d5, #d4c9bb);
+}
