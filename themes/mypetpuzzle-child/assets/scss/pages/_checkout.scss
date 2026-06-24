@@ -585,9 +585,10 @@ body.woocommerce-checkout .col-full {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: $spacing-xs;
   text-align: center;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .checkout-success__details li {
@@ -596,8 +597,6 @@ body.woocommerce-checkout .col-full {
   gap: 2px;
   padding: 8px $spacing-md;
   background: $color-white;
-  border: 1px solid $color-border;
-  border-radius: 6px;
 }
 
 .checkout-success__detail-label {

@@ -4942,9 +4942,10 @@ body.woocommerce-checkout .col-full {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 4px;
   text-align: center;
+  border: 1px solid #c5b7a3;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .checkout-success__details li {
@@ -4953,8 +4954,6 @@ body.woocommerce-checkout .col-full {
   gap: 2px;
   padding: 8px 16px;
   background: #ffffff;
-  border: 1px solid #c5b7a3;
-  border-radius: 6px;
 }
 
 .checkout-success__detail-label {
