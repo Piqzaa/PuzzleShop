@@ -1,7 +1,8 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
-defined('ABSPATH') || exit;
-
-class MyPetPuzzle_Order_Meta {
-
+class Cpz_Order_Meta {
+    public function __construct() {
+        // TODO : hook woocommerce_order_status_processing → Printify API
+    }
 }

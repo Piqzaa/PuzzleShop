@@ -46,6 +46,31 @@ get_header();
 
             <div class="cpz-container">
 
+                <!-- ========================
+                     STEPPER
+                ========================= -->
+                <div class="cpz-stepper" aria-label="Étapes">
+                    <div class="cpz-stepper__item is-active" data-step="1">
+                        <span class="cpz-stepper__num">1</span>
+                        <span class="cpz-stepper__label">Votre photo</span>
+                    </div>
+                    <div class="cpz-stepper__divider" aria-hidden="true"></div>
+                    <div class="cpz-stepper__item" data-step="2">
+                        <span class="cpz-stepper__num">2</span>
+                        <span class="cpz-stepper__label">Aperçu</span>
+                    </div>
+                    <div class="cpz-stepper__divider" aria-hidden="true"></div>
+                    <div class="cpz-stepper__item" data-step="3">
+                        <span class="cpz-stepper__num">3</span>
+                        <span class="cpz-stepper__label">Format</span>
+                    </div>
+                    <div class="cpz-stepper__divider" aria-hidden="true"></div>
+                    <div class="cpz-stepper__item" data-step="4">
+                        <span class="cpz-stepper__num">4</span>
+                        <span class="cpz-stepper__label">Panier</span>
+                    </div>
+                </div>
+
                 <!-- ÉTAPE 1 : Upload -->
                 <section class="cpz-step cpz-step--upload is-current" data-step="1" aria-labelledby="step1-title">
                     <h2 id="step1-title" class="cpz-step__title">Choisissez votre photo</h2>
@@ -82,31 +107,6 @@ get_header();
 
                     <p class="cpz-upload-error" id="cpz-upload-error" role="alert" aria-live="assertive"></p>
                 </section>
-
-                <!-- ========================
-                     STEPPER
-                ========================= -->
-                <div class="cpz-stepper" aria-label="Étapes">
-                    <div class="cpz-stepper__item is-active" data-step="1">
-                        <span class="cpz-stepper__num">1</span>
-                        <span class="cpz-stepper__label">Votre photo</span>
-                    </div>
-                    <div class="cpz-stepper__divider" aria-hidden="true"></div>
-                    <div class="cpz-stepper__item" data-step="2">
-                        <span class="cpz-stepper__num">2</span>
-                        <span class="cpz-stepper__label">Aperçu</span>
-                    </div>
-                    <div class="cpz-stepper__divider" aria-hidden="true"></div>
-                    <div class="cpz-stepper__item" data-step="3">
-                        <span class="cpz-stepper__num">3</span>
-                        <span class="cpz-stepper__label">Format</span>
-                    </div>
-                    <div class="cpz-stepper__divider" aria-hidden="true"></div>
-                    <div class="cpz-stepper__item" data-step="4">
-                        <span class="cpz-stepper__num">4</span>
-                        <span class="cpz-stepper__label">Panier</span>
-                    </div>
-                </div>
 
                 <!-- ÉTAPE 2 : Preview -->
                 <section class="cpz-step cpz-step--preview" data-step="2" aria-labelledby="step2-title" hidden>

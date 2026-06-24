@@ -345,23 +345,28 @@
       body: formData,
     })
       .then(function (res) {
-        if (!res.ok) throw new Error("Erreur réseau : " + res.status);
-        return res.json();
+        return res.json().then(function (data) {
+          if (!data.success) {
+            throw new Error(
+              data.data && data.data.message
+                ? data.data.message
+                : "Erreur " + res.status,
+            );
+          }
+          return data;
+        });
       })
       .then(function (data) {
-        if (data.success) {
-          goToStep(4);
-        } else {
-          const msg =
-            data.data && data.data.message
-              ? data.data.message
-              : "Une erreur est survenue. Veuillez réessayer.";
-          showError(addError, msg);
+        goToStep(4);
+        var step4 = document.querySelector('.cpz-stepper__item[data-step="4"]');
+        if (step4) step4.classList.add("is-done");
+        if (typeof jQuery !== "undefined") {
+          jQuery(document.body).trigger("wc_fragment_refresh");
         }
       })
       .catch(function (err) {
         console.error("[cpz] add-to-cart error:", err);
-        showError(addError, "Erreur de connexion. Veuillez réessayer.");
+        showError(addError, err.message || "Erreur de connexion. Veuillez réessayer.");
       })
       .finally(function () {
         btnToCart.disabled = false;
