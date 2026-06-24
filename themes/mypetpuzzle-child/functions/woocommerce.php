@@ -8,8 +8,39 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
     <span class="header__cart-count"><?php echo WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?></span>
     <?php
     $fragments['span.header__cart-count'] = ob_get_clean();
+
+    $fragments['.header__cart-dropdown'] = cpz_render_mini_cart_dropdown();
+
     return $fragments;
 });
+
+function cpz_render_mini_cart_dropdown(): string {
+    ob_start();
+    ?>
+    <div class="header__dropdown header__cart-dropdown">
+        <?php if (WC()->cart && !WC()->cart->is_empty()) : ?>
+            <div class="header__cart-items">
+                <?php foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) :
+                    $_product = $cart_item['data'];
+                    if (!$_product || !$_product->exists()) continue;
+                ?>
+                    <div class="header__cart-item">
+                        <?php echo $_product->get_image('thumbnail', ['width' => 50, 'height' => 50, 'class' => 'header__cart-item-img']); ?>
+                        <div class="header__cart-item-info">
+                            <span class="header__cart-item-name"><?php echo esc_html($_product->get_name()); ?></span>
+                            <span class="header__cart-item-qty"><?php echo $cart_item['quantity']; ?> &times; <?php echo WC()->cart->get_product_price($_product); ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="header__cart-btn">Voir mon panier</a>
+        <?php else : ?>
+            <p class="header__cart-empty">Votre panier est vide</p>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
 
 add_action('wp', function () {
     remove_action('storefront_before_content', 'woocommerce_breadcrumb', 10);

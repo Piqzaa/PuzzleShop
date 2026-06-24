@@ -54,33 +54,48 @@ defined('ABSPATH') || exit;
 
             <div class="header__actions">
                 <?php if (is_user_logged_in()) : ?>
-                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__account-link" aria-label="Mon compte">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor"/>
-                            <path d="M10 12C4.47715 12 0 15.5817 0 20H20C20 15.5817 15.5228 12 10 12Z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__logout-link" aria-label="Déconnexion">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16 17 21 12 16 7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
-                        </svg>
-                    </a>
+                    <div class="header__account-wrapper">
+                        <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__account-link" aria-label="Mon compte">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor"/>
+                                <path d="M10 12C4.47715 12 0 15.5817 0 20H20C20 15.5817 15.5228 12 10 12Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <div class="header__dropdown">
+                            <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__dropdown-link">Mon compte</a>
+                            <a href="<?php echo esc_url(wc_get_account_endpoint_url('orders')); ?>" class="header__dropdown-link">Mes commandes</a>
+                            <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-account')); ?>" class="header__dropdown-link">Détails du compte</a>
+                        </div>
+                    </div>
+                    <div class="header__logout-wrapper">
+                        <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__logout-link" aria-label="Déconnexion">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16 17 21 12 16 7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                        </a>
+                        <div class="header__dropdown">
+                            <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__dropdown-link">Se déconnecter</a>
+                        </div>
+                    </div>
                 <?php else : ?>
                     <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__auth-link">Connexion</a>
                     <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__auth-link">Inscription</a>
                 <?php endif; ?>
 
-                <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="header__cart-link" aria-label="Panier">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                        <path d="M6 6H22L20 16H8L6 6Z" fill="currentColor" opacity="0.3"/>
-                        <path d="M6 6C6 6 5.5 2 3.5 2H1M6 6L8 16H20L22 6H6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
-                        <circle cx="19" cy="20" r="1.5" fill="currentColor"/>
-                    </svg>
-                    <span class="header__cart-count"><?php echo WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?></span>
-                </a>
+                <div class="header__cart-wrapper">
+                    <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="header__cart-link" aria-label="Panier">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                            <path d="M6 6H22L20 16H8L6 6Z" fill="currentColor" opacity="0.3"/>
+                            <path d="M6 6C6 6 5.5 2 3.5 2H1M6 6L8 16H20L22 6H6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
+                            <circle cx="19" cy="20" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="header__cart-count"><?php echo WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?></span>
+                    </a>
+                    <?php echo cpz_render_mini_cart_dropdown(); ?>
+                </div>
             </div>
         </div>
     </header>
