@@ -15,62 +15,13 @@ $best_sellers = wc_get_products([
         <p class="bestsellers__desc">Les coups de cœur de nos clients. Des races et des poses qui cartonnent.</p>
         <div class="bestsellers__grid grid grid--3">
             <?php foreach ($best_sellers as $index => $product) :
-                $product_type = $product->get_type();
-                $is_variable  = $product_type === 'variable';
-
-                $variations_data = [];
-                $default_variation_id = 0;
-                $display_price = '';
-                $can_add_to_cart = false;
-                $card_variation_class = '';
-
-                if ($is_variable) {
-                    $available = $product->get_available_variations();
-                    $attrs     = $product->get_variation_attributes();
-                    $size_attr = !empty($attrs) ? key($attrs) : '';
-
-                    $min_price = PHP_FLOAT_MAX;
-
-                    foreach ($available as $variation) {
-                        if (!$variation['is_purchasable'] || !$variation['is_in_stock']) {
-                            continue;
-                        }
-
-                        $var_id = (int) $variation['variation_id'];
-                        $price  = (float) $variation['display_price'];
-
-                        $size_label = '';
-                        foreach ($variation['attributes'] as $attr_key => $attr_value) {
-                            if ($attr_value) {
-                                $taxonomy = str_replace('attribute_', '', $attr_key);
-                                $term = get_term_by('slug', $attr_value, $taxonomy);
-                                $size_label = $term ? $term->name : $attr_value;
-                                break;
-                            }
-                        }
-
-                        $variations_data[] = [
-                            'id'         => $var_id,
-                            'price'      => $price,
-                            'price_text' => wp_strip_all_tags(wc_price($price)),
-                            'size'       => $size_label,
-                        ];
-
-                        if ($price < $min_price) {
-                            $min_price = $price;
-                            $default_variation_id = $var_id;
-                        }
-                    }
-
-                    if (!empty($variations_data)) {
-                        $display_price   = wc_price($min_price);
-                        $can_add_to_cart = true;
-                        $card_variation_class = ' card--variable';
-                    }
-                } else {
-                    $display_price   = wc_price($product->get_price());
-                    $can_add_to_cart = $product->is_purchasable() && $product->is_in_stock();
-                }
+                $product_data = cpz_get_product_variations_data($product);
+                $display_price = $product_data['display_price'];
+                $can_add_to_cart = $product_data['can_add_to_cart'];
+                $card_variation_class = $product_data['is_variable'] && !empty($product_data['variations']) ? ' card--variable' : '';
+                $default_variation_id = $product_data['default_variation_id'];
+                $variations_data = $product_data['variations'];
+                $is_variable = $product_data['is_variable'];
             ?>
                 <div class="card card--hover<?php echo esc_attr($card_variation_class); ?>">
                     <?php if ($index === 0) : ?>

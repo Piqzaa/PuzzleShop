@@ -101,8 +101,13 @@ add_filter('gettext', function ($translation, $text, $domain) {
 }, 10, 3);
 
 function cpz_puzzle_page_url(): string {
-    $page = get_page_by_path('page-puzzle');
-    return $page ? get_permalink($page->ID) : home_url('/');
+    $query = new WP_Query(array(
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+        'name'           => 'page-puzzle',
+        'posts_per_page' => 1,
+    ));
+    return $query->have_posts() ? get_permalink($query->posts[0]->ID) : home_url('/');
 }
 
 add_filter('woocommerce_package_rates', function ($rates, $package) {
@@ -115,3 +120,60 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
     }
     return $rates;
 }, 10, 2);
+
+function cpz_get_product_variations_data(WC_Product $product): array {
+    $data = [
+        'variations'            => [],
+        'default_variation_id'  => 0,
+        'display_price'         => '',
+        'can_add_to_cart'       => false,
+        'is_variable'           => false,
+    ];
+
+    if ($product->get_type() === 'variable') {
+        $data['is_variable'] = true;
+        $available = $product->get_available_variations();
+        $min_price = PHP_FLOAT_MAX;
+
+        foreach ($available as $variation) {
+            if (!$variation['is_purchasable'] || !$variation['is_in_stock']) {
+                continue;
+            }
+
+            $var_id = (int) $variation['variation_id'];
+            $price  = (float) $variation['display_price'];
+
+            $size_label = '';
+            foreach ($variation['attributes'] as $attr_key => $attr_value) {
+                if ($attr_value) {
+                    $taxonomy = str_replace('attribute_', '', $attr_key);
+                    $term = get_term_by('slug', $attr_value, $taxonomy);
+                    $size_label = $term ? $term->name : $attr_value;
+                    break;
+                }
+            }
+
+            $data['variations'][] = [
+                'id'         => $var_id,
+                'price'      => $price,
+                'price_text' => wp_strip_all_tags(wc_price($price)),
+                'size'       => $size_label,
+            ];
+
+            if ($price < $min_price) {
+                $min_price = $price;
+                $data['default_variation_id'] = $var_id;
+            }
+        }
+
+        if (!empty($data['variations'])) {
+            $data['display_price'] = wc_price($min_price);
+            $data['can_add_to_cart'] = true;
+        }
+    } else {
+        $data['display_price'] = wc_price($product->get_price());
+        $data['can_add_to_cart'] = $product->is_purchasable() && $product->is_in_stock();
+    }
+
+    return $data;
+}
