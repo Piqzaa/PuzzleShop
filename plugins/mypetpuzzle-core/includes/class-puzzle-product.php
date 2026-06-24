@@ -20,9 +20,6 @@ class Cpz_Puzzle_Product {
 	// ─────────────────────────────────────────────────────────────
 
 	public function __construct() {
-		// Affichage des meta dans le panier et le checkout
-		add_filter( 'woocommerce_get_item_data',             [ $this, 'display_cart_item_meta' ], 10, 2 );
-
 		// Image dans le panier → vignette dynamique
 		add_filter( 'woocommerce_cart_item_thumbnail',       [ $this, 'cart_item_thumbnail' ], 10, 3 );
 
@@ -90,26 +87,6 @@ class Cpz_Puzzle_Product {
 	// ═════════════════════════════════════════════════════════════
 	//  AFFICHAGE PANIER
 	// ═════════════════════════════════════════════════════════════
-
-	/**
-	 * Affiche le nom du fichier image dans le récap panier / checkout.
-	 * On n'affiche PAS le chemin serveur complet pour des raisons de sécurité.
-	 *
-	 * @param array $item_data  Données affichées dans le panier
-	 * @param array $cart_item  Item panier WC
-	 * @return array
-	 */
-	public function display_cart_item_meta( array $item_data, array $cart_item ): array {
-		if ( ! empty( $cart_item['cpz_variation_label'] ) ) {
-			$item_data[] = [
-				'key'     => __( 'Format', 'mypetpuzzle-child' ),
-				'value'   => esc_html( $cart_item['cpz_variation_label'] ),
-				'display' => '',
-			];
-		}
-
-		return $item_data;
-	}
 
 	// ═════════════════════════════════════════════════════════════
 	//  VIGNETTE DYNAMIQUE PANIER
