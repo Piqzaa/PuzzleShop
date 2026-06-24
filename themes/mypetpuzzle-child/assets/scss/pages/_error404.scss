@@ -1,0 +1,43 @@
+@use "../variables" as *;
+
+.error404-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: $spacing-xl $spacing-lg;
+}
+
+.error404-page__inner {
+  max-width: 480px;
+}
+
+.error404-page__code {
+  font-family: $font-secondary;
+  font-size: clamp(5rem, 12vw, 8rem);
+  color: $color-primary;
+  line-height: 1;
+  margin: 0 0 $spacing-sm;
+}
+
+.error404-page__message {
+  font-family: $font-secondary;
+  font-size: $font-size-h3;
+  color: $color-text;
+  margin: 0 0 $spacing-sm;
+}
+
+.error404-page__text {
+  font-family: $font-primary;
+  font-size: 1rem;
+  color: $color-text-light;
+  margin: 0 0 $spacing-lg;
+}
+
+.error404-page__actions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  flex-wrap: wrap;
+}

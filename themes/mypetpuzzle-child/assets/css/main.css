@@ -5453,6 +5453,48 @@ body.woocommerce-checkout .col-full {
   color: #b59744;
 }
 
+.error404-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.error404-page__inner {
+  max-width: 480px;
+}
+
+.error404-page__code {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(5rem, 12vw, 8rem);
+  color: #c9a84c;
+  line-height: 1;
+  margin: 0 0 8px;
+}
+
+.error404-page__message {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #2c1810;
+  margin: 0 0 8px;
+}
+
+.error404-page__text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #6b5d58;
+  margin: 0 0 24px;
+}
+
+.error404-page__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 body.woocommerce-account .entry-title {
   display: none;
 }
