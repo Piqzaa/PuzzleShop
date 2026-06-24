@@ -25,6 +25,12 @@ class Cpz_Order_Meta {
 		155 => 72665,
 	];
 
+	const RATIO_MAP = [
+		153 => 1.25,
+		154 => 1.2727272727273,
+		155 => 1.25,
+	];
+
 	private string $api_token = '';
 
 	// ─────────────────────────────────────────────────────────────
@@ -94,7 +100,7 @@ class Cpz_Order_Meta {
 
 			$this->log_info( "Upload image vers Printify pour item $item_id" );
 
-			$uploaded_url = $this->upload_image_to_printify( $image_path );
+			$uploaded_url = $this->upload_image_to_printify( $image_path, $variation_id );
 			if ( ! $uploaded_url ) {
 				$order->update_status( 'wc-printify-error', 'Upload image Printify échoué.' );
 				$order->save();
@@ -146,17 +152,27 @@ class Cpz_Order_Meta {
 	//  UPLOAD IMAGE VERS PRINTIFY
 	// ═════════════════════════════════════════════════════════════
 
-	private function upload_image_to_printify( string $file_path ): ?string {
+	private function upload_image_to_printify( string $file_path, int $variation_id = 0 ): ?string {
 		if ( ! file_exists( $file_path ) || ! is_readable( $file_path ) ) {
 			$this->log_error( "Fichier introuvable : $file_path" );
 			return null;
 		}
 
+		$upload_path = $file_path;
+
+		if ( $variation_id && isset( self::RATIO_MAP[ $variation_id ] ) ) {
+			$cropped = $this->crop_to_ratio( $file_path, self::RATIO_MAP[ $variation_id ] );
+			if ( $cropped ) {
+				$upload_path = $cropped;
+			}
+		}
+
 		$url     = self::API_BASE . 'uploads/images.json';
-		$content = file_get_contents( $file_path );
+		$content = file_get_contents( $upload_path );
 
 		if ( false === $content ) {
-			$this->log_error( "Impossible de lire le fichier : $file_path" );
+			$this->log_error( "Impossible de lire le fichier : $upload_path" );
+			if ( $upload_path !== $file_path ) @unlink( $upload_path );
 			return null;
 		}
 
@@ -171,6 +187,8 @@ class Cpz_Order_Meta {
 			] ),
 			'timeout' => 60,
 		] );
+
+		if ( $upload_path !== $file_path ) @unlink( $upload_path );
 
 		if ( is_wp_error( $response ) ) {
 			$this->log_error( 'Upload Printify WP_Error : ' . $response->get_error_message() );
@@ -188,6 +206,47 @@ class Cpz_Order_Meta {
 		$data = json_decode( $body_response, true );
 
 		return $data['preview_url'] ?? $data['url'] ?? null;
+	}
+
+	private function crop_to_ratio( string $file_path, float $target_ratio ): ?string {
+		if ( ! function_exists( 'wp_get_image_editor' ) ) {
+			return null;
+		}
+
+		$editor = wp_get_image_editor( $file_path );
+		if ( is_wp_error( $editor ) ) {
+			$this->log_error( 'Échec chargement wp_get_image_editor : ' . $editor->get_error_message() );
+			return null;
+		}
+
+		$size         = $editor->get_size();
+		$current_ratio = $size['width'] / $size['height'];
+
+		if ( abs( $current_ratio - $target_ratio ) < 0.01 ) {
+			return null;
+		}
+
+		if ( $current_ratio > $target_ratio ) {
+			$new_w = round( $size['height'] * $target_ratio );
+			$x     = round( ( $size['width'] - $new_w ) / 2 );
+			$editor->crop( $x, 0, $new_w, $size['height'] );
+		} else {
+			$new_h = round( $size['width'] / $target_ratio );
+			$y     = round( ( $size['height'] - $new_h ) / 2 );
+			$editor->crop( 0, $y, $size['width'], $new_h );
+		}
+
+		$upload_dir  = wp_upload_dir();
+		$filename    = 'cropped_' . basename( $file_path );
+		$dest        = trailingslashit( $upload_dir['basedir'] ) . 'mypetpuzzle-temp/' . $filename;
+
+		$saved = $editor->save( $dest );
+		if ( is_wp_error( $saved ) ) {
+			$this->log_error( 'Échec sauvegarde crop : ' . $saved->get_error_message() );
+			return null;
+		}
+
+		return $dest;
 	}
 
 	// ═════════════════════════════════════════════════════════════
