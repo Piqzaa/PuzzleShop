@@ -104,3 +104,14 @@ function cpz_puzzle_page_url(): string {
     $page = get_page_by_path('page-puzzle');
     return $page ? get_permalink($page->ID) : home_url('/');
 }
+
+add_filter('woocommerce_package_rates', function ($rates, $package) {
+    $subtotal = WC()->cart ? WC()->cart->get_subtotal() : 0;
+    if ($subtotal >= 50) {
+        foreach ($rates as $rate) {
+            $rate->cost = 0;
+            $rate->taxes = array();
+        }
+    }
+    return $rates;
+}, 10, 2);
