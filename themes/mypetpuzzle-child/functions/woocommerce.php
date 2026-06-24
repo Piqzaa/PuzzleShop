@@ -100,4 +100,10 @@ add_filter('gettext', function ($translation, $text, $domain) {
     return $translation;
 }, 10, 3);
 
-
+function cpz_puzzle_page_url(): string {
+    $pages = get_pages(array(
+        'meta_key'   => '_wp_page_template',
+        'meta_value' => 'page-page-puzzle.php',
+    ));
+    return ! empty($pages) ? get_permalink($pages[0]->ID) : home_url('/');
+}

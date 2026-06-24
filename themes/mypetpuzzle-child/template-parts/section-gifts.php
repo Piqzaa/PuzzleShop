@@ -10,7 +10,7 @@
                 <div class="gifts__card-content">
                     <h3 class="gifts__card-title">Puzzle personnalisé</h3>
                     <p class="gifts__card-text">Sa photo transformée en puzzle. Un cadeau unique qui fait fondre le cœur.</p>
-                    <a class="btn btn--primary" href="<?php echo esc_url(home_url('/creer-mon-puzzle')); ?>">Créer mon puzzle</a>
+                    <a class="btn btn--primary" href="<?php echo esc_url(cpz_puzzle_page_url()); ?>">Créer mon puzzle</a>
                 </div>
             </div>
             <div class="gifts__card">
