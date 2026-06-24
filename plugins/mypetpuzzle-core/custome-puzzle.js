@@ -160,16 +160,22 @@
   }
 
   function getCroppedBlob() {
-    if (!cropper) return null;
-    const canvas = cropper.getCroppedCanvas({
-      maxWidth: 4096,
-      maxHeight: 4096,
-    });
-    const mimeType =
-      state.file && state.file.type === "image/png" ? "image/png" : "image/jpeg";
-    const quality = mimeType === "image/jpeg" ? 0.92 : undefined;
+    if (!cropper || !state.imageDataUrl) return null;
+
+    var data = cropper.getData();
+
     return new Promise(function (resolve) {
-      canvas.toBlob(resolve, mimeType, quality);
+      var img = new Image();
+      img.onload = function () {
+        var cvs = document.createElement("canvas");
+        cvs.width = data.width;
+        cvs.height = data.height;
+        var ctx = cvs.getContext("2d");
+        ctx.drawImage(img, data.x, data.y, data.width, data.height, 0, 0, data.width, data.height);
+        var mime = state.file && state.file.type === "image/png" ? "image/png" : "image/jpeg";
+        cvs.toBlob(resolve, mime, mime === "image/jpeg" ? 0.92 : undefined);
+      };
+      img.src = state.imageDataUrl;
     });
   }
 
