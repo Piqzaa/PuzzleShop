@@ -25,7 +25,14 @@ function cpz_render_mini_cart_dropdown(): string {
                     if (!$_product || !$_product->exists()) continue;
                 ?>
                     <div class="header__cart-item">
-                        <?php echo $_product->get_image('thumbnail', ['width' => 50, 'height' => 50, 'class' => 'header__cart-item-img']); ?>
+                        <?php
+                        $thumb_url = $cart_item['cpz_image_thumb_url'] ?? '';
+                        if ($thumb_url) :
+                            echo '<img src="' . esc_url($thumb_url) . '" alt="Photo puzzle" width="50" height="50" class="header__cart-item-img">';
+                        else :
+                            echo $_product->get_image('thumbnail', ['width' => 50, 'height' => 50, 'class' => 'header__cart-item-img']);
+                        endif;
+                        ?>
                         <div class="header__cart-item-info">
                             <span class="header__cart-item-name"><?php echo esc_html($_product->get_name()); ?></span>
                             <span class="header__cart-item-qty"><?php echo $cart_item['quantity']; ?> &times; <?php echo WC()->cart->get_product_price($_product); ?></span>
