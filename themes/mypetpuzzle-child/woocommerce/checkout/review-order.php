@@ -68,16 +68,39 @@ defined( 'ABSPATH' ) || exit;
 			<span class="checkout-summary__row-label">Livraison</span>
 			<span class="checkout-summary__row-value">
 				<?php
-				$shipping_threshold = 50;
-				$cart_subtotal = WC()->cart->get_subtotal();
-				$applied_coupons = WC()->cart->get_applied_coupons();
-				if ( ! empty( $applied_coupons ) ) {
-					$cart_subtotal = WC()->cart->get_cart_contents_total();
-				}
-				if ( $cart_subtotal >= $shipping_threshold ) {
+				$subtotal = WC()->cart->get_subtotal();
+				$free_threshold = 50;
+				if ($subtotal >= $free_threshold) {
 					echo 'Offert';
 				} else {
-					echo wc_price( 4.90 );
+					$customer = WC()->customer;
+					if (!empty(WC()->session) && empty($customer->get_shipping_country())) {
+						$base = wc_get_base_location();
+						$customer->set_shipping_country($base['country']);
+						if (!empty($base['state'])) {
+							$customer->set_shipping_state($base['state']);
+						}
+						$customer->set_shipping_postcode('');
+						$customer->set_shipping_city('');
+					}
+
+					$packages = WC()->shipping()->get_packages();
+					$shown = false;
+					if (!empty($packages)) {
+						$package = reset($packages);
+						$rates = $package['rates'];
+						if (!empty($rates)) {
+							$chosen = WC()->session->get('chosen_shipping_methods', array());
+							$chosen = !empty($chosen) ? reset($chosen) : '';
+							$rate = isset($rates[$chosen]) ? $rates[$chosen] : reset($rates);
+							echo wc_price($rate->cost + array_sum($rate->taxes));
+							$shown = true;
+						}
+					}
+					if (!$shown) {
+						$remaining = wc_price($free_threshold - $subtotal);
+						printf('Offert dès %s', $remaining);
+					}
 				}
 				?>
 			</span>
