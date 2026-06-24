@@ -3819,7 +3819,12 @@ body.woocommerce-cart .site-main {
 .cart-page__form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.woocommerce-cart-form__contents {
+  border: 1px solid #c5b7a3;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .cart-item {
@@ -3830,9 +3835,10 @@ body.woocommerce-cart .site-main {
   align-items: center;
   padding: 16px;
   background: #ffffff;
-  border: 1px solid #c5b7a3;
-  border-radius: 8px;
   position: relative;
+}
+.cart-item + .cart-item {
+  border-top: 1px solid #c5b7a3;
 }
 
 @media (max-width: 1024px) {

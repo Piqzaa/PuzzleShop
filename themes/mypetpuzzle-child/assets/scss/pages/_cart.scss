@@ -57,7 +57,12 @@ body.woocommerce-cart .site-main {
 .cart-page__form {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+}
+
+.woocommerce-cart-form__contents {
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .cart-item {
@@ -68,9 +73,11 @@ body.woocommerce-cart .site-main {
   align-items: center;
   padding: $spacing-md;
   background: $color-white;
-  border: 1px solid $color-border;
-  border-radius: 8px;
   position: relative;
+
+  & + & {
+    border-top: 1px solid $color-border;
+  }
 }
 
 @media (max-width: $bp-desktop) {
