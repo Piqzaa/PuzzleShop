@@ -946,8 +946,7 @@ body [role=button] {
   flex-shrink: 0;
 }
 
-.header__account-link,
-.header__logout-link {
+.header__account-link {
   display: flex;
   align-items: center;
   color: #2c1810;
@@ -955,51 +954,13 @@ body [role=button] {
 }
 
 .header__account-link:hover,
-.header__account-link:focus-visible,
-.header__logout-link:hover,
-.header__logout-link:focus-visible {
+.header__account-link:focus-visible {
   color: #c9a84c;
-}
-
-.header__auth-link {
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-.header__auth-link:first-of-type {
-  padding: 6px 14px;
-  color: #2c1810;
-  border: 1.5px solid #c5b7a3;
-  background: transparent;
-}
-.header__auth-link:first-of-type:hover, .header__auth-link:first-of-type:focus-visible {
-  color: #c9a84c;
-  border-color: #c9a84c;
-}
-.header__auth-link:last-of-type {
-  padding: 7px 18px;
-  color: #ffffff;
-  background-color: #c9a84c;
-  border: 1.5px solid #c9a84c;
-}
-.header__auth-link:last-of-type:hover, .header__auth-link:last-of-type:focus-visible {
-  background-color: #b8942e;
-  border-color: #b8942e;
-  color: #ffffff;
 }
 
 .header__account-wrapper,
 .header__cart-wrapper {
   position: relative;
-}
-
-.header__logout-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
 }
 
 .header__dropdown {
@@ -1031,9 +992,7 @@ body [role=button] {
 .header__account-wrapper:hover .header__dropdown,
 .header__account-wrapper:focus-within .header__dropdown,
 .header__cart-wrapper:hover .header__dropdown,
-.header__cart-wrapper:focus-within .header__dropdown,
-.header__logout-wrapper:hover .header__dropdown,
-.header__logout-wrapper:focus-within .header__dropdown {
+.header__cart-wrapper:focus-within .header__dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -1052,6 +1011,12 @@ body [role=button] {
 .header__dropdown-link:hover, .header__dropdown-link:focus-visible {
   background-color: rgba(201, 168, 76, 0.08);
   color: #c9a84c;
+}
+
+.header__dropdown-divider {
+  margin: 4px 0;
+  border: none;
+  border-top: 1px solid #c5b7a3;
 }
 
 .header__cart-dropdown {
@@ -1238,9 +1203,7 @@ body [role=button] {
   .header__nav-list .current_page_item a::after {
     display: none;
   }
-  .header__account-link,
-  .header__logout-link,
-  .header__auth-link {
+  .header__account-link {
     display: none;
   }
   .header__dropdown {

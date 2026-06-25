@@ -177,8 +177,7 @@
   flex-shrink: 0;
 }
 
-.header__account-link,
-.header__logout-link {
+.header__account-link {
   display: flex;
   align-items: center;
   color: $color-text;
@@ -186,46 +185,14 @@
 }
 
 .header__account-link:hover,
-.header__account-link:focus-visible,
-.header__logout-link:hover,
-.header__logout-link:focus-visible {
+.header__account-link:focus-visible {
   color: $color-primary;
 }
 
-.header__auth-link {
-  font-family: $font-primary;
-  font-size: $font-size-small;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
-
-  &:first-of-type {
-    padding: 6px 14px;
-    color: $color-text;
-    border: 1.5px solid $color-border;
-    background: transparent;
-
-    &:hover,
-    &:focus-visible {
-      color: $color-primary;
-      border-color: $color-primary;
-    }
-  }
-
-  &:last-of-type {
-    padding: 7px 18px;
-    color: $color-white;
-    background-color: $color-primary;
-    border: 1.5px solid $color-primary;
-
-    &:hover,
-    &:focus-visible {
-      background-color: #b8942e;
-      border-color: #b8942e;
-      color: $color-white;
-    }
-  }
+.header__dropdown-divider {
+  margin: 4px 0;
+  border: none;
+  border-top: 1px solid $color-border;
 }
 
 // ── Dropdown wrappers ────────────────────────
@@ -235,11 +202,7 @@
   position: relative;
 }
 
-.header__logout-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+
 
 // ── Dropdown generic ─────────────────────────
 
@@ -276,9 +239,7 @@
 .header__account-wrapper:hover .header__dropdown,
 .header__account-wrapper:focus-within .header__dropdown,
 .header__cart-wrapper:hover .header__dropdown,
-.header__cart-wrapper:focus-within .header__dropdown,
-.header__logout-wrapper:hover .header__dropdown,
-.header__logout-wrapper:focus-within .header__dropdown {
+.header__cart-wrapper:focus-within .header__dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -504,9 +465,7 @@
     display: none;
   }
 
-  .header__account-link,
-  .header__logout-link,
-  .header__auth-link {
+  .header__account-link {
     display: none;
   }
 

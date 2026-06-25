@@ -53,36 +53,30 @@ defined('ABSPATH') || exit;
             </nav>
 
             <div class="header__actions">
-                <?php if (is_user_logged_in()) : ?>
-                    <div class="header__account-wrapper">
-                        <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__account-link" aria-label="Mon compte">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                                <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor"/>
-                                <path d="M10 12C4.47715 12 0 15.5817 0 20H20C20 15.5817 15.5228 12 10 12Z" fill="currentColor"/>
-                            </svg>
-                        </a>
-                        <div class="header__dropdown">
+                <div class="header__account-wrapper">
+                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__account-link" aria-label="Mon compte">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor"/>
+                            <path d="M10 12C4.47715 12 0 15.5817 0 20H20C20 15.5817 15.5228 12 10 12Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <div class="header__dropdown">
+                        <?php if (is_user_logged_in()) : ?>
                             <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__dropdown-link">Mon compte</a>
                             <a href="<?php echo esc_url(wc_get_account_endpoint_url('orders')); ?>" class="header__dropdown-link">Mes commandes</a>
                             <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-account')); ?>" class="header__dropdown-link">Détails du compte</a>
-                        </div>
-                    </div>
-                    <div class="header__logout-wrapper">
-                        <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__logout-link" aria-label="Déconnexion">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                                <polyline points="16 17 21 12 16 7"/>
-                                <line x1="21" y1="12" x2="9" y2="12"/>
-                            </svg>
-                        </a>
-                        <div class="header__dropdown">
+                            <hr class="header__dropdown-divider">
+                            <a href="<?php echo esc_url(home_url('/contact')); ?>" class="header__dropdown-link">Nous contacter</a>
+                            <hr class="header__dropdown-divider">
                             <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__dropdown-link">Se déconnecter</a>
-                        </div>
+                        <?php else : ?>
+                            <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__dropdown-link">Connexion</a>
+                            <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__dropdown-link">Inscription</a>
+                            <hr class="header__dropdown-divider">
+                            <a href="<?php echo esc_url(home_url('/contact')); ?>" class="header__dropdown-link">Nous contacter</a>
+                        <?php endif; ?>
                     </div>
-                <?php else : ?>
-                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__auth-link">Connexion</a>
-                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__auth-link">Inscription</a>
-                <?php endif; ?>
+                </div>
 
                 <div class="header__cart-wrapper">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="header__cart-link" aria-label="Panier">
