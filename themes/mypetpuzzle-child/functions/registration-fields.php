@@ -4,7 +4,9 @@ defined('ABSPATH') || exit;
 
 add_action('init', function () {
     if (isset($_GET['inscription']) || isset($_POST['register'])) {
-        add_filter('pre_option_woocommerce_registration_generate_password', '__return_false');
+        add_filter('pre_option_woocommerce_registration_generate_password', function () {
+            return 'no';
+        });
     }
 });
 
@@ -36,9 +38,6 @@ add_action('woocommerce_created_customer', function ($customer_id) {
         }
     }
 
-    if (!empty($_POST['password'])) {
-        wp_set_password($_POST['password'], $customer_id);
-    }
 });
 
 add_action('init', function () {
