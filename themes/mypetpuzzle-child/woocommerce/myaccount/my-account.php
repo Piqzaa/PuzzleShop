@@ -15,6 +15,8 @@ defined( 'ABSPATH' ) || exit;
     <h1 class="myaccount-page__title"><?php esc_html_e( 'Mon compte', 'mypetpuzzle-child' ); ?></h1>
   </header>
 
+  <?php wc_print_notices(); ?>
+
   <?php do_action( 'woocommerce_account_navigation' ); ?>
 
   <div class="myaccount-page__content">

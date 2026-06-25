@@ -1,4 +1,26 @@
 <section class="hero section section--surface" data-animate>
+    <?php if ('complete' === get_query_var('registration', '')) : ?>
+    <div id="registration-notice" style="position:absolute;top:0;left:0;right:0;z-index:100;background:#ede8dc;color:#2c1810;text-align:center;padding:14px 48px 14px 24px;font-size:0.9375rem;border-bottom:1px solid #c9a84c;cursor:pointer;transition:opacity 0.4s ease,transform 0.4s ease;">
+        <span style="display:inline-flex;align-items:center;gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <?php esc_html_e('Un email de confirmation vous a été envoyé. Cliquez sur le lien pour activer votre compte.', 'mypetpuzzle-child'); ?>
+        </span>
+        <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#8b6f47;font-size:18px;line-height:1;">&times;</span>
+    </div>
+    <script>
+    (function(){
+        var el = document.getElementById('registration-notice');
+        if (!el) return;
+        var close = function(){
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(-100%)';
+            setTimeout(function(){ el.style.display = 'none'; }, 400);
+        };
+        el.addEventListener('click', close);
+        setTimeout(close, 8000);
+    })();
+    </script>
+    <?php endif; ?>
     <canvas class="hero__canvas" aria-hidden="true"></canvas>
     <div class="hero__inner">
         <div class="hero__content">
