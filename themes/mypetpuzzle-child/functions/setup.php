@@ -31,6 +31,7 @@ function mypetpuzzle_flush_rewrites() {
 add_action('after_switch_theme', 'mypetpuzzle_flush_rewrites');
 
 function mypetpuzzle_registration_redirect($redirect) {
-    return wc_get_page_permalink('myaccount');
+    wp_clear_auth_cookie();
+    return add_query_arg('registration', 'complete', home_url('/'));
 }
 add_filter('woocommerce_registration_redirect', 'mypetpuzzle_registration_redirect');
