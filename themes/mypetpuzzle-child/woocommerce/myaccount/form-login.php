@@ -109,7 +109,7 @@ $register_url = add_query_arg('inscription', '1', $login_url);
         <h2 class="auth-title">Connexion</h2>
       <?php endif; ?>
 
-      <form class="woocommerce-form woocommerce-form-login login" method="post" novalidate>
+      <form class="woocommerce-form woocommerce-form-login login" method="post" action="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>" novalidate>
 
         <?php do_action('woocommerce_login_form_start'); ?>
 
