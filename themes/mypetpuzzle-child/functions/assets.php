@@ -31,6 +31,7 @@ function mypetpuzzle_child_enqueue_assets() {
         'mypetpuzzle-child-puzzle-floating' => ['file' => 'puzzle-floating'],
         'mypetpuzzle-child-cookies'         => ['file' => 'cookies'],
         'mypetpuzzle-child-product-card'    => ['file' => 'product-card', 'deps' => ['wc-cart-fragments']],
+
     ];
 
     foreach ($scripts as $handle => $cfg) {

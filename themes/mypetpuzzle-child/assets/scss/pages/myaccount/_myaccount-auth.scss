@@ -1,0 +1,175 @@
+@use "../../variables" as *;
+
+// ── Auth container ─────────────────────────
+
+.myaccount-auth {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-md $spacing-xl;
+
+  .myaccount-page__content {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    padding: $spacing-xl $spacing-lg;
+    box-shadow: $shadow-md;
+  }
+}
+
+// ── Title ──────────────────────────────────
+
+.auth-title {
+  font-family: $font-secondary;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $color-text;
+  margin: 0 0 $spacing-lg;
+  text-align: center;
+}
+
+// ── Description ────────────────────────────
+
+.auth-description {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin-bottom: $spacing-lg;
+  text-align: center;
+}
+
+// ── Form rows (WooCommerce overrides) ──────
+
+.form-row-first,
+.form-row-last {
+  width: 48%;
+  float: left;
+}
+
+.form-row-first {
+  margin-right: 4%;
+}
+
+.clear {
+  clear: both;
+}
+
+// ── Switch link ────────────────────────────
+
+.auth-switch {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-border;
+  text-align: center;
+  font-size: $font-size-small;
+  color: $color-text-light;
+}
+
+.auth-link {
+  font-weight: 600;
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: none;
+  }
+}
+
+// ── Lost password link ─────────────────────
+
+.myaccount-auth .lost_password {
+  margin-top: $spacing-md;
+  text-align: center;
+  font-size: $font-size-small;
+
+  a {
+    color: $color-text-light;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+// ── Remember me checkbox ───────────────────
+
+.woocommerce-form-login__rememberme {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+  font-size: $font-size-small;
+  font-weight: 500 !important;
+  user-select: none;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: $color-primary;
+    margin: 0;
+  }
+}
+
+// ── Submit buttons full width ──────────────
+
+.woocommerce-form-login__submit,
+.woocommerce-form-register__submit {
+  width: 100%;
+  justify-content: center;
+}
+
+// ── Lost / Reset password forms ───────────
+
+.myaccount-auth .woocommerce-ResetPassword {
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+
+  .form-row-first,
+  .form-row-last {
+    float: none;
+    width: 100%;
+  }
+
+  .clear {
+    display: none;
+  }
+}
+
+// ── Auto-password message ──────────────────
+
+.auth-auto-password {
+  font-size: $font-size-small;
+  color: $color-text-light;
+  margin-bottom: $spacing-md;
+}
+
+// ── Notices override ──────────────────────
+
+.myaccount-auth .woocommerce-message,
+.myaccount-auth .woocommerce-info,
+.myaccount-auth .woocommerce-error {
+  margin-bottom: $spacing-lg;
+}
+
+// ── Responsive ─────────────────────────────
+
+@media (max-width: $bp-mobile) {
+  .myaccount-auth {
+    padding: $spacing-md 12px $spacing-xl;
+
+    .myaccount-page__content {
+      padding: $spacing-lg $spacing-md;
+      border-radius: 8px;
+    }
+  }
+
+  .form-row-first,
+  .form-row-last {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+}
