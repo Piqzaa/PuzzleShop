@@ -47,7 +47,7 @@ defined('ABSPATH') || exit;
                         <li><a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__nav-link">Déconnexion</a></li>
                     <?php else : ?>
                         <li><a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__nav-link">Connexion</a></li>
-                        <li><a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__nav-link">Inscription</a></li>
+                        <li><a href="<?php echo esc_url(add_query_arg('inscription', '1', get_permalink(get_option('woocommerce_myaccount_page_id')))); ?>" class="header__nav-link">Inscription</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -71,7 +71,7 @@ defined('ABSPATH') || exit;
                             <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="header__dropdown-link">Se déconnecter</a>
                         <?php else : ?>
                             <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__dropdown-link">Connexion</a>
-                            <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="header__dropdown-link">Inscription</a>
+                            <a href="<?php echo esc_url(add_query_arg('inscription', '1', get_permalink(get_option('woocommerce_myaccount_page_id')))); ?>" class="header__dropdown-link">Inscription</a>
                             <hr class="header__dropdown-divider">
                             <a href="<?php echo esc_url(home_url('/contact')); ?>" class="header__dropdown-link">Nous contacter</a>
                         <?php endif; ?>
