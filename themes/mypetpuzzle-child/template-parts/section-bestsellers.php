@@ -2,6 +2,7 @@
 $best_sellers = wc_get_products([
     'limit'    => 3,
     'status'   => 'publish',
+    'exclude'  => [MYPETPUZZLE_CUSTOM_PRODUCT_ID],
     'meta_key' => 'total_sales',
     'orderby'  => 'meta_value_num',
     'order'    => 'DESC',
