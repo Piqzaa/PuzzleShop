@@ -14,18 +14,15 @@ defined( 'ABSPATH' ) || exit;
 
 class Cpz_Order_Meta {
 
-	const API_BASE      = 'https://api.printify.com/v1/';
-	const SHOP_ID       = 27917431;
-	const BLUEPRINT_ID  = 616;
-	const PRINT_PROVIDER_ID = 1;
-
-	const VARIANT_MAP = [
-		153 => 72663,
-		154 => 72664,
-		155 => 72665,
-	];
-
 	private string $api_token = '';
+
+	private function get_variant_map(): array {
+		return apply_filters( 'cpz_printify_variant_map', [
+			153 => 72663,
+			154 => 72664,
+			155 => 72665,
+		] );
+	}
 
 	// ─────────────────────────────────────────────────────────────
 
@@ -87,8 +84,9 @@ class Cpz_Order_Meta {
 
 			$image_path   = wp_normalize_path( $item->get_meta( '_cpz_image_path' ) );
 			$variation_id = $item->get_variation_id();
+			$variant_map  = $this->get_variant_map();
 
-			if ( empty( $image_path ) || ! isset( self::VARIANT_MAP[ $variation_id ] ) ) {
+			if ( empty( $image_path ) || ! isset( $variant_map[ $variation_id ] ) ) {
 				continue;
 			}
 
@@ -102,10 +100,10 @@ class Cpz_Order_Meta {
 			}
 
 			$printify_items[] = [
-				'blueprint_id'     => (string) self::BLUEPRINT_ID,
-				'variant_id'       => self::VARIANT_MAP[ $variation_id ],
+				'blueprint_id'     => (string) MYPETPUZZLE_PRINTIFY_BLUEPRINT_ID,
+				'variant_id'       => $variant_map[ $variation_id ],
 				'quantity'         => $item->get_quantity(),
-				'print_provider_id' => self::PRINT_PROVIDER_ID,
+				'print_provider_id' => MYPETPUZZLE_PRINTIFY_PRINT_PROVIDER_ID,
 				'sku'              => $item->get_product() ? $item->get_product()->get_sku() : 'var-' . $variation_id,
 				'print_areas'      => [
 					'front' => [
@@ -195,7 +193,7 @@ class Cpz_Order_Meta {
 	// ═════════════════════════════════════════════════════════════
 
 	private function create_printify_order( WC_Order $order, array $line_items ): ?array {
-		$url     = self::API_BASE . 'shops/' . self::SHOP_ID . '/orders.json';
+		$url     = self::API_BASE . 'shops/' . MYPETPUZZLE_PRINTIFY_SHOP_ID . '/orders.json';
 		$addr    = $order->get_address( 'shipping' );
 		$billing = $order->get_address( 'billing' );
 

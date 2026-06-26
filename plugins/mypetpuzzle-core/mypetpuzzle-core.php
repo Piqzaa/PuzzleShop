@@ -17,6 +17,10 @@ define( 'MYPETPUZZLE_VERSION',     '1.0.0' );
 define( 'MYPETPUZZLE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MYPETPUZZLE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
+defined( 'MYPETPUZZLE_PRINTIFY_SHOP_ID' )        || define( 'MYPETPUZZLE_PRINTIFY_SHOP_ID', 27917431 );
+defined( 'MYPETPUZZLE_PRINTIFY_BLUEPRINT_ID' )   || define( 'MYPETPUZZLE_PRINTIFY_BLUEPRINT_ID', 616 );
+defined( 'MYPETPUZZLE_PRINTIFY_PRINT_PROVIDER_ID' ) || define( 'MYPETPUZZLE_PRINTIFY_PRINT_PROVIDER_ID', 1 );
+
 // ─── Chargement des classes ───────────────────────────────────
 require_once MYPETPUZZLE_PLUGIN_DIR . 'includes/class-upload-handler.php';
 require_once MYPETPUZZLE_PLUGIN_DIR . 'includes/class-puzzle-product.php';
