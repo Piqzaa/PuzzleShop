@@ -20,7 +20,7 @@ add_action('woocommerce_created_customer', function ($customer_id) {
 
     ob_start();
     $verify_url = esc_url($verify_url);
-    get_template_part('template-parts/email-verification');
+    include get_stylesheet_directory() . '/template-parts/email-verification.php';
     $message = ob_get_clean();
 
     $headers = ['Content-Type: text/html; charset=UTF-8'];
