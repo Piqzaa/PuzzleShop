@@ -99,7 +99,7 @@ function mypetpuzzle_child_enqueue_assets() {
         );
     }
 
-    if (is_page_template('page-page-puzzle.php')) {
+    if (is_page('page-puzzle')) {
         wp_enqueue_style(
             'cropperjs',
             'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css',
