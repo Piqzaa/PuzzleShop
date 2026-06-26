@@ -5,16 +5,16 @@
     $('body').off('click', '#respond p.stars a');
 
     $(document).on('click', '#respond p.stars a', function() {
-      var $star = $(this),
-          $stars = $star.closest('.stars').find('a'),
-          $rating = $star.closest('#respond').find('#rating'),
-          $container = $star.closest('.stars'),
-          clickedIndex = $stars.index($star);
+      const $star = $(this);
+      const $stars = $star.closest('.stars').find('a');
+      const $rating = $star.closest('#respond').find('#rating');
+      const $container = $star.closest('.stars');
+      const clickedIndex = $stars.index($star);
 
       $rating.val($stars.length - clickedIndex);
 
       $stars.each(function(i) {
-        var $this = $(this);
+        const $this = $(this);
         if (i >= clickedIndex) {
           $this.addClass('active').attr('aria-checked', 'true');
         } else {

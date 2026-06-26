@@ -162,17 +162,17 @@
   function getCroppedBlob() {
     if (!cropper || !state.imageDataUrl) return null;
 
-    var data = cropper.getData();
+    const data = cropper.getData();
 
     return new Promise(function (resolve) {
-      var img = new Image();
+      const img = new Image();
       img.onload = function () {
-        var cvs = document.createElement("canvas");
+        const cvs = document.createElement("canvas");
         cvs.width = data.width;
         cvs.height = data.height;
-        var ctx = cvs.getContext("2d");
+        const ctx = cvs.getContext("2d");
         ctx.drawImage(img, data.x, data.y, data.width, data.height, 0, 0, data.width, data.height);
-        var mime = state.file && state.file.type === "image/png" ? "image/png" : "image/jpeg";
+        const mime = state.file && state.file.type === "image/png" ? "image/png" : "image/jpeg";
         cvs.toBlob(resolve, mime, mime === "image/jpeg" ? 0.92 : undefined);
       };
       img.src = state.imageDataUrl;
@@ -328,7 +328,7 @@
       })
       .then(function (data) {
         goToStep(4);
-        var step4 = document.querySelector('.cpz-stepper__item[data-step="4"]');
+        const step4 = document.querySelector('.cpz-stepper__item[data-step="4"]');
         if (step4) step4.classList.add("is-done");
         if (typeof jQuery !== "undefined") {
           jQuery(document.body).trigger("wc_fragment_refresh");

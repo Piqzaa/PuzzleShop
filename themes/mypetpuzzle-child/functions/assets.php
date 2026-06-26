@@ -51,7 +51,7 @@ function mypetpuzzle_child_enqueue_assets() {
 
     wp_add_inline_script('mypetpuzzle-child-header', '
         document.addEventListener("DOMContentLoaded",function(){
-            var d=function(){document.querySelectorAll(".woocommerce-message,.woocommerce-info,.woocommerce-error").forEach(function(n){
+            const d=function(){document.querySelectorAll(".woocommerce-message,.woocommerce-info,.woocommerce-error").forEach(function(n){
                 if(!n.dataset.dismissTimer){
                     n.dataset.dismissTimer="true";
                     n.style.transition="opacity .5s ease";
