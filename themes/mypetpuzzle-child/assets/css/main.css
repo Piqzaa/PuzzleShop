@@ -2669,6 +2669,8 @@ body [role=button] {
   }
 }
 .cpz-page {
+  display: flex;
+  flex-direction: column;
   background-color: #f5f0e8;
   min-height: 100vh;
 }
@@ -3117,6 +3119,7 @@ body [role=button] {
 }
 
 .cpz-reassurance {
+  margin-top: auto;
   background-color: #ede8dc;
   border-top: 1px solid #c5b7a3;
   padding: 48px 24px;
