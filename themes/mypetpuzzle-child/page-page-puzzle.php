@@ -8,9 +8,6 @@
 
 defined('ABSPATH') || exit;
 
-// ID du produit puzzle personnalisé (définir dans wp-config.php pour surcharger)
-defined('MYPETPUZZLE_CUSTOM_PRODUCT_ID') || define('MYPETPUZZLE_CUSTOM_PRODUCT_ID', 151);
-
 $product = wc_get_product(MYPETPUZZLE_CUSTOM_PRODUCT_ID);
 
 if (!$product || !$product->is_type('variable')) {
