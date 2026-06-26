@@ -15,7 +15,14 @@
 defined('ABSPATH') || exit;
 
 if (isset($args)) {
-    extract($args);
+    $product              = $args['product'] ?? null;
+    $display_price        = $args['display_price'] ?? '';
+    $can_add_to_cart      = $args['can_add_to_cart'] ?? false;
+    $default_variation_id = $args['default_variation_id'] ?? 0;
+    $variations_data      = $args['variations_data'] ?? [];
+    $is_variable          = $args['is_variable'] ?? false;
+    $badge_html           = $args['badge_html'] ?? '';
+    $card_class_attr      = $args['card_class_attr'] ?? '';
 }
 ?>
 <div <?php echo $card_class_attr; ?>>
