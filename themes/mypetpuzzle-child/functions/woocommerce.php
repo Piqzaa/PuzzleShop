@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 defined('ABSPATH') || exit;
 
 add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {

@@ -10,6 +10,8 @@
  * @package MyPetPuzzle_Core
  */
 
+declare( strict_types=1 );
+
 defined( 'ABSPATH' ) || exit;
 
 class Cpz_Order_Meta {

@@ -10,6 +10,8 @@
  * @package MyPetPuzzle_Core
  */
 
+declare( strict_types=1 );
+
 defined( 'ABSPATH' ) || exit;
 
 class Cpz_Puzzle_Product {
@@ -42,7 +44,7 @@ class Cpz_Puzzle_Product {
 	 * @param string $image_path   Chemin absolu de l'image stockée
 	 * @return true|WP_Error
 	 */
-	public static function add_to_cart( int $product_id, int $variation_id, string $image_path ) {
+	public static function add_to_cart( int $product_id, int $variation_id, string $image_path ): bool|\WP_Error {
 		// Vérifie que le produit et la variation existent
 		$product   = wc_get_product( $product_id );
 		$variation = wc_get_product( $variation_id );

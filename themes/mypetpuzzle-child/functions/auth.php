@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 defined('ABSPATH') || exit;
 
 add_filter('woocommerce_email_enabled_customer_new_account', '__return_false');

@@ -9,6 +9,8 @@
  * @package MyPetPuzzle_Core
  */
 
+declare( strict_types=1 );
+
 defined( 'ABSPATH' ) || exit;
 
 class Cpz_Upload_Handler {
@@ -126,7 +128,7 @@ class Cpz_Upload_Handler {
 	 * @param string $real_mime MIME type vérifié
 	 * @return string|WP_Error  Chemin absolu du fichier stocké
 	 */
-	private function store_temp_file( array $file, string $real_mime ) {
+	private function store_temp_file( array $file, string $real_mime ): string|\WP_Error {
 		$upload_dir  = wp_upload_dir();
 		$target_dir  = trailingslashit( $upload_dir['basedir'] ) . self::UPLOAD_SUBDIR;
 

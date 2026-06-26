@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 defined('ABSPATH') || exit;
 
-function mypetpuzzle_vite_manifest() {
+function mypetpuzzle_vite_manifest(): array|false {
     static $manifest = null;
 
     if ($manifest === null) {
@@ -17,7 +19,7 @@ function mypetpuzzle_vite_manifest() {
     return $manifest;
 }
 
-function mypetpuzzle_vite_asset($entry) {
+function mypetpuzzle_vite_asset(string $entry): ?array {
     $manifest = mypetpuzzle_vite_manifest();
     if ($manifest === false) {
         return null;
@@ -27,7 +29,7 @@ function mypetpuzzle_vite_asset($entry) {
     return $manifest[$key] ?? null;
 }
 
-function mypetpuzzle_vite_css() {
+function mypetpuzzle_vite_css(): ?string {
     $manifest = mypetpuzzle_vite_manifest();
     if ($manifest === false) {
         return null;
