@@ -117,6 +117,41 @@ function cpz_puzzle_page_url(): string {
     return $query->have_posts() ? get_permalink($query->posts[0]->ID) : home_url('/');
 }
 
+function cpz_get_shipping_cost_html(string $free_label = 'Offert'): string {
+    $subtotal = WC()->cart->get_subtotal();
+    $free_threshold = 50;
+
+    if ($subtotal >= $free_threshold) {
+        return $free_label;
+    }
+
+    $customer = WC()->customer;
+    if (!empty(WC()->session) && empty($customer->get_shipping_country())) {
+        $base = wc_get_base_location();
+        $customer->set_shipping_country($base['country']);
+        if (!empty($base['state'])) {
+            $customer->set_shipping_state($base['state']);
+        }
+        $customer->set_shipping_postcode('');
+        $customer->set_shipping_city('');
+    }
+
+    $packages = WC()->shipping()->get_packages();
+    if (!empty($packages)) {
+        $package = reset($packages);
+        $rates = $package['rates'];
+        if (!empty($rates)) {
+            $chosen = WC()->session->get('chosen_shipping_methods', array());
+            $chosen = !empty($chosen) ? reset($chosen) : '';
+            $rate = isset($rates[$chosen]) ? $rates[$chosen] : reset($rates);
+            return wc_price($rate->cost + array_sum($rate->taxes));
+        }
+    }
+
+    $remaining = wc_price($free_threshold - $subtotal);
+    return sprintf('%s dès %s', $free_label, $remaining);
+}
+
 add_filter('woocommerce_package_rates', function ($rates, $package) {
     $subtotal = WC()->cart ? WC()->cart->get_subtotal() : 0;
     if ($subtotal >= 50) {

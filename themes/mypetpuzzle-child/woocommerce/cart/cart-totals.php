@@ -24,43 +24,7 @@ defined( 'ABSPATH' ) || exit;
             <div class="cart-totals__row cart-totals__row--shipping">
                 <span class="cart-totals__label">Livraison</span>
                 <span class="cart-totals__value">
-                    <?php
-                    $subtotal = WC()->cart->get_subtotal();
-                    $free_threshold = 50;
-                    if ($subtotal >= $free_threshold) {
-                        echo 'Offerte';
-                    } else {
-                        // Ensure a default shipping address for rate estimation
-                        $customer = WC()->customer;
-                        if (!empty(WC()->session) && empty($customer->get_shipping_country())) {
-                            $base = wc_get_base_location();
-                            $customer->set_shipping_country($base['country']);
-                            if (!empty($base['state'])) {
-                                $customer->set_shipping_state($base['state']);
-                            }
-                            $customer->set_shipping_postcode('');
-                            $customer->set_shipping_city('');
-                        }
-
-                        $packages = WC()->shipping()->get_packages();
-                        $shown = false;
-                        if (!empty($packages)) {
-                            $package = reset($packages);
-                            $rates = $package['rates'];
-                            if (!empty($rates)) {
-                                $chosen = WC()->session->get('chosen_shipping_methods', array());
-                                $chosen = !empty($chosen) ? reset($chosen) : '';
-                                $rate = isset($rates[$chosen]) ? $rates[$chosen] : reset($rates);
-                                echo wc_price($rate->cost + array_sum($rate->taxes));
-                                $shown = true;
-                            }
-                        }
-                        if (!$shown) {
-                            $remaining = wc_price($free_threshold - $subtotal);
-                            printf('Offerte dès %s', $remaining);
-                        }
-                    }
-                    ?>
+                    <?php echo cpz_get_shipping_cost_html('Offerte'); ?>
                 </span>
             </div>
             <?php do_action('woocommerce_cart_totals_after_shipping'); ?>
