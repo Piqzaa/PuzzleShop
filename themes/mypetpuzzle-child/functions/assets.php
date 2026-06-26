@@ -102,14 +102,14 @@ function mypetpuzzle_child_enqueue_assets() {
     if (is_page('page-puzzle')) {
         wp_enqueue_style(
             'cropperjs',
-            'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css',
+            $uri . '/assets/vendor/cropperjs/cropper.min.css',
             [],
             '1.6.2'
         );
 
         wp_enqueue_script(
             'cropperjs',
-            'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js',
+            $uri . '/assets/vendor/cropperjs/cropper.min.js',
             [],
             '1.6.2',
             true
