@@ -37,11 +37,11 @@
     const symbol = target.textContent.trim().replace(/[\d.,\s]/g, "").trim() || "€";
 
     const bdi = target.querySelector("bdi");
-    const html = total + " " + symbol;
+    const text = total + " " + symbol;
     if (bdi) {
-      bdi.innerHTML = html;
+      bdi.textContent = text;
     } else {
-      target.innerHTML = html;
+      target.textContent = text;
     }
   }
 

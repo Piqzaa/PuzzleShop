@@ -16,6 +16,8 @@ defined( 'ABSPATH' ) || exit;
 
 class Cpz_Order_Meta {
 
+	private const API_BASE = 'https://api.printify.com/v1/';
+
 	private string $api_token = '';
 
 	private function get_variant_map(): array {
