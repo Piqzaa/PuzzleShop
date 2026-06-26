@@ -31,6 +31,7 @@ function mypetpuzzle_child_enqueue_assets() {
         'mypetpuzzle-child-puzzle-floating' => ['file' => 'puzzle-floating'],
         'mypetpuzzle-child-cookies'         => ['file' => 'cookies'],
         'mypetpuzzle-child-product-card'    => ['file' => 'product-card', 'deps' => ['wc-cart-fragments']],
+        'mypetpuzzle-child-notices-dismiss' => ['file' => 'notices-dismiss'],
 
     ];
 
@@ -49,19 +50,15 @@ function mypetpuzzle_child_enqueue_assets() {
         'nonce'    => wp_create_nonce('bestseller_add_to_cart'),
     ]);
 
-    wp_add_inline_script('mypetpuzzle-child-header', '
-        document.addEventListener("DOMContentLoaded",function(){
-            const d=function(){document.querySelectorAll(".woocommerce-message,.woocommerce-info,.woocommerce-error").forEach(function(n){
-                if(!n.dataset.dismissTimer){
-                    n.dataset.dismissTimer="true";
-                    n.style.transition="opacity .5s ease";
-                    setTimeout(function(){n.style.opacity="0";setTimeout(function(){n.remove()},500)},4000)
-                }
-            })};
-            d();
-            new MutationObserver(d).observe(document.body,{childList:true,subtree:true})
-        });
-    ');
+    if (is_front_page()) {
+        wp_enqueue_script(
+            'mypetpuzzle-child-registration-notice',
+            $uri . '/assets/js/modules/registration-notice.js',
+            [],
+            $version,
+            true
+        );
+    }
 
     if (is_product()) {
         wp_enqueue_script(
@@ -100,6 +97,38 @@ function mypetpuzzle_child_enqueue_assets() {
             $version,
             true
         );
+    }
+
+    if (is_page_template('page-page-puzzle.php')) {
+        wp_enqueue_style(
+            'cropperjs',
+            'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css',
+            [],
+            '1.6.2'
+        );
+
+        wp_enqueue_script(
+            'cropperjs',
+            'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js',
+            [],
+            '1.6.2',
+            true
+        );
+
+        wp_enqueue_script(
+            'mypetpuzzle-custom-puzzle',
+            content_url('plugins/mypetpuzzle-core/custome-puzzle.js'),
+            ['cropperjs'],
+            '1.0.0',
+            true
+        );
+
+        wp_localize_script('mypetpuzzle-custom-puzzle', 'cpzData', [
+            'ajaxUrl'   => admin_url('admin-ajax.php'),
+            'nonce'     => wp_create_nonce('cpz_upload_nonce'),
+            'productId' => MYPETPUZZLE_CUSTOM_PRODUCT_ID,
+            'cartUrl'   => wc_get_cart_url(),
+        ]);
     }
 }
 add_action('wp_enqueue_scripts', 'mypetpuzzle_child_enqueue_assets');

@@ -19,7 +19,6 @@ add_action('woocommerce_created_customer', function ($customer_id) {
     $subject = __('Confirmez votre adresse email', 'mypetpuzzle-child');
 
     ob_start();
-    $name       = esc_html($name);
     $verify_url = esc_url($verify_url);
     get_template_part('template-parts/email-verification');
     $message = ob_get_clean();

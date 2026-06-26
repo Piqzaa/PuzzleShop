@@ -7,7 +7,7 @@
   right: 0;
   z-index: 9999;
   background-color: $color-text;
-  color: #d4cdc6;
+  color: $color-footer-text;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
   animation: cookieSlideUp 0.4s ease;
 }
@@ -58,7 +58,7 @@
 .cookie-banner__text {
   margin: 0;
   font-size: $font-size-small;
-  color: #b0a69e;
+  color: $color-footer-text-muted;
   line-height: 1.5;
 }
 

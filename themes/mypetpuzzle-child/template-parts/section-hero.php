@@ -7,19 +7,6 @@
         </span>
         <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#8b6f47;font-size:18px;line-height:1;">&times;</span>
     </div>
-    <script>
-    (function(){
-        var el = document.getElementById('registration-notice');
-        if (!el) return;
-        var close = function(){
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(-100%)';
-            setTimeout(function(){ el.style.display = 'none'; }, 400);
-        };
-        el.addEventListener('click', close);
-        setTimeout(close, 8000);
-    })();
-    </script>
     <?php endif; ?>
     <canvas class="hero__canvas" aria-hidden="true"></canvas>
     <div class="hero__inner">

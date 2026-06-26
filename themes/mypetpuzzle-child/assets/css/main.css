@@ -1210,52 +1210,6 @@ body [role=button] {
     display: none;
   }
 }
-.upload__dropzone {
-  border: 2px dashed #c5b7a3;
-  border-radius: 8px;
-  padding: 48px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-.upload__dropzone:hover,
-.upload__dropzone--active {
-  border-color: #c9a84c;
-}
-
-.upload__preview {
-  max-width: 300px;
-  margin: 16px auto;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.upload__error {
-  color: #d0021b;
-  font-size: 14px;
-  margin-top: 8px;
-}
-
-.upload__submit {
-  background-color: #c9a84c;
-  color: #ffffff;
-  border: none;
-  padding: 8px 24px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
-
-.upload__submit:hover {
-  background-color: #b59744;
-}
-
-.upload__submit:disabled {
-  background-color: #6b5d58;
-  cursor: not-allowed;
-}
-
 .footer {
   background-color: #2c1810;
   color: #d4cdc6;

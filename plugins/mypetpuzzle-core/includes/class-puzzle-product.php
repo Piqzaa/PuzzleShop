@@ -100,7 +100,7 @@ class Cpz_Puzzle_Product {
 	 * @param string $cart_item_key
 	 * @return string
 	 */
-	public function cart_item_thumbnail( string $thumbnail, array $cart_item, string $cart_item_key ): string {
+	public function cart_item_thumbnail( string $thumbnail, array $cart_item, string $_cart_item_key ): string {
 		if ( empty( $cart_item['cpz_image_thumb_url'] ) ) {
 			return $thumbnail;
 		}

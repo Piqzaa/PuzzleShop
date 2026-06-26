@@ -260,38 +260,4 @@ get_header();
 
 </main>
 
-<div id="content" class="site-content" tabindex="-1">
-    <div class="col-full">
-
-<?php
-wp_enqueue_style(
-    'cropperjs',
-    'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css',
-    [],
-    '1.6.2'
-);
-
-wp_enqueue_script(
-    'cropperjs',
-    'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js',
-    [],
-    '1.6.2',
-    true
-);
-
-wp_enqueue_script(
-    'mypetpuzzle-custom-puzzle',
-    content_url('plugins/mypetpuzzle-core/custome-puzzle.js'),
-    ['cropperjs'],
-    '1.0.0',
-    true
-);
-
-wp_localize_script('mypetpuzzle-custom-puzzle', 'cpzData', [
-    'ajaxUrl'   => admin_url('admin-ajax.php'),
-    'nonce'     => wp_create_nonce('cpz_upload_nonce'),
-    'productId' => MYPETPUZZLE_CUSTOM_PRODUCT_ID,
-    'cartUrl'   => wc_get_cart_url(),
-]);
-
-get_footer();
+<?php get_footer();

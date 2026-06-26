@@ -2,7 +2,7 @@
 
 .footer {
   background-color: $color-text;
-  color: #d4cdc6;
+  color: $color-footer-text;
   font-family: $font-primary;
   font-size: $font-size-small;
 }
@@ -42,7 +42,7 @@
 
 .footer__tagline {
   margin: 0 0 $spacing-lg;
-  color: #b0a69e;
+  color: $color-footer-text-muted;
   line-height: 1.6;
   max-width: 28ch;
 }
@@ -76,7 +76,7 @@
 }
 
 .footer__links a {
-  color: #b0a69e;
+  color: $color-footer-text-muted;
   text-decoration: none;
   transition: color $transition-fast;
   font-size: $font-size-small;
@@ -127,7 +127,7 @@
 
 .footer__secure {
   font-size: 12px;
-  color: #8c8279;
+  color: $color-footer-text-dim;
   margin: 0;
 }
 
@@ -156,11 +156,11 @@
 .footer__copyright {
   margin: 0;
   font-size: 12px;
-  color: #8c8279;
+  color: $color-footer-text-dim;
 }
 
 .footer__legal-info {
   margin: 0;
   font-size: 11px;
-  color: #6b6058;
+  color: #6b6058; // unique to legal-info, keep as-is
 }

@@ -138,7 +138,10 @@ class Cpz_Upload_Handler {
 		// Protège le dossier des accès directs HTTP
 		$htaccess = $target_dir . '/.htaccess';
 		if ( ! file_exists( $htaccess ) ) {
-			file_put_contents( $htaccess, "Options -Indexes\nDeny from all\n" );
+			$written = file_put_contents( $htaccess, "Options -Indexes\nDeny from all\n" );
+			if ( false === $written ) {
+				error_log( 'Cpz_Upload_Handler: impossible d\'écrire le .htaccess dans ' . $target_dir );
+			}
 		}
 
 		// Génère un nom de fichier unique et sécurisé
